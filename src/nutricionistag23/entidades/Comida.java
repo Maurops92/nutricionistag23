@@ -1,5 +1,7 @@
 package nutricionistag23.entidades;
 
+import java.util.Objects;
+
 public class Comida {
 
     private String nombre;
@@ -21,6 +23,43 @@ public class Comida {
         this.detalle = detalle;
         this.cantCalorias = cantCalorias;
         this.idComida = idComida;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.nombre);
+        hash = 17 * hash + Objects.hashCode(this.detalle);
+        hash = 17 * hash + this.cantCalorias;
+        hash = 17 * hash + this.idComida;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Comida other = (Comida) obj;
+        if (this.cantCalorias != other.cantCalorias) {
+            return false;
+        }
+        if (this.idComida != other.idComida) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.detalle, other.detalle)) {
+            return false;
+        }
+        return true;
     }
 
     public String getNombre() {
