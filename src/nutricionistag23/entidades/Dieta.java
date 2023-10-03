@@ -2,6 +2,7 @@
 package nutricionistag23.entidades;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 
@@ -26,6 +27,55 @@ public class Dieta {
     }
 
     public Dieta() {
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 71 * hash + this.idDieta;
+        hash = 71 * hash + Objects.hashCode(this.nombre);
+        hash = 71 * hash + Objects.hashCode(this.paciente);
+        hash = 71 * hash + Objects.hashCode(this.fechaInicial);
+        hash = 71 * hash + (int) (Double.doubleToLongBits(this.pesoInicial) ^ (Double.doubleToLongBits(this.pesoInicial) >>> 32));
+        hash = 71 * hash + (int) (Double.doubleToLongBits(this.pesoFinal) ^ (Double.doubleToLongBits(this.pesoFinal) >>> 32));
+        hash = 71 * hash + Objects.hashCode(this.fechaFinal);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Dieta other = (Dieta) obj;
+        if (this.idDieta != other.idDieta) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.pesoInicial) != Double.doubleToLongBits(other.pesoInicial)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.pesoFinal) != Double.doubleToLongBits(other.pesoFinal)) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.paciente, other.paciente)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaInicial, other.fechaInicial)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaFinal, other.fechaFinal)) {
+            return false;
+        }
+        return true;
     }
 
     public Dieta(String nombre, Paciente paciente, LocalDate fechaInicial, double pesoInicial, double pesoFinal, LocalDate fechaFinal) {

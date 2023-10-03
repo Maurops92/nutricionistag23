@@ -2,9 +2,12 @@
 
 package nutricionistag23;
 
+import java.time.LocalDate;
 import nutricionistag23.accesoADatos.ComidaData;
+import nutricionistag23.accesoADatos.DietaData;
 import nutricionistag23.accesoADatos.PacienteData;
 import nutricionistag23.entidades.Comida;
+import nutricionistag23.entidades.Dieta;
 import nutricionistag23.entidades.Paciente;
 
 
@@ -15,6 +18,7 @@ public class Nutricionistag23 {
         
         PacienteData pData= new PacienteData();
         ComidaData cData= new ComidaData();
+        DietaData dData = new DietaData();
         //pData.guardarPaciente(new Paciente("Marcos", 78912348,"alemania 987", "381-9789789", 75, 90, 1.55));
         /*pData.guardarPaciente(new Paciente("Marcos", 12345688,"Tucuman 654", "381-2351563", 70, 72, 1.65));
         pData.guardarPaciente(new Paciente("Carina", 12345689,"Paris 123", "381-9234561", 80, 55, 1.55));
@@ -26,7 +30,18 @@ public class Nutricionistag23 {
         
         //cData.guardaComida(new Comida("Merluza", "filet de merluza de 400 gr", 200));
         //cData.borrarComida(1);
-        System.out.println( cData.buscarComida(2));
+        //cData.modificarComida(new Comida("Merluza", "filet de merluza de 400 gr", 400,2));
+        //System.out.println( cData.buscarComida(2));
+        //System.out.println(cData.listaComida());
+        
+       // dData.guardarDieta(new Dieta("Keto", pData.buscarPacienteXId(2), LocalDate.of(2023, 8, 25), 100.5, 95.8, LocalDate.of(2023, 8, 30)));
+//        System.out.println(dData.buscarDieta(1));
+//        dData.modificarDieta(new Dieta(1, "Keto", pData.buscarPacienteXId(2), LocalDate.of(2023, 8, 25), 99, 95.8, LocalDate.of(2023, 8, 30)));
+//        System.out.println(dData.listaDieta());
+//        dData.borrarDieta(1);
+        
     }
+    
+    
 
 }

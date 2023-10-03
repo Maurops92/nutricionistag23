@@ -41,7 +41,7 @@ public class PacienteData {
 
     }
 
-    public Paciente buscarPaciente(int dni) {
+    public Paciente buscarPacienteXDni(int dni) {
         Paciente paciente = null;
 
         String sql = "SELECT * FROM paciente WHERE dni = ?";
@@ -51,6 +51,36 @@ public class PacienteData {
             if (rs.next()) {
                 paciente = new Paciente();
                 paciente.setDni(dni);
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setTelefono(rs.getString("telefono"));
+                paciente.setPesoActual(rs.getDouble("pesoActual"));
+                paciente.setPesoDeseado(rs.getDouble("pesoDeseado"));
+                paciente.setEstatura(rs.getDouble("estatura"));
+                paciente.setIdPaciente(rs.getInt("idPaciente"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El paciente no se encontró");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos." + ex.getMessage());
+        }
+        return paciente;
+
+    }
+    
+    public Paciente buscarPacienteXId(int id) {
+        Paciente paciente = null;
+
+        String sql = "SELECT * FROM paciente WHERE idPaciente = ?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                paciente = new Paciente();
+                paciente.setIdPaciente(id);
+                paciente.setDni(rs.getInt("dni"));
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setDomicilio(rs.getString("domicilio"));
                 paciente.setTelefono(rs.getString("telefono"));
@@ -90,7 +120,7 @@ public class PacienteData {
 
     public void modificarPaciente(Paciente paciente) {
         String sql = "UPDATE paciente SET nombre=?,dni=?,domicilio=?,telefono=?,pesoActual=?,pesoDeseado=?,estatura=? WHERE dni=" + paciente.getDni();
-        if (paciente.equals(buscarPaciente(paciente.getDni()))) {
+        if (paciente.equals(buscarPacienteXDni(paciente.getDni()))) {
             JOptionPane.showMessageDialog(null, "No hubo modificacion");
         } else {
             try (PreparedStatement ps = con.prepareStatement(sql)) {
