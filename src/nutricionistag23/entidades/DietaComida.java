@@ -8,49 +8,69 @@ import java.util.List;
 
 public class DietaComida {
 
-    private int idDietaComida;
-    private List<Comida> comida;
+    private int id;
+    private Comida comida;
     private Dieta dieta;
-    private HorariosEnum horarios;
+    private HorariosEnum horario;
+    private DiasEnum dia;
 
+    public DietaComida(Comida comida, Dieta dieta, HorariosEnum horario, DiasEnum dia) {
+        this.comida = comida;
+        this.dieta = dieta;
+        this.horario = horario;
+        this.dia = dia;
+    }
+
+    public DietaComida(int id, Comida comida, Dieta dieta, HorariosEnum horarios, DiasEnum dia) {
+        this.comida = comida;
+        this.dieta = dieta;
+        this.horario = horarios;
+        this.dia = dia;
+    }
+    
     public DietaComida() {
-        this.comida = new ArrayList<>() ;
+        
     }
 
-    public DietaComida(int idDietaComida, List<Comida> comida, Dieta dieta, HorariosEnum horarios) {
-        this.idDietaComida = idDietaComida;
-        this.comida = comida;
-        this.dieta = dieta;
-        this.horarios = horarios;
+    public int getId() {
+        return id;
     }
 
-    public DietaComida(List<Comida> comida, Dieta dieta, HorariosEnum horarios) {
-        this.comida = comida;
-        this.dieta = dieta;
-        this.horarios = horarios;
+    public void setId(int id) {
+        this.id = id;
     }
+
+    public HorariosEnum getHorario() {
+        return horario;
+    }
+
+    public void setHorario(HorariosEnum horario) {
+        this.horario = horario;
+    }
+
+    public DiasEnum getDia() {
+        return dia;
+    }
+
+    public void setDia(DiasEnum dia) {
+        this.dia = dia;
+    }
+
+
 
     public HorariosEnum getHorarios() {
-        return horarios;
+        return horario;
     }
 
     public void setHorarios(HorariosEnum horarios) {
-        this.horarios = horarios;
+        this.horario = horarios;
     }
 
-    public int getIdDietaComida() {
-        return idDietaComida;
-    }
-
-    public void setIdDietaComida(int idDietaComida) {
-        this.idDietaComida = idDietaComida;
-    }
-
-    public List<Comida> getComida() {
+    public Comida getComida() {
         return comida;
     }
 
-    public void setComida(List<Comida> comida) {
+    public void setComida(Comida comida) {
         this.comida = comida;
     }
 
@@ -66,7 +86,7 @@ public class DietaComida {
 
     @Override
     public String toString() {
-        return comida + ", "+ dieta;
+        return dieta + ", "+ comida+ ", "+dia+ ", "+horario;
     }
     
     
