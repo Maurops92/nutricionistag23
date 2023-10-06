@@ -6,6 +6,7 @@
 package nutricionistag23.vistas;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,6 +22,7 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         jpPaciente.setBackground(new Color(0, 0, 0, 0));
+        
     }
 
     /**
@@ -32,24 +34,38 @@ public class MainMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jdpEscritorio = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         jpPaciente = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("mainMenu"); // NOI18N
 
-        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jdpEscritorio.setPreferredSize(new java.awt.Dimension(800, 523));
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 102));
-        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
+        jdpEscritorio.setLayout(jdpEscritorioLayout);
+        jdpEscritorioLayout.setHorizontalGroup(
+            jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 768, Short.MAX_VALUE)
+        );
+        jdpEscritorioLayout.setVerticalGroup(
+            jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 633, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(0, 255, 153));
+        jPanel1.setForeground(new java.awt.Color(51, 255, 51));
         jPanel1.setToolTipText("");
         jPanel1.setPreferredSize(new java.awt.Dimension(200, 600));
 
-        jpPaciente.setBackground(new java.awt.Color(204, 255, 102));
+        jpPaciente.setBackground(new java.awt.Color(51, 255, 0));
         jpPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpPacienteMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jpPacienteMouseEntered(evt);
             }
@@ -58,58 +74,54 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Paciente");
+
         javax.swing.GroupLayout jpPacienteLayout = new javax.swing.GroupLayout(jpPaciente);
         jpPaciente.setLayout(jpPacienteLayout);
         jpPacienteLayout.setHorizontalGroup(
             jpPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 152, Short.MAX_VALUE)
+            .addGroup(jpPacienteLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jpPacienteLayout.setVerticalGroup(
             jpPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpPacienteLayout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jpPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
+            .addComponent(jpPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(56, 56, 56)
                 .addComponent(jpPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(486, Short.MAX_VALUE))
+                .addContainerGap(519, Short.MAX_VALUE))
         );
-
-        jDesktopPane1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 600));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-
-        jDesktopPane1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 600, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jdpEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jdpEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
         );
 
         pack();
@@ -117,21 +129,30 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jpPacienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseEntered
-        for (int i = 0; i < 80; i++) {
-            try {
-                jpPaciente.setBackground(new Color(255, 255, 102,i));
-                Thread.sleep(10l);
-            }
-            //  jpPaciente.setBackground(new Color(255, 255, 102));        // TODO add your handling code here:
-            catch (InterruptedException ex) {
-                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+//        for (int i = 0; i < 50; i++) {
+//            try {
+//                jpPaciente.setBackground(new Color(255, 255, 102,i));
+//                Thread.sleep(1l);
+//            }
+             jpPaciente.setBackground(new Color(255, 255, 102));        // TODO add your handling code here:
+//            catch (InterruptedException ex) {
+//                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }//GEN-LAST:event_jpPacienteMouseEntered
 
     private void jpPacienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseExited
         jpPaciente.setBackground(new Color(204, 255, 102));        // TODO add your handling code here:
     }//GEN-LAST:event_jpPacienteMouseExited
+
+    private void jpPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseClicked
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        PacienteVista pv = new PacienteVista();
+        agregarFondoVentana(pv);
+       // pv.setSize(800,523);
+        
+    }//GEN-LAST:event_jpPacienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -169,9 +190,20 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JDesktopPane jdpEscritorio;
     private javax.swing.JPanel jpPaciente;
     // End of variables declaration//GEN-END:variables
+
+private void agregarFondoVentana (Component fv){
+        fv.setVisible(true);
+        jdpEscritorio.add(fv);
+//        jdpEscritorio.add(jlFondo);
+//        jdpEscritorio.moveToFront(jlFondo);
+        jdpEscritorio.moveToFront(fv);
+    }
+
+
+
 }
