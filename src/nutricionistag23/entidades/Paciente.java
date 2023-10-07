@@ -32,7 +32,7 @@ public class Paciente {
         this.telefono = telefono;
     }
 
-    public Paciente(String nombre, int dni, String domicilio, String telefono, double pesoActual, double pesoDeseado, double estatura) {
+    public Paciente(String nombre, int dni, String domicilio, String telefono, double pesoActual, double pesoDeseado, double estatura, int idPaciente) {
         this.nombre = nombre;
         this.dni = dni;
         this.domicilio = domicilio;
@@ -40,6 +40,8 @@ public class Paciente {
         this.pesoActual = pesoActual;
         this.pesoDeseado = pesoDeseado;
         this.estatura = estatura;
+        this.idPaciente = idPaciente;
+        
     }
 
     public double getPesoActual() {

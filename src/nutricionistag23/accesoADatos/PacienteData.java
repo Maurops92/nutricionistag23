@@ -107,7 +107,7 @@ public class PacienteData {
 
             while (rs.next()) {
                 listaPacientes.add(new Paciente(rs.getString("nombre"), rs.getInt("dni"), rs.getString("domicilio"),
-                        rs.getString("telefono"), rs.getDouble("pesoActual"), rs.getDouble("pesoDeseado"), rs.getDouble("estatura")));
+                        rs.getString("telefono"), rs.getDouble("pesoActual"), rs.getDouble("pesoDeseado"), rs.getDouble("estatura"),rs.getInt("idPaciente")));
 
             }
 
