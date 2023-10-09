@@ -24,6 +24,7 @@ import nutricionistag23.accesoADatos.DietaData;
 import nutricionistag23.accesoADatos.PacienteData;
 import nutricionistag23.entidades.Dieta;
 import nutricionistag23.entidades.Paciente;
+import static nutricionistag23.vistas.MainMenu.getMainMenu;
 
 /**
  *
@@ -327,7 +328,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 387, Short.MAX_VALUE))
+                .addGap(0, 372, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,12 +460,15 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jrbDietaNoActivaActionPerformed
 
     private void jbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHistorialActionPerformed
+        
         if (historialPacienteVista != null) {
             historialPacienteVista.setVisible(true);
         } else {
             historialPacienteVista = new HistorialPacienteVista();
             historialPacienteVista.setVisible(true);
         }
+        historialPacienteVista.setIdPaciente((int)modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 0));
+        getMainMenu().agregarVista(historialPacienteVista);
     }//GEN-LAST:event_jbHistorialActionPerformed
 
 
