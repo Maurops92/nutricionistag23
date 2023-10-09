@@ -350,6 +350,9 @@
                   <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jtPacientesMouseReleased"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -365,6 +368,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Modificar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbModificarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jrbDietaNoActiva">
           <Properties>
@@ -381,6 +387,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Dieta Activa"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbDietaActivaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbVaciarCampos">
           <Properties>

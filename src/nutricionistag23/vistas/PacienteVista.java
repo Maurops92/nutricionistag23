@@ -6,7 +6,11 @@
 package nutricionistag23.vistas;
 
 import java.awt.Component;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -15,7 +19,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
+import nutricionistag23.accesoADatos.DietaData;
 import nutricionistag23.accesoADatos.PacienteData;
+import nutricionistag23.entidades.Dieta;
 import nutricionistag23.entidades.Paciente;
 
 /**
@@ -24,7 +30,11 @@ import nutricionistag23.entidades.Paciente;
  */
 public class PacienteVista extends javax.swing.JInternalFrame {
 
-    private DefaultTableModel modeloTabla = new DefaultTableModel();
+    private DefaultTableModel modeloTabla = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
 
     /**
      * Creates new form PacienteVista
@@ -33,6 +43,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         llenarTabla();
+        jbModificar.setEnabled(false);
 
     }
 
@@ -135,6 +146,11 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         ));
         jtPacientes.getTableHeader().setResizingAllowed(false);
         jtPacientes.getTableHeader().setReorderingAllowed(false);
+        jtPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jtPacientesMouseReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jtPacientes);
 
         jbAgregar.setText("Agregar");
@@ -145,12 +161,22 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         });
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jrbDietaNoActiva.setForeground(new java.awt.Color(255, 255, 255));
         jrbDietaNoActiva.setText("Dieta No Activa");
 
         jrbDietaActiva.setForeground(new java.awt.Color(255, 255, 255));
         jrbDietaActiva.setText("Dieta Activa");
+        jrbDietaActiva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbDietaActivaActionPerformed(evt);
+            }
+        });
 
         jbVaciarCampos.setText("Limpiar");
         jbVaciarCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -282,13 +308,13 @@ public class PacienteVista extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 30, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -310,14 +336,88 @@ public class PacienteVista extends javax.swing.JInternalFrame {
             llenarTabla();
             limpiar();
         } catch (NumberFormatException nf) {
-            JOptionPane.showMessageDialog(this, "No se permiten campos vacíos y/o carateres inválidos.");
+            JOptionPane.showMessageDialog(this, "No se permiten campos vacíos y/o caracteres inválidos.");
         }
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbVaciarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVaciarCamposActionPerformed
         limpiar();
+        jbAgregar.setEnabled(true);
+        jbModificar.setEnabled(false);
+        jrbDietaActiva.setSelected(false);
+        jrbDietaNoActiva.setSelected(false);
+        tableClean();
+        llenarTabla();
 
     }//GEN-LAST:event_jbVaciarCamposActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+            
+        try {
+            PacienteData pd = new PacienteData();
+            Paciente paciente = new Paciente();
+            paciente.setNombre(jtNombre.getText());
+            paciente.setDni(Integer.parseInt(jtDni.getText()));
+            paciente.setDomicilio(jtDomicilio.getText());
+            paciente.setTelefono(jtTelefono.getText());
+            paciente.setPesoActual(Double.parseDouble(jtPesoActual.getText()));
+            paciente.setPesoDeseado(Double.parseDouble(jtPesoDeseado.getText()));
+            paciente.setEstatura(Double.parseDouble(jtEstatura.getText()));
+            paciente.setIdPaciente((int) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 0));
+            pd.modificarPaciente(paciente);
+            tableClean();
+            llenarTabla();
+            limpiar();
+            jbAgregar.setEnabled(true);
+            jbModificar.setEnabled(false);
+            
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "No se permiten campos vacíos y/o caracteres inválidos.");
+        }
+        
+    
+    
+    
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jtPacientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPacientesMouseReleased
+
+        jbModificar.setEnabled(true);
+        jtDni.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 1).toString());
+        jtNombre.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 2).toString());
+        jtDomicilio.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 3).toString());
+        jtTelefono.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 4).toString());
+        jtPesoActual.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 5).toString());
+        jtPesoDeseado.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 6).toString());
+        jtEstatura.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 7).toString());
+        jbAgregar.setEnabled(false);
+
+    }//GEN-LAST:event_jtPacientesMouseReleased
+
+    private void jrbDietaActivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDietaActivaActionPerformed
+        limpiar();
+        tableClean();
+        jbModificar.setEnabled(false);
+        jbAgregar.setEnabled(true);
+        jrbDietaNoActiva.setSelected(false);
+        DietaData dd = new DietaData();
+       //List<Dieta> dietaList = new ArrayList<>();
+        Paciente paciente=null;
+        PacienteData pd = new PacienteData();
+        for (Dieta dieta : dd.listaDieta()){
+                   
+            if (dieta.getFechaFinal().compareTo(LocalDate.now())!= 1 ) {
+                paciente = pd.buscarPacienteXDni(dieta.getPaciente().getDni());
+                modeloTabla.addRow(new Object[]{paciente.getIdPaciente(), paciente.getDni(), paciente.getNombre(), paciente.getDomicilio(), paciente.getTelefono(), paciente.getPesoActual(),
+                paciente.getPesoDeseado(), paciente.getEstatura()});
+            }
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_jrbDietaActivaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -366,7 +466,14 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jtPacientes.getColumnModel().getColumn(7).setPreferredWidth(40);
         JTableHeader header = jtPacientes.getTableHeader();
         header.setDefaultRenderer(new HeaderRenderer(jtPacientes));
-        ColumnRenderer jBody = new ColumnRenderer(jtPacientes,new int[]{0,1,4,5,6,7});
+        ColumnRenderer jBody = new ColumnRenderer(jtPacientes, new int[]{0, 1, 4, 5, 6, 7});
+        jtDni.setBorder(BorderFactory.createCompoundBorder(jtDni.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
+        jtDomicilio.setBorder(BorderFactory.createCompoundBorder(jtDomicilio.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
+        jtEstatura.setBorder(BorderFactory.createCompoundBorder(jtEstatura.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
+        jtNombre.setBorder(BorderFactory.createCompoundBorder(jtNombre.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
+        jtPesoActual.setBorder(BorderFactory.createCompoundBorder(jtPesoActual.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
+        jtPesoDeseado.setBorder(BorderFactory.createCompoundBorder(jtPesoDeseado.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
+        jtTelefono.setBorder(BorderFactory.createCompoundBorder(jtTelefono.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
     }
 
     private void llenarTabla() {
@@ -409,24 +516,25 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jtEstatura.setText("");       //
     }
 }
+
 class HeaderRenderer implements TableCellRenderer {
 
     DefaultTableCellRenderer renderer;
 
     public HeaderRenderer(JTable table) {
-        renderer = (DefaultTableCellRenderer)
-            table.getTableHeader().getDefaultRenderer();
+        renderer = (DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer();
         renderer.setHorizontalAlignment(JLabel.CENTER);
     }
 
     @Override
     public Component getTableCellRendererComponent(
-        JTable table, Object value, boolean isSelected,
-        boolean hasFocus, int row, int col) {
+            JTable table, Object value, boolean isSelected,
+            boolean hasFocus, int row, int col) {
         return renderer.getTableCellRendererComponent(
-            table, value, isSelected, hasFocus, row, col);
+                table, value, isSelected, hasFocus, row, col);
     }
 }
+
 class ColumnRenderer implements TableCellRenderer {
 
     DefaultTableCellRenderer renderer;
@@ -434,16 +542,16 @@ class ColumnRenderer implements TableCellRenderer {
     public ColumnRenderer(JTable table, int[] column) {
         renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(JLabel.RIGHT);
-        for(int i : column) {
+        for (int i : column) {
             table.getColumnModel().getColumn(i).setCellRenderer(renderer);
         }
     }
 
     @Override
     public Component getTableCellRendererComponent(
-        JTable table, Object value, boolean isSelected,
-        boolean hasFocus, int row, int col) {
+            JTable table, Object value, boolean isSelected,
+            boolean hasFocus, int row, int col) {
         return renderer.getTableCellRendererComponent(
-            table, value, isSelected, hasFocus, row, col);
+                table, value, isSelected, hasFocus, row, col);
     }
 }

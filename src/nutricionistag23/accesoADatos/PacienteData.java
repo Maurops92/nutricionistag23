@@ -119,7 +119,7 @@ public class PacienteData {
     }
 
     public void modificarPaciente(Paciente paciente) {
-        String sql = "UPDATE paciente SET nombre=?,dni=?,domicilio=?,telefono=?,pesoActual=?,pesoDeseado=?,estatura=? WHERE dni=" + paciente.getDni();
+        String sql = "UPDATE paciente SET nombre=?,dni=?,domicilio=?,telefono=?,pesoActual=?,pesoDeseado=?,estatura=? WHERE idPaciente=" + paciente.getIdPaciente();
         if (paciente.equals(buscarPacienteXDni(paciente.getDni()))) {
             JOptionPane.showMessageDialog(null, "No hubo modificacion");
         } else {
