@@ -120,7 +120,7 @@ public class PacienteData {
 
     public void modificarPaciente(Paciente paciente) {
         String sql = "UPDATE paciente SET nombre=?,dni=?,domicilio=?,telefono=?,pesoActual=?,pesoDeseado=?,estatura=? WHERE idPaciente=" + paciente.getIdPaciente();
-        if (paciente.equals(buscarPacienteXDni(paciente.getDni()))) {
+        if (paciente.equals(buscarPacienteXId(paciente.getIdPaciente()))) {
             JOptionPane.showMessageDialog(null, "No hubo modificacion");
         } else {
             try (PreparedStatement ps = con.prepareStatement(sql)) {

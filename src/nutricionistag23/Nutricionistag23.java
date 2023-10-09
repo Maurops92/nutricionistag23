@@ -40,7 +40,7 @@ public class Nutricionistag23 {
         //System.out.println( cData.buscarComida(2));
         //System.out.println(cData.listaComida());
         
-        //dData.guardarDieta(new Dieta("Keto", pData.buscarPacienteXId(2), LocalDate.of(2023, 8, 25), 100.5, 95.8, LocalDate.of(2023, 8, 30)));
+        //dData.guardarDieta(new Dieta("Ketopasada", pData.buscarPacienteXId(2), LocalDate.of(2023, 8, 25), 100.5, 95.8, LocalDate.of(2023, 8, 30)));
         //System.out.println(dData.buscarDieta(1));
         //dData.modificarDieta(new Dieta(1, "Keto", pData.buscarPacienteXId(2), LocalDate.of(2023, 8, 25), 99, 95.8, LocalDate.of(2023, 8, 30)));
         //System.out.println(dData.listaDieta());
@@ -48,6 +48,7 @@ public class Nutricionistag23 {
         //dcData.guardarDietaComida(new DietaComida(cData.buscarComida(1), dData.buscarDieta(2), HorariosEnum.CENA, DiasEnum.LUNES));
         
         //System.out.println(dcData.listarDietaComidaXDia(2,"LUNES"));
+        
         
     }
     

@@ -5,6 +5,7 @@
  */
 package nutricionistag23.vistas;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -30,6 +31,7 @@ import nutricionistag23.entidades.Paciente;
  */
 public class PacienteVista extends javax.swing.JInternalFrame {
 
+    private HistorialPacienteVista historialPacienteVista;
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -44,6 +46,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         armarCabecera();
         llenarTabla();
         jbModificar.setEnabled(false);
+        jbHistorial.setEnabled(false);
 
     }
 
@@ -79,6 +82,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jrbDietaNoActiva = new javax.swing.JRadioButton();
         jrbDietaActiva = new javax.swing.JRadioButton();
         jbVaciarCampos = new javax.swing.JButton();
+        jbHistorial = new javax.swing.JButton();
 
         setFocusable(false);
         setPreferredSize(new java.awt.Dimension(768, 633));
@@ -169,6 +173,11 @@ public class PacienteVista extends javax.swing.JInternalFrame {
 
         jrbDietaNoActiva.setForeground(new java.awt.Color(255, 255, 255));
         jrbDietaNoActiva.setText("Dieta No Activa");
+        jrbDietaNoActiva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbDietaNoActivaActionPerformed(evt);
+            }
+        });
 
         jrbDietaActiva.setForeground(new java.awt.Color(255, 255, 255));
         jrbDietaActiva.setText("Dieta Activa");
@@ -185,6 +194,13 @@ public class PacienteVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jbHistorial.setText("Historial");
+        jbHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbHistorialActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -197,7 +213,8 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                             .addComponent(jbModificar)
                             .addComponent(jrbDietaNoActiva)
                             .addComponent(jrbDietaActiva)
-                            .addComponent(jbAgregar))
+                            .addComponent(jbAgregar)
+                            .addComponent(jbHistorial))
                         .addGap(11, 11, 11)
                         .addComponent(jScrollPane1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -218,7 +235,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                                     .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,7 +249,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                         .addComponent(jtEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(385, 385, 385))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,10 +295,12 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jbVaciarCampos)
                         .addGap(2, 2, 2)))
-                .addGap(29, 29, 29)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addGap(1, 1, 1)
+                        .addComponent(jbHistorial)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jbAgregar)
@@ -308,7 +327,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 387, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +371,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbVaciarCamposActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-            
+
         try {
             PacienteData pd = new PacienteData();
             Paciente paciente = new Paciente();
@@ -370,15 +389,12 @@ public class PacienteVista extends javax.swing.JInternalFrame {
             limpiar();
             jbAgregar.setEnabled(true);
             jbModificar.setEnabled(false);
-            
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "No se permiten campos vacíos y/o caracteres inválidos.");
         }
-        
-    
-    
-    
+
+
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jtPacientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPacientesMouseReleased
@@ -392,6 +408,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jtPesoDeseado.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 6).toString());
         jtEstatura.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 7).toString());
         jbAgregar.setEnabled(false);
+        jbHistorial.setEnabled(true);
 
     }//GEN-LAST:event_jtPacientesMouseReleased
 
@@ -402,22 +419,53 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jbAgregar.setEnabled(true);
         jrbDietaNoActiva.setSelected(false);
         DietaData dd = new DietaData();
-       //List<Dieta> dietaList = new ArrayList<>();
-        Paciente paciente=null;
+        //List<Dieta> dietaList = new ArrayList<>();
+        Paciente paciente = null;
         PacienteData pd = new PacienteData();
-        for (Dieta dieta : dd.listaDieta()){
-                   
-            if (dieta.getFechaFinal().compareTo(LocalDate.now())!= 1 ) {
+        for (Dieta dieta : dd.listaDieta()) {
+
+            if (dieta.getFechaFinal().compareTo(LocalDate.now()) != 1) {// 0 si son iguales, -1 cuando el segundo es mayor que lo primero, 1 si lo segundo es menor a lo primero
                 paciente = pd.buscarPacienteXDni(dieta.getPaciente().getDni());
                 modeloTabla.addRow(new Object[]{paciente.getIdPaciente(), paciente.getDni(), paciente.getNombre(), paciente.getDomicilio(), paciente.getTelefono(), paciente.getPesoActual(),
-                paciente.getPesoDeseado(), paciente.getEstatura()});
+                    paciente.getPesoDeseado(), paciente.getEstatura()});
             }
-            
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_jrbDietaActivaActionPerformed
+
+    private void jrbDietaNoActivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDietaNoActivaActionPerformed
+        limpiar();
+        tableClean();
+        jbModificar.setEnabled(false);
+        jbAgregar.setEnabled(true);
+        jrbDietaActiva.setSelected(false);
+        DietaData dd = new DietaData();
+        List<Paciente> pacienteList = new ArrayList<>();
+        Paciente paciente = null;
+        PacienteData pd = new PacienteData();
+        pacienteList = pd.listaPaciente();
+        for (Dieta dieta : dd.listaDieta()) {
+
+            if (dieta.getFechaFinal().compareTo(LocalDate.now()) != 1) {// 0 si son iguales, -1 cuando el segundo es mayor que lo primero, 1 si lo segundo es menor a lo primero
+                pacienteList.remove(pd.buscarPacienteXDni(dieta.getPaciente().getDni()));
+            }
+        }
+        for (Paciente paciente1 : pacienteList) {
+            modeloTabla.addRow(new Object[]{paciente1.getIdPaciente(), paciente1.getDni(), paciente1.getNombre(), paciente1.getDomicilio(), paciente1.getTelefono(), paciente1.getPesoActual(),
+                paciente1.getPesoDeseado(), paciente1.getEstatura()});
+        }
+    }//GEN-LAST:event_jrbDietaNoActivaActionPerformed
+
+    private void jbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHistorialActionPerformed
+        if (historialPacienteVista != null) {
+            historialPacienteVista.setVisible(true);
+        } else {
+            historialPacienteVista = new HistorialPacienteVista();
+            historialPacienteVista.setVisible(true);
+        }
+    }//GEN-LAST:event_jbHistorialActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -432,6 +480,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbAgregar;
+    private javax.swing.JButton jbHistorial;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbVaciarCampos;
     private javax.swing.JRadioButton jrbDietaActiva;
@@ -554,4 +603,5 @@ class ColumnRenderer implements TableCellRenderer {
         return renderer.getTableCellRendererComponent(
                 table, value, isSelected, hasFocus, row, col);
     }
+
 }
