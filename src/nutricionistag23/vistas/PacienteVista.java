@@ -5,11 +5,16 @@
  */
 package nutricionistag23.vistas;
 
+import java.awt.Component;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
 import nutricionistag23.accesoADatos.PacienteData;
 import nutricionistag23.entidades.Paciente;
 
@@ -359,7 +364,9 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jtPacientes.getColumnModel().getColumn(5).setPreferredWidth(30);
         jtPacientes.getColumnModel().getColumn(6).setPreferredWidth(30);
         jtPacientes.getColumnModel().getColumn(7).setPreferredWidth(40);
-
+        JTableHeader header = jtPacientes.getTableHeader();
+        header.setDefaultRenderer(new HeaderRenderer(jtPacientes));
+        ColumnRenderer jBody = new ColumnRenderer(jtPacientes,new int[]{0,1,4,5,6,7});
     }
 
     private void llenarTabla() {
@@ -400,5 +407,43 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jtPesoActual.setText("");       // TODO add your handling code here:
         jtPesoDeseado.setText("");       // TODO add your handling code here:
         jtEstatura.setText("");       //
+    }
+}
+class HeaderRenderer implements TableCellRenderer {
+
+    DefaultTableCellRenderer renderer;
+
+    public HeaderRenderer(JTable table) {
+        renderer = (DefaultTableCellRenderer)
+            table.getTableHeader().getDefaultRenderer();
+        renderer.setHorizontalAlignment(JLabel.CENTER);
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(
+        JTable table, Object value, boolean isSelected,
+        boolean hasFocus, int row, int col) {
+        return renderer.getTableCellRendererComponent(
+            table, value, isSelected, hasFocus, row, col);
+    }
+}
+class ColumnRenderer implements TableCellRenderer {
+
+    DefaultTableCellRenderer renderer;
+
+    public ColumnRenderer(JTable table, int[] column) {
+        renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(JLabel.RIGHT);
+        for(int i : column) {
+            table.getColumnModel().getColumn(i).setCellRenderer(renderer);
+        }
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(
+        JTable table, Object value, boolean isSelected,
+        boolean hasFocus, int row, int col) {
+        return renderer.getTableCellRendererComponent(
+            table, value, isSelected, hasFocus, row, col);
     }
 }
