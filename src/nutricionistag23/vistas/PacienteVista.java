@@ -7,11 +7,13 @@ package nutricionistag23.vistas;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -32,6 +34,7 @@ import static nutricionistag23.vistas.MainMenu.getMainMenu;
  */
 public class PacienteVista extends javax.swing.JInternalFrame {
 
+    public static int pacienteid;
     private HistorialPacienteVista historialPacienteVista;
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
@@ -364,6 +367,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         limpiar();
         jbAgregar.setEnabled(true);
         jbModificar.setEnabled(false);
+        jbHistorial.setEnabled(false);
         jrbDietaActiva.setSelected(false);
         jrbDietaNoActiva.setSelected(false);
         tableClean();
@@ -399,7 +403,6 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jtPacientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPacientesMouseReleased
-
         jbModificar.setEnabled(true);
         jtDni.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 1).toString());
         jtNombre.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 2).toString());
@@ -410,7 +413,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jtEstatura.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 7).toString());
         jbAgregar.setEnabled(false);
         jbHistorial.setEnabled(true);
-
+        pacienteid = (int) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 0);
     }//GEN-LAST:event_jtPacientesMouseReleased
 
     private void jrbDietaActivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDietaActivaActionPerformed
@@ -460,15 +463,13 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jrbDietaNoActivaActionPerformed
 
     private void jbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHistorialActionPerformed
-        
-        if (historialPacienteVista != null) {
-            historialPacienteVista.setVisible(true);
-        } else {
-            historialPacienteVista = new HistorialPacienteVista();
-            historialPacienteVista.setVisible(true);
+        if(historialPacienteVista != null){
+            getMainMenu().removerVista(historialPacienteVista);
         }
-        historialPacienteVista.setIdPaciente((int)modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 0));
+        historialPacienteVista = new HistorialPacienteVista();
+        historialPacienteVista.setVisible(true);
         getMainMenu().agregarVista(historialPacienteVista);
+        
     }//GEN-LAST:event_jbHistorialActionPerformed
 
 

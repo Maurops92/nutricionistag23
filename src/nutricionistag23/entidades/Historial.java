@@ -6,6 +6,7 @@
 package nutricionistag23.entidades;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *
@@ -68,6 +69,43 @@ public class Historial {
     @Override
     public String toString() {
         return "Historial{" + "paciente=" + paciente + ", peso=" + peso + ", fechaRegistro=" + fechaRegistro + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + this.idHistorial;
+        hash = 17 * hash + Objects.hashCode(this.paciente);
+        hash = 17 * hash + (int) (Double.doubleToLongBits(this.peso) ^ (Double.doubleToLongBits(this.peso) >>> 32));
+        hash = 17 * hash + Objects.hashCode(this.fechaRegistro);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Historial other = (Historial) obj;
+        if (this.idHistorial != other.idHistorial) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.peso) != Double.doubleToLongBits(other.peso)) {
+            return false;
+        }
+        if (!Objects.equals(this.paciente, other.paciente)) {
+            return false;
+        }
+        if (!Objects.equals(this.fechaRegistro, other.fechaRegistro)) {
+            return false;
+        }
+        return true;
     }
     
     

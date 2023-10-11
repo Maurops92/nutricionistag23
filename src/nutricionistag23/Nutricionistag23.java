@@ -6,11 +6,13 @@ import java.time.LocalDate;
 import nutricionistag23.accesoADatos.ComidaData;
 import nutricionistag23.accesoADatos.DietaComidaData;
 import nutricionistag23.accesoADatos.DietaData;
+import nutricionistag23.accesoADatos.HistorialData;
 import nutricionistag23.accesoADatos.PacienteData;
 import nutricionistag23.entidades.Comida;
 import nutricionistag23.entidades.DiasEnum;
 import nutricionistag23.entidades.Dieta;
 import nutricionistag23.entidades.DietaComida;
+import nutricionistag23.entidades.Historial;
 import nutricionistag23.entidades.HorariosEnum;
 import nutricionistag23.entidades.Paciente;
 
@@ -24,6 +26,7 @@ public class Nutricionistag23 {
         ComidaData cData= new ComidaData();
         DietaData dData = new DietaData();
         DietaComidaData dcData = new DietaComidaData();
+        HistorialData hData = new HistorialData();
         //pData.guardarPaciente(new Paciente("Marcos", 78912348,"alemania 987", "381-9789789", 75, 90, 1.55));
         /*pData.guardarPaciente(new Paciente("Marcos", 12345688,"Tucuman 654", "381-2351563", 70, 72, 1.65));
         pData.guardarPaciente(new Paciente("Carina", 12345689,"Paris 123", "381-9234561", 80, 55, 1.55));
@@ -48,8 +51,11 @@ public class Nutricionistag23 {
         //dcData.guardarDietaComida(new DietaComida(cData.buscarComida(1), dData.buscarDieta(2), HorariosEnum.CENA, DiasEnum.LUNES));
         
         //System.out.println(dcData.listarDietaComidaXDia(2,"LUNES"));
-        
-        
+        //Historial historial = new Historial(pData.buscarPacienteXId(1), 99, LocalDate.now());
+        //hData.guardarHistorial(historial);
+        //hData.modificarHistorial(new Historial(1,pData.buscarPacienteXId(1), 98, LocalDate.now()));
+        //System.out.println(hData.listaHistorial(1));
+        //System.out.println(hData.buscarHistorialXId(1));
     }
     
     

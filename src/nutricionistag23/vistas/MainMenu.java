@@ -7,8 +7,10 @@ package nutricionistag23.vistas;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -162,7 +164,9 @@ public class MainMenu extends javax.swing.JFrame {
         }
         return main;
     }
-    public void agregarVista(Component cmp){
+
+    public void agregarVista(HistorialPacienteVista cmp) {
+        centrarFrame(cmp);
         agregarFondoVentana(cmp);
     }
     private void jpPacienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseEntered
@@ -171,7 +175,7 @@ public class MainMenu extends javax.swing.JFrame {
 //                jpPaciente.setBackground(new Color(255, 255, 102,i));
 //                Thread.sleep(1l);
 //            }
-        jpPaciente.setBackground(new Color(37,122,105));        // TODO add your handling code here:
+        jpPaciente.setBackground(new Color(37, 122, 105));        // TODO add your handling code here:
 //            catch (InterruptedException ex) {
 //                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
 //            }
@@ -241,6 +245,18 @@ public class MainMenu extends javax.swing.JFrame {
 //        jdpEscritorio.add(jlFondo);
 //        jdpEscritorio.moveToFront(jlFondo);
         jdpEscritorio.moveToFront(fv);
+    }
+
+    private void centrarFrame(JInternalFrame form) {
+        Dimension desktopSize = jdpEscritorio.getSize();
+        int x = (desktopSize.width - form.getWidth()) / 2;
+        int y = (desktopSize.height - form.getHeight()) / 2;
+        form.setLocation(x, y);
+    }
+
+    public void removerVista(Component fv) {
+        fv.setVisible(false);
+        jdpEscritorio.remove(fv);
     }
 
 }
