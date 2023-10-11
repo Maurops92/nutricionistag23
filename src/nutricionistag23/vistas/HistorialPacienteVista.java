@@ -8,18 +8,16 @@ package nutricionistag23.vistas;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import nutricionistag23.accesoADatos.HistorialData;
 import nutricionistag23.accesoADatos.PacienteData;
 import nutricionistag23.entidades.Historial;
-import nutricionistag23.entidades.Paciente;
 
 /**
  *
@@ -46,6 +44,7 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         jlNombrePaciente1.setText(pData.buscarPacienteXId(PacienteVista.pacienteid).getNombre());
         jlDNIPaciente.setText(pData.buscarPacienteXId(PacienteVista.pacienteid).getDni() + "");
         jdcFechaRegistro.setDate(Date.valueOf(LocalDate.now()));
+        jsPeso.setModel(new SpinnerNumberModel(0.0, 0.0, 500.0, 0.1));
     }
 
     @SuppressWarnings("unchecked")
@@ -230,7 +229,7 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         } else {
             JOptionPane.showMessageDialog(this, "No puede pesar cero o menos kilogramos");
         }
-
+   
     }//GEN-LAST:event_jbCrearActionPerformed
 
 
@@ -261,6 +260,8 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         jtHistorial.getColumnModel().getColumn(1).setPreferredWidth(15);
         jtHistorial.getColumnModel().getColumn(2).setPreferredWidth(30);
         jtHistorial.getColumnModel().getColumn(3).setPreferredWidth(100);
+        JTableHeader header = jtHistorial.getTableHeader();
+        header.setDefaultRenderer(new HeaderRenderer(jtHistorial));
     }
 
     private void llenarTabla() {
