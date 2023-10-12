@@ -24,13 +24,13 @@ public class Historial {
     public Historial(int idHistorial, Paciente paciente, double peso, LocalDate fechaRegistro) {
         this.idHistorial = idHistorial;
         this.paciente = paciente;
-        this.peso = peso;
+        this.peso = validarPeso(peso);
         this.fechaRegistro = fechaRegistro;
     }
 
     public Historial(Paciente paciente, double peso, LocalDate fechaRegistro) {
         this.paciente = paciente;
-        this.peso = peso;
+        this.peso = validarPeso(peso);
         this.fechaRegistro = fechaRegistro;
     }
 
@@ -55,7 +55,7 @@ public class Historial {
     }
 
     public void setPeso(double peso) {
-        this.peso = peso;
+        this.peso = validarPeso(peso);
     }
 
     public LocalDate getFechaRegistro() {
@@ -107,6 +107,11 @@ public class Historial {
         }
         return true;
     }
-    
+    private double validarPeso(double peso) {
+        peso *=100;
+        peso = (int) peso;
+        peso /=100;
+        return peso;
+    }
     
 }

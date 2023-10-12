@@ -37,9 +37,9 @@ public class Paciente {
         this.dni = dni;
         this.domicilio = domicilio;
         this.telefono = telefono;
-        this.pesoActual = pesoActual;
-        this.pesoDeseado = pesoDeseado;
-        this.estatura = estatura;
+        this.pesoActual = validarDouble(pesoActual);
+        this.pesoDeseado = validarDouble(pesoDeseado);
+        this.estatura = validarDouble(estatura);
         this.idPaciente = idPaciente;
         
     }
@@ -49,7 +49,7 @@ public class Paciente {
     }
 
     public void setPesoActual(double pesoActual) {
-        this.pesoActual = pesoActual;
+        this.pesoActual = validarDouble(pesoActual);
     }
 
     public double getPesoDeseado() {
@@ -57,7 +57,7 @@ public class Paciente {
     }
 
     public void setPesoDeseado(double pesoDeseado) {
-        this.pesoDeseado = pesoDeseado;
+        this.pesoDeseado = validarDouble(pesoDeseado);
     }
 
     public double getEstatura() {
@@ -65,7 +65,7 @@ public class Paciente {
     }
 
     public void setEstatura(double estatura) {
-        this.estatura = estatura;
+        this.estatura = validarDouble(estatura);
     }
 
     @Override
@@ -166,6 +166,11 @@ public class Paciente {
     public String toString() {
         return nombre  + ", " + dni ;
     }
-
+    private double validarDouble(double peso) {
+        peso *=100;
+        peso = (int) peso;
+        peso /=100;
+        return peso;
+    }
     
 }

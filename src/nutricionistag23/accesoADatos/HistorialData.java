@@ -104,7 +104,17 @@ public class HistorialData {
                 JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos." + e.getMessage());
             }
         }
-
     }
-
+    public void eliminarHistorial (int idHistorial){
+        String sql = "DELETE FROM historial WHERE idHistorial="+idHistorial;
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+                if (ps.executeUpdate() == 1) {
+                    JOptionPane.showMessageDialog(null, "Entrada eliminada");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Entrada no encontrada");
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos." + e.getMessage());
+            }
+    }
 }
