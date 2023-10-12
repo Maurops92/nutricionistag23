@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -25,7 +26,7 @@ public class MainMenu extends javax.swing.JFrame {
      */
     private MainMenu() {
         initComponents();
-
+        
     }
 
     /**
@@ -46,6 +47,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("mainMenu"); // NOI18N
+        setResizable(false);
 
         jdpEscritorio.setPreferredSize(new java.awt.Dimension(800, 523));
 

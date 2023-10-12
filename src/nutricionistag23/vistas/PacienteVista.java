@@ -6,6 +6,7 @@
 package nutricionistag23.vistas;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.time.LocalDate;
@@ -18,12 +19,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import nutricionistag23.accesoADatos.DietaData;
 import nutricionistag23.accesoADatos.PacienteData;
+import nutricionistag23.accesoADatos.Validaciones;
 import nutricionistag23.entidades.Dieta;
 import nutricionistag23.entidades.Paciente;
 import static nutricionistag23.vistas.MainMenu.getMainMenu;
@@ -54,7 +57,9 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jsEstatura.setModel(new SpinnerNumberModel(0.0, 0.0, 3, 0.1));
         jsPesoActual.setModel(new SpinnerNumberModel(0.0, 0.0, 500, 0.1));
         jsPesoDeseado.setModel(new SpinnerNumberModel(0.0, 0.0, 500, 0.1));
-
+        jtTelefono.setText("XXX-XXXXXXX");
+        jtTelefono.setForeground(Color.GRAY);
+        ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
     /**
@@ -90,6 +95,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jsPesoDeseado = new javax.swing.JSpinner();
         jsEstatura = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
+        jtCerrar = new javax.swing.JToggleButton();
 
         setTitle("Gestion de Pacientes");
         setPreferredSize(new java.awt.Dimension(768, 633));
@@ -102,6 +108,11 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jLabel1.setText("Apellido y Nombre");
 
         jtNombre.setBorder(null);
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtNombreKeyReleased(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,7 +129,13 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Teléfono");
 
+        jtTelefono.setToolTipText("xxx-xxxxxxx");
         jtTelefono.setBorder(null);
+        jtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTelefonoMouseClicked(evt);
+            }
+        });
 
         jtDni.setBorder(null);
 
@@ -213,11 +230,18 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Seleccione un paciente");
 
+        jtCerrar.setText("Cerrar");
+        jtCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtCerrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -229,52 +253,55 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                                 .addGap(325, 325, 325)
                                 .addComponent(jrbDietaActiva)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jrbDietaNoActiva)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jrbDietaNoActiva))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addComponent(jScrollPane1))))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(85, 85, 85)
-                            .addComponent(jLabel2)
-                            .addGap(12, 12, 12)
-                            .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(83, 83, 83)
-                            .addComponent(jLabel6)
-                            .addGap(6, 6, 6)
-                            .addComponent(jsPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtCerrar)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(jLabel1)
+                                    .addGap(85, 85, 85)
+                                    .addComponent(jLabel2)
                                     .addGap(12, 12, 12)
-                                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(54, 54, 54)
-                                    .addComponent(jLabel3)
-                                    .addGap(12, 12, 12)
-                                    .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jbHistorial))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(58, 58, 58)
-                            .addComponent(jLabel4)
-                            .addGap(12, 12, 12)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jbVaciarCampos)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(63, 63, 63)
-                                    .addComponent(jLabel7)
+                                    .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(83, 83, 83)
+                                    .addComponent(jLabel6)
                                     .addGap(6, 6, 6)
-                                    .addComponent(jsPesoDeseado, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jsEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jsPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(6, 6, 6)
+                                            .addComponent(jLabel1)
+                                            .addGap(12, 12, 12)
+                                            .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(54, 54, 54)
+                                            .addComponent(jLabel3)
+                                            .addGap(12, 12, 12)
+                                            .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jbHistorial))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(58, 58, 58)
+                                    .addComponent(jLabel4)
+                                    .addGap(12, 12, 12)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jbVaciarCampos)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(63, 63, 63)
+                                            .addComponent(jLabel7)
+                                            .addGap(6, 6, 6)
+                                            .addComponent(jsPesoDeseado, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel5)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jsEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(42, 42, 42))
         );
         jPanel1Layout.setVerticalGroup(
@@ -326,7 +353,10 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                         .addComponent(jbAgregar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbModificar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jtCerrar)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -343,25 +373,18 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
-        try {
-            PacienteData pd = new PacienteData();
-            Paciente paciente = new Paciente();
-            paciente.setNombre(jtNombre.getText());
-            paciente.setDni(Integer.parseInt(jtDni.getText()));
-            paciente.setDomicilio(jtDomicilio.getText());
-            paciente.setTelefono(jtTelefono.getText());
-            paciente.setPesoActual((double) jsPesoActual.getValue());
-            paciente.setPesoDeseado((double) jsPesoDeseado.getValue());
-            paciente.setEstatura((double) jsEstatura.getValue());
-            pd.guardarPaciente(paciente);
-            tableClean();
-            llenarTabla();
-            limpiar();
-        } catch (NumberFormatException nf) {
-            JOptionPane.showMessageDialog(this, "No se permiten campos vacíos y/o caracteres inválidos.");
+    private void jtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCerrarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jtCerrarActionPerformed
+
+    private void jbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHistorialActionPerformed
+        if (historialPacienteVista != null) {
+            getMainMenu().removerVista(historialPacienteVista);
         }
-    }//GEN-LAST:event_jbAgregarActionPerformed
+        historialPacienteVista = new HistorialPacienteVista();
+        historialPacienteVista.setVisible(true);
+        getMainMenu().agregarVista(historialPacienteVista);
+    }//GEN-LAST:event_jbHistorialActionPerformed
 
     private void jbVaciarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVaciarCamposActionPerformed
         limpiar();
@@ -372,49 +395,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jrbDietaNoActiva.setSelected(false);
         tableClean();
         llenarTabla();
-
     }//GEN-LAST:event_jbVaciarCamposActionPerformed
-
-    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-
-        try {
-            PacienteData pd = new PacienteData();
-            Paciente paciente = new Paciente();
-            paciente.setNombre(jtNombre.getText());
-            paciente.setDni(Integer.parseInt(jtDni.getText()));
-            paciente.setDomicilio(jtDomicilio.getText());
-            paciente.setTelefono(jtTelefono.getText());
-            paciente.setPesoActual((double) jsPesoActual.getValue());
-            paciente.setPesoDeseado((double) jsPesoDeseado.getValue());
-            paciente.setEstatura((double) jsEstatura.getValue());
-            paciente.setIdPaciente((int) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 0));
-            pd.modificarPaciente(paciente);
-            tableClean();
-            llenarTabla();
-            limpiar();
-            jbAgregar.setEnabled(true);
-            jbModificar.setEnabled(false);
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "No se permiten campos vacíos y/o caracteres inválidos.");
-        }
-
-
-    }//GEN-LAST:event_jbModificarActionPerformed
-
-    private void jtPacientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPacientesMouseReleased
-        jbModificar.setEnabled(true);
-        jtDni.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 1).toString());
-        jtNombre.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 2).toString());
-        jtDomicilio.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 3).toString());
-        jtTelefono.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 4).toString());
-        jsPesoActual.setValue((double) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 5));
-        jsPesoDeseado.setValue((double) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 6));
-        jsEstatura.setValue((double) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 7));
-        jbAgregar.setEnabled(false);
-        jbHistorial.setEnabled(true);
-        pacienteid = (int) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 0);
-    }//GEN-LAST:event_jtPacientesMouseReleased
 
     private void jrbDietaActivaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbDietaActivaActionPerformed
         limpiar();
@@ -432,10 +413,9 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 paciente = pd.buscarPacienteXDni(dieta.getPaciente().getDni());
                 modeloTabla.addRow(new Object[]{paciente.getIdPaciente(), paciente.getDni(), paciente.getNombre(), paciente.getDomicilio(), paciente.getTelefono(), paciente.getPesoActual(),
                     paciente.getPesoDeseado(), paciente.getEstatura()});
-            }
-
         }
 
+        }
 
     }//GEN-LAST:event_jrbDietaActivaActionPerformed
 
@@ -462,15 +442,85 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jrbDietaNoActivaActionPerformed
 
-    private void jbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHistorialActionPerformed
-        if (historialPacienteVista != null) {
-            getMainMenu().removerVista(historialPacienteVista);
-        }
-        historialPacienteVista = new HistorialPacienteVista();
-        historialPacienteVista.setVisible(true);
-        getMainMenu().agregarVista(historialPacienteVista);
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
 
-    }//GEN-LAST:event_jbHistorialActionPerformed
+        try {
+            if (Validaciones.validacionNombrePaciente(jtNombre.getText()) && Validaciones.validacionDomicilio(jtDomicilio.getText()) && Validaciones.validacionDNI(jtDni.getText()) && Validaciones.validacionTelefono(jtTelefono.getText())
+                && Validaciones.validacionPeso((double)jsPesoActual.getValue()) && Validaciones.validacionPeso((double) jsPesoDeseado.getValue()) && Validaciones.validacionPeso((double) jsEstatura.getValue())) {
+                PacienteData pd = new PacienteData();
+                Paciente paciente = new Paciente();
+                paciente.setNombre(jtNombre.getText());
+                paciente.setDni(Integer.parseInt(jtDni.getText()));
+                paciente.setDomicilio(jtDomicilio.getText());
+                paciente.setTelefono(jtTelefono.getText());
+                paciente.setPesoActual((double) jsPesoActual.getValue());
+                paciente.setPesoDeseado((double) jsPesoDeseado.getValue());
+                paciente.setEstatura((double) jsEstatura.getValue());
+                paciente.setIdPaciente((int) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 0));
+                pd.modificarPaciente(paciente);
+                tableClean();
+                llenarTabla();
+                limpiar();
+                jbAgregar.setEnabled(true);
+                jbModificar.setEnabled(false);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "No se permiten campos vacíos y/o caracteres inválidos.");
+        }
+
+    }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+        try {
+            if (Validaciones.validacionNombrePaciente(jtNombre.getText()) && Validaciones.validacionDomicilio(jtDomicilio.getText()) && Validaciones.validacionDNI(jtDni.getText()) && Validaciones.validacionTelefono(jtTelefono.getText())
+                && Validaciones.validacionPeso((double)jsPesoActual.getValue()) && Validaciones.validacionPeso((double) jsPesoDeseado.getValue())&& Validaciones.validacionPeso((double) jsEstatura.getValue())) {
+                PacienteData pd = new PacienteData();
+                Paciente paciente = new Paciente();
+                paciente.setNombre(jtNombre.getText());
+                paciente.setDni(Integer.parseInt(jtDni.getText()));
+                paciente.setDomicilio(jtDomicilio.getText());
+                paciente.setTelefono(jtTelefono.getText());
+                paciente.setPesoActual((double) jsPesoActual.getValue());
+                paciente.setPesoDeseado((double) jsPesoDeseado.getValue());
+                paciente.setEstatura((double) jsEstatura.getValue());
+                pd.guardarPaciente(paciente);
+                tableClean();
+                llenarTabla();
+                limpiar();
+            }
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "No se permiten campos vacíos y/o caracteres inválidos.");
+        }
+    }//GEN-LAST:event_jbAgregarActionPerformed
+
+    private void jtPacientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPacientesMouseReleased
+        jbModificar.setEnabled(true);
+        jtDni.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 1).toString());
+        jtNombre.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 2).toString());
+        jtDomicilio.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 3).toString());
+        jtTelefono.setText(modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 4).toString());
+        jsPesoActual.setValue((double) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 5));
+        jsPesoDeseado.setValue((double) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 6));
+        jsEstatura.setValue((double) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 7));
+        jbAgregar.setEnabled(false);
+        jbHistorial.setEnabled(true);
+        pacienteid = (int) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 0);
+        jtTelefono.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jtPacientesMouseReleased
+
+    private void jtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTelefonoMouseClicked
+        if (jtTelefono.getText().equals("XXX-XXXXXXX")) {
+            jtTelefono.setText("");
+            jtTelefono.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_jtTelefonoMouseClicked
+
+    private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased
+        if (!jtNombre.getText().equals("") && Validaciones.validacionInmediataCaracteres(jtNombre.getText(), 2) == false) {
+            JOptionPane.showMessageDialog(this, "Caracter invalido");
+            jtNombre.setText("");
+        }
+    }//GEN-LAST:event_jtNombreKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -493,6 +543,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     private javax.swing.JSpinner jsEstatura;
     private javax.swing.JSpinner jsPesoActual;
     private javax.swing.JSpinner jsPesoDeseado;
+    private javax.swing.JToggleButton jtCerrar;
     private javax.swing.JTextField jtDni;
     private javax.swing.JTextField jtDomicilio;
     private javax.swing.JTextField jtNombre;
@@ -562,9 +613,11 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jtDni.setText("");       // TODO add your handling code here:
         jtTelefono.setText("");       // TODO add your handling code here:
         jtDomicilio.setText("");       // TODO add your handling code here:
-        jsEstatura.setValue(0);
-        jsPesoActual.setValue(0);
-        jsPesoDeseado.setValue(0);
+        jsEstatura.setValue((double)0);
+        jsPesoActual.setValue((double)0);
+        jsPesoDeseado.setValue((double)0);
+        jtTelefono.setText("XXX-XXXXXXX");
+        jtTelefono.setForeground(Color.GRAY);
     }
 }
 
@@ -607,4 +660,3 @@ class ColumnRenderer implements TableCellRenderer {
     }
 
 }
-
