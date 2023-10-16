@@ -245,6 +245,10 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("IMC");
 
+        jtIMC.setEditable(false);
+        jtIMC.setBackground(new java.awt.Color(0, 153, 153));
+        jtIMC.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jtIMC.setForeground(new java.awt.Color(255, 255, 255));
         jtIMC.setBorder(null);
         jtIMC.setPreferredSize(new java.awt.Dimension(23, 16));
 
@@ -266,18 +270,8 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jbVaciarCampos))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(112, 112, 112)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(113, 113, 113)
-                                .addComponent(jrbDietaActiva)
-                                .addGap(12, 12, 12)
-                                .addComponent(jrbDietaNoActiva))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jbAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -286,7 +280,19 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(651, 651, 651)
-                                .addComponent(jtCerrar)))
+                                .addComponent(jtCerrar))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(115, 115, 115)
+                                        .addComponent(jbVaciarCampos))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(112, 112, 112)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(113, 113, 113)
+                                .addComponent(jrbDietaActiva)
+                                .addGap(12, 12, 12)
+                                .addComponent(jrbDietaNoActiva)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -316,7 +322,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jsEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jtIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

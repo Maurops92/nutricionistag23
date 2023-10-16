@@ -61,20 +61,8 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jtDomicilio" min="-2" pref="451" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="118" pref="118" max="-2" attributes="0"/>
-                          <Component id="jbVaciarCampos" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" min="-2" pref="183" max="-2" attributes="0"/>
-                                  <EmptySpace min="113" pref="113" max="-2" attributes="0"/>
-                                  <Component id="jrbDietaActiva" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                                  <Component id="jrbDietaNoActiva" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="jbAgregar" max="32767" attributes="0"/>
@@ -86,6 +74,22 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="651" max="-2" attributes="0"/>
                                   <Component id="jtCerrar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="115" pref="115" max="-2" attributes="0"/>
+                                          <Component id="jbVaciarCampos" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                                          <Component id="jLabel8" min="-2" pref="183" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                                  <Component id="jrbDietaActiva" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                  <Component id="jrbDietaNoActiva" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -124,7 +128,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -477,6 +481,16 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jtIMC">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="0" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="11" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
