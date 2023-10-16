@@ -33,12 +33,13 @@ import static nutricionistag23.vistas.MainMenu.getMainMenu;
 
 /**
  *
- * @author paulo
+ * @author Angel
  */
 public class PacienteVista extends javax.swing.JInternalFrame {
 
     public static int pacienteid;
     private HistorialPacienteVista historialPacienteVista;
+    
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
