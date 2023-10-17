@@ -26,7 +26,7 @@ public class MainMenu extends javax.swing.JFrame {
      */
     private MainMenu() {
         initComponents();
-        
+
     }
 
     /**
@@ -104,6 +104,12 @@ public class MainMenu extends javax.swing.JFrame {
         jpComida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpComidaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpComidaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpComidaMouseExited(evt);
             }
         });
 
@@ -205,12 +211,21 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jpPacienteMouseClicked
 
     private void jpComidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseClicked
-    jdpEscritorio.removeAll();
+        jdpEscritorio.removeAll();
         jdpEscritorio.repaint();
         ComidaVista pv = new ComidaVista();
         agregarFondoVentana(pv);
-    
+
     }//GEN-LAST:event_jpComidaMouseClicked
+
+    private void jpComidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseEntered
+                jpComida.setBackground(new Color(37, 122, 105));
+
+    }//GEN-LAST:event_jpComidaMouseEntered
+
+    private void jpComidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseExited
+         jpComida.setBackground(new Color(8, 199, 154));
+    }//GEN-LAST:event_jpComidaMouseExited
 
     /**
      * @param args the command line arguments

@@ -216,7 +216,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jbCerrar)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -227,9 +227,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleName("Gestion Comidas");
@@ -246,6 +244,8 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 comida.setCantCalorias(Integer.parseInt(jtCalorias.getText()));
                 comida.setDetalle(jtDetalle.getText());
                 cd.guardaComida(comida);
+                tableClean();
+                llenarTabla();
                 limpiar();
             }
         } catch (NumberFormatException nf) {
@@ -289,7 +289,11 @@ public class ComidaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        // TODO add your handling code here:
+        ComidaData cData = new ComidaData();
+        cData.borrarComida((int) modeloTabla.getValueAt(jtComida.getSelectedRow(), 0));
+        tableClean();
+        llenarTabla();
+
     }//GEN-LAST:event_jbEliminarActionPerformed
 
 
@@ -316,7 +320,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         modeloTabla.addColumn("Detalle");
         modeloTabla.addColumn("Calorias");
         jtComida.setModel(modeloTabla);
-        jtComida.getColumnModel().getColumn(0).setPreferredWidth(15);
+        jtComida.getColumnModel().getColumn(0).setPreferredWidth(10);
         jtComida.getColumnModel().getColumn(1).setPreferredWidth(100);
         jtComida.getColumnModel().getColumn(2).setPreferredWidth(250);
         jtComida.getColumnModel().getColumn(3).setPreferredWidth(25);
