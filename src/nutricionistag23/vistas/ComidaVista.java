@@ -101,6 +101,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         jLabel3.setText("Calorias");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 152, -1, -1));
 
+        jtComida.setBackground(new java.awt.Color(153, 255, 204));
         jtComida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -119,7 +120,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jtComida);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 267, 603, 267));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 603, 320));
 
         jbAgregar.setText("Agregar");
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +128,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 jbAgregarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 267, 87, -1));
+        jPanel1.add(jbAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 87, -1));
 
         jbModificar.setText("Modificar");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +136,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 jbModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 317, 87, -1));
+        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 87, -1));
 
         jbCerrar.setText("Cerrar");
         jbCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +144,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 jbCerrarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(637, 552, 87, -1));
+        jPanel1.add(jbCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 560, 87, -1));
 
         jbLimpiar.setText("Limpiar");
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +152,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 jbLimpiarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 190, -1, -1));
+        jPanel1.add(jbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, -1, -1));
 
         jbEliminar.setText("Eliminar");
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,13 +160,13 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 jbEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(jbEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 367, 87, -1));
+        jPanel1.add(jbEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 87, -1));
         jPanel1.add(jsCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 146, 71, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Seleccione una comida.");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 240, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

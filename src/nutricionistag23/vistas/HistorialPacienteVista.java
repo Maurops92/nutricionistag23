@@ -25,15 +25,13 @@ import nutricionistag23.entidades.Historial;
  * @author jonac
  */
 public class HistorialPacienteVista extends javax.swing.JInternalFrame {
-    
-    
+
     public static int pesoActual;
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
     };
-    
 
     /**
      * Creates new form HistorialPacienteVista
@@ -263,22 +261,22 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         PacienteData pData = new PacienteData();
         try {
             if ((double) jsPeso.getValue() > 0) {
-            Historial historial = new Historial((int)modeloTabla.getValueAt(jtHistorial.getSelectedRow(), 0), pData.buscarPacienteXId(PacienteVista.pacienteid), (double) jsPeso.getValue(), jdcFechaRegistro.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            hData.modificarHistorial(historial);
-            tableClean();
-            llenarTabla();
-            }else{
+                Historial historial = new Historial((int) modeloTabla.getValueAt(jtHistorial.getSelectedRow(), 0), pData.buscarPacienteXId(PacienteVista.pacienteid), (double) jsPeso.getValue(), jdcFechaRegistro.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                hData.modificarHistorial(historial);
+                tableClean();
+                llenarTabla();
+            } else {
                 JOptionPane.showMessageDialog(this, "No puede pesar cero o menos kilogramos");
             }
         } catch (NullPointerException np) {
-            JOptionPane.showMessageDialog(this,"Ingrese una fecha valida");
+            JOptionPane.showMessageDialog(this, "Ingrese una fecha valida");
         }
         jbCancelar.setEnabled(false);
         jbEliminar.setEnabled(false);
         jbModificar.setEnabled(false);
         jbCrear.setEnabled(true);
         jdcFechaRegistro.setDate(Date.valueOf(LocalDate.now()));
-        jsPeso.setValue((double)0);
+        jsPeso.setValue((double) 0);
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jtHistorialMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtHistorialMouseReleased
@@ -287,7 +285,7 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         jbCancelar.setEnabled(true);
         jbEliminar.setEnabled(true);
         jdcFechaRegistro.setDate(Date.valueOf((LocalDate) modeloTabla.getValueAt(jtHistorial.getSelectedRow(), 3)));
-        jsPeso.setValue((double)modeloTabla.getValueAt(jtHistorial.getSelectedRow(),2));
+        jsPeso.setValue((double) modeloTabla.getValueAt(jtHistorial.getSelectedRow(), 2));
     }//GEN-LAST:event_jtHistorialMouseReleased
 
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
@@ -295,20 +293,20 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         HistorialData hData = new HistorialData();
         PacienteData pData = new PacienteData();
         try {
-            if ((double)jsPeso.getValue() > 0) {
-            Historial historial = new Historial(pData.buscarPacienteXId(PacienteVista.pacienteid), (double) jsPeso.getValue(), jdcFechaRegistro.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            hData.guardarHistorial(historial);
-            tableClean();
-            llenarTabla();
-        } else {
-            JOptionPane.showMessageDialog(this, "No puede pesar cero o menos kilogramos");
-        }
-        jsPeso.setValue((double)0);
+            if ((double) jsPeso.getValue() > 0) {
+                Historial historial = new Historial(pData.buscarPacienteXId(PacienteVista.pacienteid), (double) jsPeso.getValue(), jdcFechaRegistro.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                hData.guardarHistorial(historial);
+                tableClean();
+                llenarTabla();
+            } else {
+                JOptionPane.showMessageDialog(this, "No puede pesar cero o menos kilogramos");
+            }
+            jsPeso.setValue((double) 0);
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Ingrese una fecha valida");
         }
-        
-   
+
+
     }//GEN-LAST:event_jbCrearActionPerformed
 
     private void jbCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelarActionPerformed
@@ -317,23 +315,23 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         jbCancelar.setEnabled(false);
         jbEliminar.setEnabled(false);
         jdcFechaRegistro.setDate(Date.valueOf(LocalDate.now()));
-        jsPeso.setValue((double)0);
-        
-        
+        jsPeso.setValue((double) 0);
+
+
     }//GEN-LAST:event_jbCancelarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        
-        HistorialData hData= new HistorialData();
-        if(JOptionPane.showConfirmDialog(this, "Esta seguro que desea Eliminar")==0){
-        hData.eliminarHistorial((int)modeloTabla.getValueAt(jtHistorial.getSelectedRow(), 0));
-        jbEliminar.setEnabled(false);
-        jbModificar.setEnabled(false);
-        jbCrear.setEnabled(true);
-        jdcFechaRegistro.setDate(Date.valueOf(LocalDate.now()));
-        jsPeso.setValue((double)0);
-        tableClean();
-        llenarTabla();
+
+        HistorialData hData = new HistorialData();
+        if (JOptionPane.showConfirmDialog(this, "Esta seguro que desea Eliminar") == 0) {
+            hData.eliminarHistorial((int) modeloTabla.getValueAt(jtHistorial.getSelectedRow(), 0));
+            jbEliminar.setEnabled(false);
+            jbModificar.setEnabled(false);
+            jbCrear.setEnabled(true);
+            jdcFechaRegistro.setDate(Date.valueOf(LocalDate.now()));
+            jsPeso.setValue((double) 0);
+            tableClean();
+            llenarTabla();
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
@@ -379,15 +377,15 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         List<Historial> listaHistorial = hData.listaHistorial(PacienteVista.pacienteid);
         for (Historial historial : listaHistorial) {
             modeloTabla.addRow(new Object[]{historial.getIdHistorial(), historial.getPaciente().getIdPaciente(), historial.getPeso(), historial.getFechaRegistro()});
-            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();//Alinea los datos de las celdas numericas a la derecha 
-            tcr.setHorizontalAlignment(SwingConstants.RIGHT);
-            jtHistorial.getColumnModel().getColumn(0).setCellRenderer(tcr);
-            jtHistorial.getColumnModel().getColumn(1).setCellRenderer(tcr);
-            jtHistorial.getColumnModel().getColumn(2).setCellRenderer(tcr);
-            tcr.setHorizontalAlignment(SwingConstants.CENTER);
-            jtHistorial.getColumnModel().getColumn(3).setCellRenderer(tcr);
         }
-               
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();//Alinea los datos de las celdas numericas a la derecha 
+        tcr.setHorizontalAlignment(SwingConstants.RIGHT);
+        jtHistorial.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        jtHistorial.getColumnModel().getColumn(1).setCellRenderer(tcr);
+        jtHistorial.getColumnModel().getColumn(2).setCellRenderer(tcr);
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        jtHistorial.getColumnModel().getColumn(3).setCellRenderer(tcr);
+
     }
 
     private void tableClean() {

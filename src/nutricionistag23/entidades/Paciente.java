@@ -164,7 +164,7 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return nombre  + ", " + dni ;
+        return nombre;
     }
     private double validarDouble(double peso) {
         peso *=100;

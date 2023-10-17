@@ -44,6 +44,8 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jpComida = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jpDieta = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("mainMenu"); // NOI18N
@@ -93,7 +95,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(jpPacienteLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPacienteLayout.setVerticalGroup(
             jpPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,6 +103,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         jpComida.setBackground(new java.awt.Color(8, 199, 154));
+        jpComida.setPreferredSize(new java.awt.Dimension(193, 53));
         jpComida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jpComidaMouseClicked(evt);
@@ -137,12 +140,50 @@ public class MainMenu extends javax.swing.JFrame {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
+        jpDieta.setBackground(new java.awt.Color(8, 199, 154));
+        jpDieta.setPreferredSize(new java.awt.Dimension(193, 53));
+        jpDieta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpDietaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jpDietaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jpDietaMouseExited(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Dieta");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.setMaximumSize(new java.awt.Dimension(76, 22));
+        jLabel3.setMinimumSize(new java.awt.Dimension(76, 22));
+        jLabel3.setName(""); // NOI18N
+        jLabel3.setPreferredSize(new java.awt.Dimension(76, 22));
+
+        javax.swing.GroupLayout jpDietaLayout = new javax.swing.GroupLayout(jpDieta);
+        jpDieta.setLayout(jpDietaLayout);
+        jpDietaLayout.setHorizontalGroup(
+            jpDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpDietaLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpDietaLayout.setVerticalGroup(
+            jpDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpComida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpDieta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +192,9 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jpPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(465, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,6 +215,61 @@ public class MainMenu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jpComidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseExited
+        jpComida.setBackground(new Color(8, 199, 154));
+    }//GEN-LAST:event_jpComidaMouseExited
+
+    private void jpComidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseEntered
+        jpComida.setBackground(new Color(37, 122, 105));
+    }//GEN-LAST:event_jpComidaMouseEntered
+
+    private void jpComidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseClicked
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        ComidaVista pv = new ComidaVista();
+        agregarFondoVentana(pv);
+    }//GEN-LAST:event_jpComidaMouseClicked
+
+    private void jpPacienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseExited
+        jpPaciente.setBackground(new Color(8, 199, 154));        // TODO add your handling code here:
+    }//GEN-LAST:event_jpPacienteMouseExited
+
+    private void jpPacienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseEntered
+        //        for (int i = 0; i < 50; i++) {
+            //            try {
+                //                jpPaciente.setBackground(new Color(255, 255, 102,i));
+                //                Thread.sleep(1l);
+                //            }
+            jpPaciente.setBackground(new Color(37, 122, 105));        // TODO add your handling code here:
+            //            catch (InterruptedException ex) {
+                //                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+                //            }
+            //        }
+    }//GEN-LAST:event_jpPacienteMouseEntered
+
+    private void jpPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseClicked
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        PacienteVista pv = new PacienteVista();
+        agregarFondoVentana(pv);
+        // pv.setSize(800,523);
+    }//GEN-LAST:event_jpPacienteMouseClicked
+
+    private void jpDietaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDietaMouseExited
+          jpDieta.setBackground(new Color(8, 199, 154));
+    }//GEN-LAST:event_jpDietaMouseExited
+
+    private void jpDietaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDietaMouseEntered
+        jpDieta.setBackground(new Color(37, 122, 105));
+    }//GEN-LAST:event_jpDietaMouseEntered
+
+    private void jpDietaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDietaMouseClicked
+        jdpEscritorio.removeAll();
+        jdpEscritorio.repaint();
+        DietaVista dv = new DietaVista();
+        agregarFondoVentana(dv);
+    }//GEN-LAST:event_jpDietaMouseClicked
     public static MainMenu getMainMenu() {
         if (main == null) {
             main = new MainMenu();
@@ -184,49 +282,6 @@ public class MainMenu extends javax.swing.JFrame {
         centrarFrame(cmp);
         agregarFondoVentana(cmp);
     }
-    private void jpPacienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseEntered
-//        for (int i = 0; i < 50; i++) {
-//            try {
-//                jpPaciente.setBackground(new Color(255, 255, 102,i));
-//                Thread.sleep(1l);
-//            }
-        jpPaciente.setBackground(new Color(37, 122, 105));        // TODO add your handling code here:
-//            catch (InterruptedException ex) {
-//                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-    }//GEN-LAST:event_jpPacienteMouseEntered
-
-    private void jpPacienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseExited
-        jpPaciente.setBackground(new Color(8, 199, 154));        // TODO add your handling code here:
-    }//GEN-LAST:event_jpPacienteMouseExited
-
-    private void jpPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseClicked
-        jdpEscritorio.removeAll();
-        jdpEscritorio.repaint();
-        PacienteVista pv = new PacienteVista();
-        agregarFondoVentana(pv);
-        // pv.setSize(800,523);
-
-    }//GEN-LAST:event_jpPacienteMouseClicked
-
-    private void jpComidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseClicked
-        jdpEscritorio.removeAll();
-        jdpEscritorio.repaint();
-        ComidaVista pv = new ComidaVista();
-        agregarFondoVentana(pv);
-
-    }//GEN-LAST:event_jpComidaMouseClicked
-
-    private void jpComidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseEntered
-                jpComida.setBackground(new Color(37, 122, 105));
-
-    }//GEN-LAST:event_jpComidaMouseEntered
-
-    private void jpComidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseExited
-         jpComida.setBackground(new Color(8, 199, 154));
-    }//GEN-LAST:event_jpComidaMouseExited
-
     /**
      * @param args the command line arguments
      */
@@ -265,9 +320,11 @@ public class MainMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane jdpEscritorio;
     private javax.swing.JPanel jpComida;
+    private javax.swing.JPanel jpDieta;
     private javax.swing.JPanel jpPaciente;
     // End of variables declaration//GEN-END:variables
 
