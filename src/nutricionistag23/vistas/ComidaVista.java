@@ -7,6 +7,7 @@ package nutricionistag23.vistas;
 
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -37,6 +38,10 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         armarCabecera();
         llenarTabla();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
+        jsCalorias.setModel(new SpinnerNumberModel(0, 0, 9999, 1));
+        jbModificar.setEnabled(false);
+        jbEliminar.setEnabled(false);
+
     }
 
     /**
@@ -54,7 +59,6 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jtDetalle = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtCalorias = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtComida = new javax.swing.JTable();
         jbAgregar = new javax.swing.JButton();
@@ -62,33 +66,40 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         jbCerrar = new javax.swing.JButton();
         jbLimpiar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
+        jsCalorias = new javax.swing.JSpinner();
+        jLabel4 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(66, 34));
         setNormalBounds(new java.awt.Rectangle(0, 0, 66, 0));
         setPreferredSize(new java.awt.Dimension(768, 633));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nombre");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 63, -1, -1));
 
+        jtNombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtNombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 50, 448, 28));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Detalle");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 110, -1, -1));
 
         jtDetalle.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtDetalle.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jtDetalle.setMinimumSize(new java.awt.Dimension(6, 28));
         jtDetalle.setPreferredSize(new java.awt.Dimension(6, 28));
+        jPanel1.add(jtDetalle, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 100, 448, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Calorias");
-
-        jtCalorias.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(58, 152, -1, -1));
 
         jtComida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,12 +119,15 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jtComida);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 267, 603, 267));
+
         jbAgregar.setText("Agregar");
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 267, 87, -1));
 
         jbModificar.setText("Modificar");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -121,6 +135,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 jbModificarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 317, 87, -1));
 
         jbCerrar.setText("Cerrar");
         jbCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +143,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 jbCerrarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(637, 552, 87, -1));
 
         jbLimpiar.setText("Limpiar");
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +151,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 jbLimpiarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 190, -1, -1));
 
         jbEliminar.setText("Eliminar");
         jbEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -142,82 +159,13 @@ public class ComidaVista extends javax.swing.JInternalFrame {
                 jbEliminarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 367, 87, -1));
+        jPanel1.add(jsCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 146, 71, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(58, 58, 58)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel2)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                            .addComponent(jbAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jbLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtCalorias, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
-                        .addContainerGap(568, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jbCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
-                                    .addComponent(jtDetalle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jLabel2)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtDetalle, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jtCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jbLimpiar)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbAgregar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbModificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbEliminar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jbCerrar)
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Seleccione una comida.");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(121, 240, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -237,11 +185,11 @@ public class ComidaVista extends javax.swing.JInternalFrame {
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         try {
-            if (Validaciones.validacionNombrePaciente(jtNombre.getText()) && Validaciones.validacionDomicilio(jtDetalle.getText()) && Validaciones.validacionInmediataCaracteres(jtCalorias.getText(), 1)) {
+            if (Validaciones.validacionNombreComida(jtNombre.getText()) && Validaciones.validacionDetalleComida(jtDetalle.getText()) && Validaciones.validacionCalorias((int) (jsCalorias.getValue()))) {
                 ComidaData cd = new ComidaData();
                 Comida comida = new Comida();
                 comida.setNombre(jtNombre.getText());
-                comida.setCantCalorias(Integer.parseInt(jtCalorias.getText()));
+                comida.setCantCalorias((int) (jsCalorias.getValue()));
                 comida.setDetalle(jtDetalle.getText());
                 cd.guardaComida(comida);
                 tableClean();
@@ -255,17 +203,20 @@ public class ComidaVista extends javax.swing.JInternalFrame {
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         try {
-            if (Validaciones.validacionNombrePaciente(jtNombre.getText()) && Validaciones.validacionDomicilio(jtDetalle.getText()) && Validaciones.validacionInmediataCaracteres(jtCalorias.getText(), 1)) {
+            if (Validaciones.validacionNombrePaciente(jtNombre.getText()) && Validaciones.validacionDomicilio(jtDetalle.getText()) && Validaciones.validacionCalorias((int) (jsCalorias.getValue()))) {
                 ComidaData cd = new ComidaData();
                 Comida comida = new Comida();
                 comida.setNombre(jtNombre.getText());
                 comida.setDetalle(jtDetalle.getText());
-                comida.setCantCalorias(Integer.parseInt(jtCalorias.getText()));
+                comida.setCantCalorias((int) (jsCalorias.getValue()));
                 comida.setIdComida((int) modeloTabla.getValueAt(jtComida.getSelectedRow(), 0));
                 cd.modificarComida(comida);
                 tableClean();
                 llenarTabla();
                 limpiar();
+                jbAgregar.setEnabled(true);
+                jbModificar.setEnabled(false);
+                jbEliminar.setEnabled(false);
             }
         } catch (NumberFormatException nf) {
             JOptionPane.showMessageDialog(this, "No se permiten campos vacíos y/o caracteres inválidos.");
@@ -280,12 +231,18 @@ public class ComidaVista extends javax.swing.JInternalFrame {
     private void jtComidaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtComidaMouseReleased
         jtNombre.setText(modeloTabla.getValueAt(jtComida.getSelectedRow(), 1).toString());
         jtDetalle.setText(modeloTabla.getValueAt(jtComida.getSelectedRow(), 2).toString());
-        jtCalorias.setText(modeloTabla.getValueAt(jtComida.getSelectedRow(), 3).toString());
+        jsCalorias.setValue((int) modeloTabla.getValueAt(jtComida.getSelectedRow(), 3));
+        jbAgregar.setEnabled(false);
+        jbModificar.setEnabled(true);
+        jbEliminar.setEnabled(true);
 
     }//GEN-LAST:event_jtComidaMouseReleased
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         limpiar();
+        jbAgregar.setEnabled(true);
+        jbModificar.setEnabled(false);
+        jbEliminar.setEnabled(false);
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
@@ -293,6 +250,10 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         cData.borrarComida((int) modeloTabla.getValueAt(jtComida.getSelectedRow(), 0));
         tableClean();
         llenarTabla();
+        jbAgregar.setEnabled(true);
+        jbModificar.setEnabled(false);
+        jbEliminar.setEnabled(false);
+        limpiar();
 
     }//GEN-LAST:event_jbEliminarActionPerformed
 
@@ -301,6 +262,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAgregar;
@@ -308,7 +270,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbModificar;
-    private javax.swing.JTextField jtCalorias;
+    private javax.swing.JSpinner jsCalorias;
     private javax.swing.JTable jtComida;
     private javax.swing.JTextField jtDetalle;
     private javax.swing.JTextField jtNombre;
@@ -344,14 +306,15 @@ public class ComidaVista extends javax.swing.JInternalFrame {
     }
 
     private void limpiar() {
+        //Limpia los campos
         jtNombre.setText("");
         jtDetalle.setText("");
-        jtCalorias.setText("");
+        jsCalorias.setValue((int) 0);
 
     }
 
     private void tableClean() {
-        //limpia la tabla de pacientes
+        //limpia la tabla de comidas
         if (jtComida.getRowCount() != 0) {
             int largo = jtComida.getRowCount() - 1;
             for (; largo >= 0; largo--) {

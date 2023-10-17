@@ -73,7 +73,7 @@ public class ComidaData {
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "No fue posible acceder a la tabla Comida" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "No puede eliminar comidas asociadas a una dieta" );
         }
     }
 

@@ -111,6 +111,31 @@ public class Validaciones {
         
     }
     
-   
+   //Validaciones Ventana Comida
+    public static boolean validacionNombreComida(String nombre) {
+        if (nombre.length() > 2 && nombre.length() < 30 && !nombre.contains("  ")) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "El nombre ingresado es invalido");
+            return false;
+        }
+    }
+    public static boolean validacionDetalleComida(String nombre) {
+        if (nombre.length() > 2 && nombre.length() < 100 && !nombre.contains("  ")) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "El detalle ingresado es invalido");
+            return false;
+        }
+    }
+    public static boolean validacionCalorias (int caloria){
+        
+        if (caloria == 0){
+            JOptionPane.showMessageDialog(null, "Ingrese un valor entre 0 y 9999");
+            return false;
+        }
+        return true;
+        
+    }
          
 }
