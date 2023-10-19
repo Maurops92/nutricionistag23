@@ -278,7 +278,7 @@ public class MainMenu extends javax.swing.JFrame {
         return main;
     }
 
-    public void agregarVista(HistorialPacienteVista cmp) {
+    public void agregarVista(JInternalFrame cmp) {
         centrarFrame(cmp);
         agregarFondoVentana(cmp);
     }
@@ -328,7 +328,7 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jpPaciente;
     // End of variables declaration//GEN-END:variables
 
-    private void agregarFondoVentana(Component fv) {
+    private void agregarFondoVentana(JInternalFrame fv) {
         fv.setVisible(true);
         jdpEscritorio.add(fv);
 //        jdpEscritorio.add(jlFondo);

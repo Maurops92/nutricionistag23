@@ -5,6 +5,8 @@
  */
 package nutricionistag23.accesoADatos;
 
+import java.util.Date;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 
 /**
@@ -136,6 +138,21 @@ public class Validaciones {
         }
         return true;
         
+    }
+    public static boolean validacionFechaInicial (LocalDate fecha){
+        if(fecha.compareTo(LocalDate.now())<=0){// 0 si son iguales, -1 cuando el segundo es mayor que lo primero, 1 si lo segundo es menor a lo primero
+            return true;
+        }
+        JOptionPane.showMessageDialog(null, "La fecha inicial no puede ser mayor al dia corriente");
+        return false;
+    }
+    
+    public static boolean validacionFechaFinal (Date fechaI, Date fechaF){
+        if(fechaI.compareTo(fechaF)==-1){// 0 si son iguales, -1 cuando el segundo es mayor que lo primero, 1 si lo segundo es menor a lo primero
+            return true;
+        }
+        JOptionPane.showMessageDialog(null, "La fecha final debe ser posterior a la fecha inicial");
+        return false;
     }
          
 }
