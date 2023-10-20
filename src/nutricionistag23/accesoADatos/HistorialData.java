@@ -46,6 +46,7 @@ public class HistorialData {
         }
 
     }
+
     public List<Historial> listaHistorial(int idPaciente) {
         List<Historial> listaHistorial = new ArrayList<>();
         PacienteData pData = new PacienteData();
@@ -54,7 +55,7 @@ public class HistorialData {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                listaHistorial.add(new Historial(rs.getInt("idHistorial"),pData.buscarPacienteXId(rs.getInt("idPaciente")), rs.getDouble("peso"), rs.getDate("fechaRegistro").toLocalDate()));
+                listaHistorial.add(new Historial(rs.getInt("idHistorial"), pData.buscarPacienteXId(rs.getInt("idPaciente")), rs.getDouble("peso"), rs.getDate("fechaRegistro").toLocalDate()));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos." + ex.getMessage());
@@ -62,6 +63,32 @@ public class HistorialData {
         return listaHistorial;
 
     }
+    
+
+    public Historial buscarHistorialXIdPYFecha(int idPaciente, LocalDate fecha) {
+        PacienteData pData = new PacienteData();
+        Historial historial = null;
+        String sql = "SELECT * FROM historial WHERE idPaciente =? AND fechaRegistro =?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idPaciente);
+            ps.setDate(2, Date.valueOf(fecha));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                historial = new Historial();
+                historial.setIdHistorial(rs.getInt("idHistorial"));
+                historial.setPeso(rs.getDouble("peso"));
+                historial.setPaciente(pData.buscarPacienteXId(rs.getInt("idPaciente")));
+                historial.setFechaRegistro(rs.getDate("fechaRegistro").toLocalDate());
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos." + ex.getMessage());
+        }
+        return historial;
+
+    }
+
     public Historial buscarHistorialXId(int id) {
         Historial historial = null;
         PacienteData pData = new PacienteData();
@@ -86,6 +113,7 @@ public class HistorialData {
         return historial;
 
     }
+
     public void modificarHistorial(Historial historial) {
         String sql = "UPDATE historial SET peso=?, fechaRegistro=? WHERE idHistorial=" + historial.getIdHistorial();
         if (historial.equals(buscarHistorialXId(historial.getIdHistorial()))) {
@@ -105,16 +133,17 @@ public class HistorialData {
             }
         }
     }
-    public void eliminarHistorial (int idHistorial){
-        String sql = "DELETE FROM historial WHERE idHistorial="+idHistorial;
+
+    public void eliminarHistorial(int idHistorial) {
+        String sql = "DELETE FROM historial WHERE idHistorial=" + idHistorial;
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-                if (ps.executeUpdate() == 1) {
-                    JOptionPane.showMessageDialog(null, "Entrada eliminada");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Entrada no encontrada");
-                }
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos." + e.getMessage());
+            if (ps.executeUpdate() == 1) {
+                JOptionPane.showMessageDialog(null, "Entrada eliminada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Entrada no encontrada");
             }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos." + e.getMessage());
+        }
     }
 }

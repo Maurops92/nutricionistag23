@@ -134,7 +134,25 @@ public class DietaData {
         }
 
         return listaDietas;
+    }
+        public List<Dieta> listaDietaXPaciente(int idPaciente){
         
+        List<Dieta> listaDietas= new ArrayList<>();
+        String sql = "SELECT * FROM dieta WHERE idPaciente = ?";
+        PacienteData pData = new PacienteData();
+         try (PreparedStatement ps = con.prepareStatement(sql)) {
+             ps.setInt(1, idPaciente);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+            listaDietas.add(new Dieta(rs.getInt("idDieta"), rs.getString("nombre"),pData.buscarPacienteXId(rs.getInt("idPaciente"))
+            , rs.getDate("fechaInicial").toLocalDate(), rs.getDouble("pesoInicial"), rs.getDouble("pesoFinal"),rs.getDate("fechaFinal").toLocalDate()));
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No fue posible acceder a la tabla Dieta" + e.getMessage());
+        }
+
+        return listaDietas;
     }
     
     

@@ -57,8 +57,6 @@ public class DietaComidaData {
                 dietacomida.setDieta(dData.buscarDieta(rs.getInt("idDieta")));
                 dietacomida.setHorario(HorariosEnum.valueOf(rs.getString("horario")));
                 dietacomida.setDia(DiasEnum.valueOf(rs.getString("dia")));
-            } else {
-                JOptionPane.showMessageDialog(null, "Consumo no encontrado");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos.");
@@ -82,8 +80,6 @@ public class DietaComidaData {
                 dietacomida.setDieta(dData.buscarDieta(rs.getInt("idDieta")));
                 dietacomida.setHorario(HorariosEnum.valueOf(rs.getString("horario")));
                 dietacomida.setDia(DiasEnum.valueOf(rs.getString("dia")));
-            } else {
-                JOptionPane.showMessageDialog(null, "Consumo no encontrado");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos.");
@@ -98,9 +94,9 @@ public class DietaComidaData {
             ps.setString(2, horario);
             ps.setString(3, dia);
             if (ps.executeUpdate() == 1) {
-                JOptionPane.showMessageDialog(null, "Dieta eliminada exitosamente.");
+                JOptionPane.showMessageDialog(null, "Consumo eliminado exitosamente.");
             } else {
-                JOptionPane.showMessageDialog(null, "Dieta no encontrada.");
+                JOptionPane.showMessageDialog(null, "Consumo no encontrado.");
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos.");
@@ -108,12 +104,14 @@ public class DietaComidaData {
     }
     
     public void eliminarDietaComida(DietaComida dietaComida) {
-        String sql = "DELETE FROM dietacomida WHERE idDieta=? AND horario=? AND dia=?";
+        String sql = "DELETE FROM dietacomida WHERE idDietaComida=? ";
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, dietaComida.getDieta().getIdDieta());
-            ps.setString(2, dietaComida.getHorario().toString());
-            ps.setString(3, dietaComida.getDia().toString());
-            ps.executeUpdate();
+            ps.setInt(1, dietaComida.getId());
+            if(ps.executeUpdate()==1){
+                JOptionPane.showMessageDialog(null, "Consumo ya existente eliminado.");
+            }else {
+                JOptionPane.showMessageDialog(null, "Consumo no encontrado.");
+            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos.");
         }

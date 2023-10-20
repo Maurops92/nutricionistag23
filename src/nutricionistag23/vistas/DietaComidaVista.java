@@ -7,6 +7,7 @@ package nutricionistag23.vistas;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Vector;
 import java.util.stream.Collectors;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -32,7 +33,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     private final ComidaData CD = new ComidaData();
     private final DietaData DD = new DietaData();
     private final DietaComidaData DCD = new DietaComidaData();
-    
+
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -78,6 +79,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jcbComida = new javax.swing.JComboBox<>();
         jsFiltro = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Configuracion de la Dieta");
@@ -159,6 +161,11 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jbEliminar.setMaximumSize(new java.awt.Dimension(83, 32));
         jbEliminar.setMinimumSize(new java.awt.Dimension(83, 32));
         jbEliminar.setPreferredSize(new java.awt.Dimension(83, 32));
+        jbEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEliminarActionPerformed(evt);
+            }
+        });
 
         jbModificar.setText("Modificar");
         jbModificar.setEnabled(false);
@@ -171,15 +178,28 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Comida");
 
+        jsFiltro.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jsFiltroStateChanged(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Filtrar Por calorias (Max)");
+
+        jButton1.setText("Detalle");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -188,9 +208,9 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
                         .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGap(18, 18, 18)
                         .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(204, 204, 204)
+                        .addGap(198, 198, 198)
                         .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -209,19 +229,21 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jcbComida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(63, 63, 63)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1)
+                                .addGap(10, 10, 10)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addGap(6, 6, 6)
-                                        .addComponent(jsFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jsFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
@@ -245,26 +267,29 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jcbComida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jcbComida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
+                        .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jcbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(36, 36, 36)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel8)
                 .addGap(6, 6, 6)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -272,7 +297,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,14 +309,14 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
 
     private void jTablaDietaComidaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaDietaComidaMouseReleased
         restaurarEstadoInicialBotones();
-        
+
         DietaComida dietaComida;
         Object celda = modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn());
         HorariosEnum horario = null;
         DiasEnum dia = (DiasEnum) (modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), 0));
         Comida comida = null;
-        
-        if(celda != null && celda instanceof DietaComida) {
+
+        if (celda != null && celda instanceof DietaComida) {
             dietaComida = (DietaComida) celda;
             comida = dietaComida.getComida();
             horario = dietaComida.getHorario();
@@ -309,7 +334,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
             jcbHorario.setEnabled(false);
             jcbComida.setEnabled(false);
         }
-        
+
         jcbDia.setSelectedItem(dia);
         jcbComida.setSelectedItem(comida);
         jcbHorario.setSelectedItem(horario);
@@ -333,10 +358,12 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         dietaComida.setDia((DiasEnum) jcbDia.getSelectedItem());
         dietaComida.setHorario((HorariosEnum) jcbHorario.getSelectedItem());
         dietaComida.setDieta(DD.buscarDieta(idDieta));
-        if(manejoEscrituraCelda(dietaComida.getHorario(),dietaComida.getDia())) DCD.guardarDietaComida(dietaComida);
+        if (manejoEscrituraCelda(dietaComida.getHorario(), dietaComida.getDia())) {
+            DCD.guardarDietaComida(dietaComida);
+        }
         tableClean();
         llenarTabla();
-        
+
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
@@ -349,8 +376,40 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         llenarTabla();
     }//GEN-LAST:event_jbModificarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (jcbComida.getSelectedItem() != null) {
+            Comida comida = (Comida) jcbComida.getSelectedItem();
+            JOptionPane.showMessageDialog(this, "Detalle:\n" + comida.getDetalle() + "\n\n" + comida.getCantCalorias() + " cal.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jsFiltroStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jsFiltroStateChanged
+        if ((int) jsFiltro.getValue() != 0) {
+            List<Comida> listaComida = CD.listaComida()
+                    .stream().filter(comida -> comida.getCantCalorias() <= ((int) jsFiltro.getValue()))
+                    .sorted(Comparator.comparingInt(Comida::getCantCalorias))
+                    .collect(Collectors.toList());
+            jcbComida.setModel(new DefaultComboBoxModel(listaComida.toArray(new Comida[listaComida.size()])));
+        } else {
+            List<Comida> listaComida = CD.listaComida().stream().sorted(Comparator.comparingInt(Comida::getCantCalorias)).collect(Collectors.toList());
+            jcbComida.setModel(new DefaultComboBoxModel(listaComida.toArray(new Comida[listaComida.size()])));
+        }
+    }//GEN-LAST:event_jsFiltroStateChanged
+
+    private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
+        int opt = JOptionPane.showConfirmDialog(this, "¿Desea Eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (opt == JOptionPane.YES_OPTION) {
+            DietaComida dietaComida = (DietaComida) modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn());
+            DCD.eliminarDietaComida(dietaComida);
+            restaurarEstadoInicialBotones();
+            tableClean();
+            llenarTabla();
+        }
+    }//GEN-LAST:event_jbEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -382,13 +441,13 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     private void armarCabecera() {// Arma la cabecera de la tabla
         int j = 1;
         modeloTabla.addColumn("Dia");
-        
-        for(HorariosEnum horario : HorariosEnum.values()){
+
+        for (HorariosEnum horario : HorariosEnum.values()) {
             modeloTabla.addColumn(horario);
             j++;
         }
         jTablaDietaComida.setModel(modeloTabla);
-        for(int i = 0; i < j; i++) {
+        for (int i = 0; i < j; i++) {
             jTablaDietaComida.getColumnModel().getColumn(i).setPreferredWidth(100);
         }
         JTableHeader header = jTablaDietaComida.getTableHeader();
@@ -397,7 +456,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
 
     private void llenarTabla() {
         List<DietaComida> comidaPorDia;
-        for(DiasEnum dia: DiasEnum.values()) {
+        for (DiasEnum dia : DiasEnum.values()) {
             comidaPorDia = DCD.listarDietaComidaXDieta(DietaVista.idDieta).stream()
                     .filter(dietaCom -> dietaCom.getDia().equals(dia))
                     .sorted(Comparator.comparing(DietaComida::getHorario))
@@ -447,18 +506,21 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jcbDia.setEnabled(true);
         jcbHorario.setEnabled(true);
         jcbComida.setEnabled(true);
+        jsFiltro.setValue((int) 0);
     }
-    
+
     private void reinicializarComboBoxes() {
         jcbComida.setSelectedItem(null);
         jcbDia.setSelectedItem(null);
         jcbHorario.setSelectedItem(null);
     }
-    
-    private boolean manejoEscrituraCelda(HorariosEnum horario, DiasEnum dia){
+
+    private boolean manejoEscrituraCelda(HorariosEnum horario, DiasEnum dia) {
         DietaComida dietaComida = DCD.buscarDietaComida(DietaVista.idDieta, horario.toString(), dia.toString());
-        
-        if (dietaComida == null) return true;
+
+        if (dietaComida == null) {
+            return true;
+        }
         int opt = JOptionPane.showConfirmDialog(this, "Ya fue establecido un consumo para este día y horario.\n¿Desea reemplazar?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (opt == JOptionPane.YES_OPTION) {
             DCD.eliminarDietaComida(dietaComida);
@@ -466,5 +528,5 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         }
         return false;
     }
-    
+
 }
