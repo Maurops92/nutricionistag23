@@ -38,16 +38,13 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
             return false;
         }
     };
-    private String dni;
 
     public DietaComidaVista() {;
         initComponents();
         armarCabecera();
         llenarTabla();
         iniComboBoxes();
-        jbAgregar.setEnabled(true);
-        jbModificar.setEnabled(false);
-        jbEliminar.setEnabled(false);
+        reinicializarComboBoxes();
         jsFiltro.setModel(new SpinnerNumberModel(0, 0, 5000, 10));
         jtNombreDieta.setText(DD.buscarDieta(idDieta).toString());
         jtNombreDieta.setBorder(BorderFactory.createCompoundBorder(jtNombreDieta.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
@@ -91,7 +88,6 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(548, 568));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Dieta");
 
@@ -100,7 +96,6 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jtNombreDieta.setBorder(null);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Dia");
 
@@ -143,7 +138,6 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Seleccione una dieta");
 
         jtCerrar.setText("Cerrar");
@@ -157,16 +151,17 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("Horario");
 
         jbEliminar.setText("Eliminar");
+        jbEliminar.setEnabled(false);
         jbEliminar.setMaximumSize(new java.awt.Dimension(83, 32));
         jbEliminar.setMinimumSize(new java.awt.Dimension(83, 32));
         jbEliminar.setPreferredSize(new java.awt.Dimension(83, 32));
 
         jbModificar.setText("Modificar");
+        jbModificar.setEnabled(false);
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbModificarActionPerformed(evt);
@@ -174,11 +169,9 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Comida");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Filtrar Por calorias (Max)");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -279,7 +272,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,38 +283,43 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTablaDietaComidaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaDietaComidaMouseReleased
-        DietaComida dietaComida = new DietaComida();
-        try {
-            dietaComida = (DietaComida) modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn());
-            jcbComida.setSelectedItem(dietaComida.getComida());
-            jcbDia.setSelectedItem(dietaComida.getDia());
-            jcbHorario.setSelectedItem(dietaComida.getHorario());
+        restaurarEstadoInicialBotones();
+        
+        DietaComida dietaComida;
+        Object celda = modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn());
+        HorariosEnum horario = null;
+        DiasEnum dia = (DiasEnum) (modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), 0));
+        Comida comida = null;
+        
+        if(celda != null && celda instanceof DietaComida) {
+            dietaComida = (DietaComida) celda;
+            comida = dietaComida.getComida();
+            horario = dietaComida.getHorario();
             jbAgregar.setEnabled(false);
             jbModificar.setEnabled(true);
             jbEliminar.setEnabled(true);
-        } catch (ClassCastException cce) {
-            jbAgregar.setEnabled(false);
-            jbModificar.setEnabled(true);
-            jbEliminar.setEnabled(true);
-            DiasEnum dia = (DiasEnum) (modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), 0));
-            jcbDia.setSelectedItem(dia);
-            HorariosEnum horario = HorariosEnum.valueOf(modeloTabla.getColumnName(jTablaDietaComida.getSelectedColumn()));
-            jcbHorario.setSelectedItem(horario);
-        } finally {
             jcbDia.setEnabled(false);
             jcbHorario.setEnabled(false);
+        } else if (celda == null) { // si la celda esta en blanco, configura las comboBox de Horario y Dia. La comboBox de Comida queda en null
+            horario = HorariosEnum.valueOf(modeloTabla.getColumnName(jTablaDietaComida.getSelectedColumn()));
+        } else { // si se selecciona alguna celda de la columna "dia" se desactivan los campos
+            dia = null;
+            jbAgregar.setEnabled(false);
+            jcbDia.setEnabled(false);
+            jcbHorario.setEnabled(false);
+            jcbComida.setEnabled(false);
         }
+        
+        jcbDia.setSelectedItem(dia);
+        jcbComida.setSelectedItem(comida);
+        jcbHorario.setSelectedItem(horario);
     }//GEN-LAST:event_jTablaDietaComidaMouseReleased
 
     private void jbVaciarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVaciarCamposActionPerformed
-        jbAgregar.setEnabled(true);
-        jbModificar.setEnabled(false);
-        jbEliminar.setEnabled(false);
-        jcbDia.setEnabled(true);
-        jcbHorario.setEnabled(true);
+        restaurarEstadoInicialBotones();
+        reinicializarComboBoxes();
         tableClean();
         llenarTabla();
-
     }//GEN-LAST:event_jbVaciarCamposActionPerformed
 
     private void jtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCerrarActionPerformed
@@ -335,29 +333,18 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         dietaComida.setDia((DiasEnum) jcbDia.getSelectedItem());
         dietaComida.setHorario((HorariosEnum) jcbHorario.getSelectedItem());
         dietaComida.setDieta(DD.buscarDieta(idDieta));
-        DCD.guardarDietaComida(dietaComida);
+        if(manejoEscrituraCelda(dietaComida.getHorario(),dietaComida.getDia())) DCD.guardarDietaComida(dietaComida);
         tableClean();
         llenarTabla();
-
+        
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
 
-        DietaComida dietaComida = new DietaComida();
-        DietaComida dietaAntes = ((DietaComida) modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn()));
-        try{
-        dietaComida.setId((DCD.buscarDietaComida(idDieta, dietaAntes.getHorario().toString(), dietaAntes.getDia().toString())).getId());
+        DietaComida dietaComida = (DietaComida) modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn());
         dietaComida.setComida((Comida) jcbComida.getSelectedItem());
-        dietaComida.setDia((DiasEnum) jcbDia.getSelectedItem());
-        dietaComida.setHorario((HorariosEnum) jcbHorario.getSelectedItem());
-        dietaComida.setDieta(DD.buscarDieta(idDieta));
         DCD.modificarDietaComida(dietaComida);
-        jbAgregar.setEnabled(true);
-        jbModificar.setEnabled(false);
-        jbEliminar.setEnabled(false);
-        }catch(ClassCastException cce){
-            JOptionPane.showMessageDialog(this, "No es posible modificar consumos vacios");
-        }
+        restaurarEstadoInicialBotones();
         tableClean();
         llenarTabla();
     }//GEN-LAST:event_jbModificarActionPerformed
@@ -393,7 +380,9 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     }
 
     private void armarCabecera() {// Arma la cabecera de la tabla
-        int j = 0;
+        int j = 1;
+        modeloTabla.addColumn("Dia");
+        
         for(HorariosEnum horario : HorariosEnum.values()){
             modeloTabla.addColumn(horario);
             j++;
@@ -418,7 +407,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     }
 
     private void agregarFila(List<DietaComida> listaPorConsumo, DiasEnum enumD) {
-        Object[] celda = {enumD, "", "", "", "", ""};
+        Object[] celda = {enumD, null, null, null, null, null};
         for (DietaComida dietaCom : listaPorConsumo) {
             switch (dietaCom.getHorario().toString()) {
                 case "DESAYUNO":
@@ -451,4 +440,31 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         }
     }
 
+    private void restaurarEstadoInicialBotones() {
+        jbAgregar.setEnabled(true);
+        jbModificar.setEnabled(false);
+        jbEliminar.setEnabled(false);
+        jcbDia.setEnabled(true);
+        jcbHorario.setEnabled(true);
+        jcbComida.setEnabled(true);
+    }
+    
+    private void reinicializarComboBoxes() {
+        jcbComida.setSelectedItem(null);
+        jcbDia.setSelectedItem(null);
+        jcbHorario.setSelectedItem(null);
+    }
+    
+    private boolean manejoEscrituraCelda(HorariosEnum horario, DiasEnum dia){
+        DietaComida dietaComida = DCD.buscarDietaComida(DietaVista.idDieta, horario.toString(), dia.toString());
+        
+        if (dietaComida == null) return true;
+        int opt = JOptionPane.showConfirmDialog(this, "Ya fue establecido un consumo para este día y horario.\n¿Desea reemplazar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (opt == JOptionPane.YES_OPTION) {
+            DCD.eliminarDietaComida(dietaComida);
+            return true;
+        }
+        return false;
+    }
+    
 }

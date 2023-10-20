@@ -22,6 +22,7 @@ public class DietaComida {
     }
 
     public DietaComida(int id, Comida comida, Dieta dieta, HorariosEnum horario, DiasEnum dia) {
+        this.id = id;
         this.comida = comida;
         this.dieta = dieta;
         this.horario = horario;

@@ -61,8 +61,11 @@ public class Nutricionistag23 {
         //System.out.println(hData.listaHistorial(1));
         //System.out.println(hData.buscarHistorialXId(1));
                 DietaComidaData dcd = new DietaComidaData();
-        List<DietaComida> lunes = dcd.listarDietaComidaXDieta(2).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.LUNES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
-        System.out.println(lunes);
+        List<DietaComida> lunes = dcd.listarDietaComidaXDieta(2);
+        for(DietaComida comida:lunes){
+            System.out.println(comida.getId());
+        }
+        
     }
     
 

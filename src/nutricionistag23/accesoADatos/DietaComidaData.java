@@ -107,6 +107,18 @@ public class DietaComidaData {
         }
     }
     
+    public void eliminarDietaComida(DietaComida dietaComida) {
+        String sql = "DELETE FROM dietacomida WHERE idDieta=? AND horario=? AND dia=?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, dietaComida.getDieta().getIdDieta());
+            ps.setString(2, dietaComida.getHorario().toString());
+            ps.setString(3, dietaComida.getDia().toString());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos.");
+        }
+    }
+    
     public void modificarDietaComida(DietaComida dietaComida){
         String sql = "UPDATE dietaComida SET idComida=?, idDieta=?, horario=?, dia=? WHERE idDietaComida="+dietaComida.getId();
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -117,7 +129,6 @@ public class DietaComidaData {
             if (ps.executeUpdate() == 1) {
                 JOptionPane.showMessageDialog(null, "DietaComida Modificada exitosamente.");
             } else {
-                JOptionPane.showMessageDialog(null, dietaComida.getId());
                 JOptionPane.showMessageDialog(null, "DietaComida no encontrada.");
             }
             } catch (SQLException e) {
