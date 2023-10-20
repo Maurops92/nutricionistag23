@@ -5,14 +5,28 @@
  */
 package nutricionistag23.vistas;
 
-
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Vector;
+import java.util.stream.Collectors;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import nutricionistag23.accesoADatos.ComidaData;
+import nutricionistag23.accesoADatos.DietaComidaData;
 import nutricionistag23.accesoADatos.DietaData;
+import nutricionistag23.entidades.Comida;
+import nutricionistag23.entidades.DiasEnum;
 import nutricionistag23.entidades.Dieta;
+import nutricionistag23.entidades.DietaComida;
+import nutricionistag23.entidades.HorariosEnum;
+import static nutricionistag23.vistas.DietaVista.idDieta;
 
 /**
  *
@@ -20,6 +34,7 @@ import nutricionistag23.entidades.Dieta;
  */
 public class DietaComidaVista extends javax.swing.JInternalFrame {
 
+    private DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -28,9 +43,19 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     private String dni;
 
     public DietaComidaVista() {
+        DietaData dd = new DietaData();
         initComponents();
         armarCabecera();
-
+        llenarTabla();
+        iniComboBoxDia();
+        iniComboBoxHorario();
+        iniComboComida();
+                jbAgregar.setEnabled(true);
+        jbModificar.setEnabled(false);
+        jbEliminar.setEnabled(false);
+        jsFiltro.setModel(new SpinnerNumberModel(0, 0, 5000, 10));
+        jtNombreDieta.setText(dd.buscarDieta(idDieta).toString());
+        jtNombreDieta.setBorder(BorderFactory.createCompoundBorder(jtNombreDieta.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
     }
 
     /**
@@ -47,7 +72,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jtNombreDieta = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtDieta = new javax.swing.JTable();
+        jTablaDietaComida = new javax.swing.JTable();
         jbAgregar = new javax.swing.JButton();
         jbVaciarCampos = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -55,19 +80,19 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jbEliminar = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jcbHorario = new javax.swing.JComboBox<>();
+        jcbDia = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jSpinner1 = new javax.swing.JSpinner();
+        jcbComida = new javax.swing.JComboBox<>();
+        jsFiltro = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Configuracion de la Dieta");
-        setPreferredSize(new java.awt.Dimension(548, 568));
+        setPreferredSize(new java.awt.Dimension(577, 472));
 
         jPanel1.setBackground(new java.awt.Color(135, 250, 177));
-        jPanel1.setMinimumSize(new java.awt.Dimension(548, 568));
+        jPanel1.setMinimumSize(new java.awt.Dimension(548, 550));
         jPanel1.setPreferredSize(new java.awt.Dimension(548, 568));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -84,8 +109,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Dia");
 
-        jtDieta.setBackground(new java.awt.Color(153, 255, 204));
-        jtDieta.setModel(new javax.swing.table.DefaultTableModel(
+        jTablaDietaComida.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -96,19 +120,24 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
 
             }
         ));
-        jtDieta.getTableHeader().setResizingAllowed(false);
-        jtDieta.getTableHeader().setReorderingAllowed(false);
-        jtDieta.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTablaDietaComida.getTableHeader().setResizingAllowed(false);
+        jTablaDietaComida.getTableHeader().setReorderingAllowed(false);
+        jTablaDietaComida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jtDietaMouseReleased(evt);
+                jTablaDietaComidaMouseReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(jtDieta);
+        jScrollPane1.setViewportView(jTablaDietaComida);
 
         jbAgregar.setText("Agregar");
         jbAgregar.setMaximumSize(new java.awt.Dimension(83, 32));
         jbAgregar.setMinimumSize(new java.awt.Dimension(83, 32));
         jbAgregar.setPreferredSize(new java.awt.Dimension(83, 32));
+        jbAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAgregarActionPerformed(evt);
+            }
+        });
 
         jbVaciarCampos.setText("Limpiar");
         jbVaciarCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +172,11 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jbEliminar.setPreferredSize(new java.awt.Dimension(83, 32));
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -159,49 +193,48 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(204, 204, 204)
+                        .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150)
-                        .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(156, 156, 156)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jtNombreDieta))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jcbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jcbComida, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(63, 63, 63)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jsFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(252, 252, 252))
+                        .addComponent(jtNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,70 +246,123 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jsFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jcbComida, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jcbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(36, 36, 36)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtDietaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDietaMouseReleased
-
-    }//GEN-LAST:event_jtDietaMouseReleased
+    private void jTablaDietaComidaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablaDietaComidaMouseReleased
+        DietaComida dietaComida = new DietaComida();
+        try {
+            dietaComida = (DietaComida) modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn());
+            jcbComida.setSelectedItem(dietaComida.getComida());
+            jcbDia.setSelectedItem(dietaComida.getDia());
+            jcbHorario.setSelectedItem(dietaComida.getHorario());
+            jbAgregar.setEnabled(false);
+            jbModificar.setEnabled(true);
+            jbEliminar.setEnabled(true);
+        } catch (ClassCastException cce) {
+            jbAgregar.setEnabled(false);
+            jbModificar.setEnabled(true);
+            jbEliminar.setEnabled(true);
+        }
+    }//GEN-LAST:event_jTablaDietaComidaMouseReleased
 
     private void jbVaciarCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVaciarCamposActionPerformed
         jbAgregar.setEnabled(true);
         jbModificar.setEnabled(false);
+        jbEliminar.setEnabled(false);
         tableClean();
+        llenarTabla();
+
     }//GEN-LAST:event_jbVaciarCamposActionPerformed
 
     private void jtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_jtCerrarActionPerformed
 
+    private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
+
+        DietaData dd = new DietaData();
+        DietaComidaData dcd = new DietaComidaData();
+        DietaComida dietaComida = new DietaComida();
+        dietaComida.setComida((Comida) jcbComida.getSelectedItem());
+        dietaComida.setDia((DiasEnum) jcbDia.getSelectedItem());
+        dietaComida.setHorario((HorariosEnum) jcbHorario.getSelectedItem());
+        dietaComida.setDieta(dd.buscarDieta(idDieta));
+        dcd.guardarDietaComida(dietaComida);
+        tableClean();
+        llenarTabla();
+
+    }//GEN-LAST:event_jbAgregarActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        DietaData dd = new DietaData();
+        DietaComidaData dcd = new DietaComidaData();
+        DietaComida dietaComida = new DietaComida();
+        DietaComida dietaAntes = ((DietaComida) modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn()));
+        try{
+        dietaComida.setId((dcd.buscarDietaComida(idDieta, dietaAntes.getHorario().toString(), dietaAntes.getDia().toString())).getId());
+        dietaComida.setComida((Comida) jcbComida.getSelectedItem());
+        dietaComida.setDia((DiasEnum) jcbDia.getSelectedItem());
+        dietaComida.setHorario((HorariosEnum) jcbHorario.getSelectedItem());
+        dietaComida.setDieta(dd.buscarDieta(idDieta));
+        dcd.modificarDietaComida(dietaComida);
+        jbAgregar.setEnabled(true);
+        jbModificar.setEnabled(false);
+        jbEliminar.setEnabled(false);
+        }catch(ClassCastException cce){
+            JOptionPane.showMessageDialog(this, "No es posible modificar consumos vacios");
+        }
+        tableClean();
+        llenarTabla();
+    }//GEN-LAST:event_jbModificarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -285,49 +371,123 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JTable jTablaDietaComida;
     private javax.swing.JButton jbAgregar;
     private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbVaciarCampos;
+    private javax.swing.JComboBox<String> jcbComida;
+    private javax.swing.JComboBox<String> jcbDia;
+    private javax.swing.JComboBox<String> jcbHorario;
+    private javax.swing.JSpinner jsFiltro;
     private javax.swing.JToggleButton jtCerrar;
-    private javax.swing.JTable jtDieta;
     private javax.swing.JTextField jtNombreDieta;
     // End of variables declaration//GEN-END:variables
-
-    private void armarCabecera() {// Arma la cabecera de la tabla
-        modeloTabla.addColumn("ID");
-        modeloTabla.addColumn("Dieta");
-        modeloTabla.addColumn("Paciente");
-        modeloTabla.addColumn("PI");
-        modeloTabla.addColumn("PF");
-        modeloTabla.addColumn("Fecha Inicial");
-        modeloTabla.addColumn("Fecha Final");
-        jtDieta.setModel(modeloTabla);
-        jtDieta.getColumnModel().getColumn(0).setPreferredWidth(15);
-        jtDieta.getColumnModel().getColumn(1).setPreferredWidth(50);
-        jtDieta.getColumnModel().getColumn(2).setPreferredWidth(150);
-        jtDieta.getColumnModel().getColumn(3).setPreferredWidth(20);
-        jtDieta.getColumnModel().getColumn(4).setPreferredWidth(20);
-        jtDieta.getColumnModel().getColumn(5).setPreferredWidth(80);
-        jtDieta.getColumnModel().getColumn(6).setPreferredWidth(80);
-
-        JTableHeader header = jtDieta.getTableHeader();
-        header.setDefaultRenderer(new HeaderRenderer(jtDieta));
+    private void iniComboComida() {
+        ComidaData cd = new ComidaData();
+        List<Comida> comidas = cd.listaComida();
+        Vector<Comida> comidasVector = new Vector<>();
+        for (Comida comida : comidas) {
+            comidasVector.add(comida);
+        }
+        modeloCombo = new DefaultComboBoxModel(comidasVector);
+        jcbComida.setModel(modeloCombo);
     }
 
+    private void iniComboBoxDia() {
+        Vector<DiasEnum> enumD = new Vector<>();
+        enumD.add(DiasEnum.LUNES);
+        enumD.add(DiasEnum.MARTES);
+        enumD.add(DiasEnum.MIERCOLES);
+        enumD.add(DiasEnum.JUEVES);
+        enumD.add(DiasEnum.VIERNES);
+        enumD.add(DiasEnum.SABADO);
+        enumD.add(DiasEnum.DOMINGO);
+        modeloCombo = new DefaultComboBoxModel(enumD);
+        jcbDia.setModel(modeloCombo);
+    }
 
+    private void iniComboBoxHorario() {
+        Vector<HorariosEnum> enumH = new Vector<>();
+        enumH.add(HorariosEnum.DESAYUNO);
+        enumH.add(HorariosEnum.ALMUERZO);
+        enumH.add(HorariosEnum.MERIENDA);
+        enumH.add(HorariosEnum.CENA);
+        enumH.add(HorariosEnum.SNACK);
+        modeloCombo = new DefaultComboBoxModel(enumH);
+        jcbHorario.setModel(modeloCombo);
+    }
+
+    private void armarCabecera() {// Arma la cabecera de la tabla
+        modeloTabla.addColumn("Dia");
+        modeloTabla.addColumn("Desayuno");
+        modeloTabla.addColumn("Almuerzo");
+        modeloTabla.addColumn("Merienda");
+        modeloTabla.addColumn("Cena");
+        modeloTabla.addColumn("Snack");
+        jTablaDietaComida.setModel(modeloTabla);
+        jTablaDietaComida.getColumnModel().getColumn(0).setPreferredWidth(100);
+        jTablaDietaComida.getColumnModel().getColumn(1).setPreferredWidth(100);
+        jTablaDietaComida.getColumnModel().getColumn(2).setPreferredWidth(100);
+        jTablaDietaComida.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jTablaDietaComida.getColumnModel().getColumn(4).setPreferredWidth(100);
+        jTablaDietaComida.getColumnModel().getColumn(2).setPreferredWidth(100);
+
+        JTableHeader header = jTablaDietaComida.getTableHeader();
+        header.setDefaultRenderer(new HeaderRenderer(jTablaDietaComida));
+    }
+
+    private void llenarTabla() {
+        DietaComidaData dcd = new DietaComidaData();
+        List<DietaComida> lunes = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.LUNES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
+        List<DietaComida> martes = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.MARTES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
+        List<DietaComida> miercoles = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.MIERCOLES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
+        List<DietaComida> jueves = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.JUEVES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
+        List<DietaComida> viernes = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.VIERNES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
+        List<DietaComida> sabado = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.SABADO)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
+        List<DietaComida> domingo = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.DOMINGO)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
+        agregarFila(lunes, DiasEnum.LUNES);
+        agregarFila(martes, DiasEnum.MARTES);
+        agregarFila(miercoles, DiasEnum.MIERCOLES);
+        agregarFila(jueves, DiasEnum.JUEVES);
+        agregarFila(viernes, DiasEnum.VIERNES);
+        agregarFila(sabado, DiasEnum.SABADO);
+        agregarFila(domingo, DiasEnum.DOMINGO);
+    }
+
+    private void agregarFila(List<DietaComida> listaPorConsumo, DiasEnum enumD) {
+        Object[] celda = {enumD, "", "", "", "", ""};
+        for (DietaComida dietaCom : listaPorConsumo) {
+            switch (dietaCom.getHorario().toString()) {
+                case "DESAYUNO":
+                    celda[1] = dietaCom;
+                    break;
+                case "ALMUERZO":
+                    celda[2] = dietaCom;
+                    break;
+                case "MERIENDA":
+                    celda[3] = dietaCom;
+                    break;
+                case "CENA":
+                    celda[4] = dietaCom;
+                    break;
+                case "SNACK":
+                    celda[5] = dietaCom;
+                    break;
+            }
+        }
+
+        modeloTabla.addRow(celda);
+    }
 
     private void tableClean() {
         //limpia la tabla de dietas
-        if (jtDieta.getRowCount() != 0) {
-            int largo = jtDieta.getRowCount() - 1;
+        if (jTablaDietaComida.getRowCount() != 0) {
+            int largo = jTablaDietaComida.getRowCount() - 1;
             for (; largo >= 0; largo--) {
                 modeloTabla.removeRow(largo);
             }
         }
     }
-
-
 
 }

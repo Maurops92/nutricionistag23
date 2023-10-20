@@ -3,6 +3,9 @@
 package nutricionistag23;
 
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 import nutricionistag23.accesoADatos.ComidaData;
 import nutricionistag23.accesoADatos.DietaComidaData;
 import nutricionistag23.accesoADatos.DietaData;
@@ -15,11 +18,12 @@ import nutricionistag23.entidades.DietaComida;
 import nutricionistag23.entidades.Historial;
 import nutricionistag23.entidades.HorariosEnum;
 import nutricionistag23.entidades.Paciente;
+import nutricionistag23.vistas.DietaVista;
 
 
 public class Nutricionistag23 {
 
-    
+
     public static void main(String[] args) {
         
         PacienteData pData= new PacienteData();
@@ -56,8 +60,11 @@ public class Nutricionistag23 {
         //hData.modificarHistorial(new Historial(1,pData.buscarPacienteXId(1), 98, LocalDate.now()));
         //System.out.println(hData.listaHistorial(1));
         //System.out.println(hData.buscarHistorialXId(1));
+                DietaComidaData dcd = new DietaComidaData();
+        List<DietaComida> lunes = dcd.listarDietaComidaXDieta(2).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.LUNES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
+        System.out.println(lunes);
     }
     
-    
+
 
 }

@@ -21,10 +21,10 @@ public class DietaComida {
         this.dia = dia;
     }
 
-    public DietaComida(int id, Comida comida, Dieta dieta, HorariosEnum horarios, DiasEnum dia) {
+    public DietaComida(int id, Comida comida, Dieta dieta, HorariosEnum horario, DiasEnum dia) {
         this.comida = comida;
         this.dieta = dieta;
-        this.horario = horarios;
+        this.horario = horario;
         this.dia = dia;
     }
     
@@ -56,16 +56,6 @@ public class DietaComida {
         this.dia = dia;
     }
 
-
-
-    public HorariosEnum getHorarios() {
-        return horario;
-    }
-
-    public void setHorarios(HorariosEnum horarios) {
-        this.horario = horarios;
-    }
-
     public Comida getComida() {
         return comida;
     }
@@ -86,7 +76,7 @@ public class DietaComida {
 
     @Override
     public String toString() {
-        return dieta + ", "+ comida+ ", "+dia+ ", "+horario;
+        return comida.toString();
     }
     
     

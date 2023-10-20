@@ -29,7 +29,7 @@ public class DietaComidaData {
 
             ps.setInt(1, dietaComida.getComida().getIdComida());
             ps.setInt(2, dietaComida.getDieta().getIdDieta());
-            ps.setString(3, dietaComida.getHorarios().toString());
+            ps.setString(3, dietaComida.getHorario().toString());
             ps.setString(4, dietaComida.getDia().toString());
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Comida agregada a la dieta " + dietaComida.getDieta().getNombre());
@@ -55,7 +55,32 @@ public class DietaComidaData {
                 dietacomida.setId(rs.getInt("idDietaComida"));
                 dietacomida.setComida(cData.buscarComida(rs.getInt("idComida")));
                 dietacomida.setDieta(dData.buscarDieta(rs.getInt("idDieta")));
-                dietacomida.setHorarios(HorariosEnum.valueOf(rs.getString("horario")));
+                dietacomida.setHorario(HorariosEnum.valueOf(rs.getString("horario")));
+                dietacomida.setDia(DiasEnum.valueOf(rs.getString("dia")));
+            } else {
+                JOptionPane.showMessageDialog(null, "Consumo no encontrado");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos.");
+        }
+        return dietacomida;
+    }
+    public DietaComida buscarDietaComida(int idDieta) {
+        ComidaData cData = new ComidaData();
+        DietaData dData = new DietaData();
+        String sql = "SELECT * FROM dietacomida WHERE idDieta=?";
+        DietaComida dietacomida = null;
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idDieta);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                dietacomida = new DietaComida();
+                dietacomida.setId(rs.getInt("idDietaComida"));
+                dietacomida.setComida(cData.buscarComida(rs.getInt("idComida")));
+                dietacomida.setDieta(dData.buscarDieta(rs.getInt("idDieta")));
+                dietacomida.setHorario(HorariosEnum.valueOf(rs.getString("horario")));
                 dietacomida.setDia(DiasEnum.valueOf(rs.getString("dia")));
             } else {
                 JOptionPane.showMessageDialog(null, "Consumo no encontrado");
@@ -81,6 +106,7 @@ public class DietaComidaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos.");
         }
     }
+    
     public void modificarDietaComida(DietaComida dietaComida){
         String sql = "UPDATE dietaComida SET idComida=?, idDieta=?, horario=?, dia=? WHERE idDietaComida="+dietaComida.getId();
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -91,12 +117,15 @@ public class DietaComidaData {
             if (ps.executeUpdate() == 1) {
                 JOptionPane.showMessageDialog(null, "DietaComida Modificada exitosamente.");
             } else {
+                JOptionPane.showMessageDialog(null, dietaComida.getId());
                 JOptionPane.showMessageDialog(null, "DietaComida no encontrada.");
             }
             } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos.");
         }
+        
     }
+    
     public List<DietaComida> listarDietaComidaXDieta(int idDieta){
         List<DietaComida> listaDietaComida = new ArrayList <>();
         ComidaData cData=new ComidaData();
@@ -113,7 +142,8 @@ public class DietaComidaData {
         }
         return listaDietaComida;
     }
-       public List<DietaComida> listarDietaComidaXDia(int idDieta,String dia){
+    
+    public List<DietaComida> listarDietaComidaXDia(int idDieta,String dia){
         List<DietaComida> listaDietaComida = new ArrayList <>();
         ComidaData cData=new ComidaData();
         DietaData dData=new DietaData();

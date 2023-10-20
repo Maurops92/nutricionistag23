@@ -35,7 +35,7 @@ import static nutricionistag23.vistas.MainMenu.getMainMenu;
 public class DietaVista extends javax.swing.JInternalFrame {
 
     private DietaComidaVista dietaComidaVista;
-
+    public static int idDieta;
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -49,6 +49,9 @@ public class DietaVista extends javax.swing.JInternalFrame {
         llenarTabla();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         jtPaciente.setEditable(false);
+        jbConfigDieta.setEnabled(false);
+        jbEliminar.setEnabled(false);
+        jbModificar.setEnabled(false);
         jsPesoInicial.setModel(new SpinnerNumberModel(0.0, 0.0, 500, 0.1));
         jsPesoFinal.setModel(new SpinnerNumberModel(0.0, 0.0, 500, 0.1));
         jtNombreDieta.setBorder(BorderFactory.createCompoundBorder(jtNombreDieta.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
@@ -248,16 +251,8 @@ public class DietaVista extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jrbDietaActiva)
-                .addGap(18, 18, 18)
-                .addComponent(jrbDietaNoActiva)
-                .addGap(229, 229, 229))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabel1)
@@ -301,9 +296,17 @@ public class DietaVista extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(634, 634, 634)
                         .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbConfigDieta)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jrbDietaActiva)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jrbDietaNoActiva)
+                                .addGap(180, 180, 180))
+                            .addComponent(jbConfigDieta, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(49, 49, 49))
         );
         jPanel1Layout.setVerticalGroup(
@@ -338,10 +341,10 @@ public class DietaVista extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(jLabel8))
-                    .addComponent(jrbDietaActiva)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jrbDietaNoActiva)
-                        .addComponent(jbConfigDieta)))
+                        .addComponent(jbConfigDieta)
+                        .addComponent(jrbDietaActiva)))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -387,6 +390,9 @@ public class DietaVista extends javax.swing.JInternalFrame {
         jdFechaFin.setDate(Date.valueOf((LocalDate) modeloTabla.getValueAt(jtDieta.getSelectedRow(), 6)));
         dni = String.valueOf(((Paciente) modeloTabla.getValueAt(jtDieta.getSelectedRow(), 2)).getDni());
         jbAgregar.setEnabled(false);
+        jbEliminar.setEnabled(true);
+        jbConfigDieta.setEnabled(true);
+        idDieta = (int)modeloTabla.getValueAt(jtDieta.getSelectedRow(), 0);
     }//GEN-LAST:event_jtDietaMouseReleased
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
@@ -404,6 +410,8 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 dieta.setPesoFinal((double) jsPesoFinal.getValue());
                 jrbDietaActiva.setSelected(false);
                 jrbDietaNoActiva.setSelected(false);
+                jbConfigDieta.setEnabled(false);
+                jbEliminar.setEnabled(false);
                 dd.guardarDieta(dieta);
                 tableClean();
                 llenarTabla();
@@ -420,6 +428,8 @@ public class DietaVista extends javax.swing.JInternalFrame {
         jbModificar.setEnabled(false);
         jbAgregar.setEnabled(true);
         jrbDietaActiva.setSelected(false);
+        jbConfigDieta.setEnabled(false);
+        jbEliminar.setEnabled(false);
         DietaData dd = new DietaData();
         List<Dieta> dietaList = dd.listaDieta();
         Iterator iterador = dietaList.iterator();
@@ -441,6 +451,8 @@ public class DietaVista extends javax.swing.JInternalFrame {
         jbModificar.setEnabled(false);
         jbAgregar.setEnabled(true);
         jrbDietaNoActiva.setSelected(false);
+        jbConfigDieta.setEnabled(false);
+        jbEliminar.setEnabled(false);
         DietaData dd = new DietaData();
         List<Dieta> dietaList = dd.listaDieta();
         for (Dieta dieta : dietaList) {
@@ -457,6 +469,8 @@ public class DietaVista extends javax.swing.JInternalFrame {
         jbModificar.setEnabled(false);
         jrbDietaActiva.setSelected(false);
         jrbDietaNoActiva.setSelected(false);
+        jbConfigDieta.setEnabled(false);
+        jbEliminar.setEnabled(false);
         tableClean();
         llenarTabla();
     }//GEN-LAST:event_jbVaciarCamposActionPerformed
@@ -499,6 +513,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jbEliminar.setEnabled(false);
                 jrbDietaActiva.setSelected(false);
                 jrbDietaNoActiva.setSelected(false);
+                jbConfigDieta.setEnabled(false);
                 tableClean();
                 llenarTabla();
                 limpiar();
@@ -516,6 +531,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
             jbEliminar.setEnabled(false);
             jrbDietaActiva.setSelected(false);
             jrbDietaNoActiva.setSelected(false);
+            jbConfigDieta.setEnabled(false);
             dd.borrarDieta((int) modeloTabla.getValueAt(jtDieta.getSelectedRow(), 0));
             limpiar();
             tableClean();
