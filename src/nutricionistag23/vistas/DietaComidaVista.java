@@ -5,17 +5,13 @@
  */
 package nutricionistag23.vistas;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Vector;
 import java.util.stream.Collectors;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import nutricionistag23.accesoADatos.ComidaData;
@@ -23,7 +19,6 @@ import nutricionistag23.accesoADatos.DietaComidaData;
 import nutricionistag23.accesoADatos.DietaData;
 import nutricionistag23.entidades.Comida;
 import nutricionistag23.entidades.DiasEnum;
-import nutricionistag23.entidades.Dieta;
 import nutricionistag23.entidades.DietaComida;
 import nutricionistag23.entidades.HorariosEnum;
 import static nutricionistag23.vistas.DietaVista.idDieta;
@@ -34,7 +29,10 @@ import static nutricionistag23.vistas.DietaVista.idDieta;
  */
 public class DietaComidaVista extends javax.swing.JInternalFrame {
 
-    private DefaultComboBoxModel modeloCombo = new DefaultComboBoxModel();
+    private final ComidaData CD = new ComidaData();
+    private final DietaData DD = new DietaData();
+    private final DietaComidaData DCD = new DietaComidaData();
+    
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -42,19 +40,16 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     };
     private String dni;
 
-    public DietaComidaVista() {
-        DietaData dd = new DietaData();
+    public DietaComidaVista() {;
         initComponents();
         armarCabecera();
         llenarTabla();
-        iniComboBoxDia();
-        iniComboBoxHorario();
-        iniComboComida();
-                jbAgregar.setEnabled(true);
+        iniComboBoxes();
+        jbAgregar.setEnabled(true);
         jbModificar.setEnabled(false);
         jbEliminar.setEnabled(false);
         jsFiltro.setModel(new SpinnerNumberModel(0, 0, 5000, 10));
-        jtNombreDieta.setText(dd.buscarDieta(idDieta).toString());
+        jtNombreDieta.setText(DD.buscarDieta(idDieta).toString());
         jtNombreDieta.setBorder(BorderFactory.createCompoundBorder(jtNombreDieta.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
     }
 
@@ -308,6 +303,13 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
             jbAgregar.setEnabled(false);
             jbModificar.setEnabled(true);
             jbEliminar.setEnabled(true);
+            DiasEnum dia = (DiasEnum) (modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), 0));
+            jcbDia.setSelectedItem(dia);
+            HorariosEnum horario = HorariosEnum.valueOf(modeloTabla.getColumnName(jTablaDietaComida.getSelectedColumn()));
+            jcbHorario.setSelectedItem(horario);
+        } finally {
+            jcbDia.setEnabled(false);
+            jcbHorario.setEnabled(false);
         }
     }//GEN-LAST:event_jTablaDietaComidaMouseReleased
 
@@ -315,6 +317,8 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         jbAgregar.setEnabled(true);
         jbModificar.setEnabled(false);
         jbEliminar.setEnabled(false);
+        jcbDia.setEnabled(true);
+        jcbHorario.setEnabled(true);
         tableClean();
         llenarTabla();
 
@@ -326,31 +330,28 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
 
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
 
-        DietaData dd = new DietaData();
-        DietaComidaData dcd = new DietaComidaData();
         DietaComida dietaComida = new DietaComida();
         dietaComida.setComida((Comida) jcbComida.getSelectedItem());
         dietaComida.setDia((DiasEnum) jcbDia.getSelectedItem());
         dietaComida.setHorario((HorariosEnum) jcbHorario.getSelectedItem());
-        dietaComida.setDieta(dd.buscarDieta(idDieta));
-        dcd.guardarDietaComida(dietaComida);
+        dietaComida.setDieta(DD.buscarDieta(idDieta));
+        DCD.guardarDietaComida(dietaComida);
         tableClean();
         llenarTabla();
 
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        DietaData dd = new DietaData();
-        DietaComidaData dcd = new DietaComidaData();
+
         DietaComida dietaComida = new DietaComida();
         DietaComida dietaAntes = ((DietaComida) modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn()));
         try{
-        dietaComida.setId((dcd.buscarDietaComida(idDieta, dietaAntes.getHorario().toString(), dietaAntes.getDia().toString())).getId());
+        dietaComida.setId((DCD.buscarDietaComida(idDieta, dietaAntes.getHorario().toString(), dietaAntes.getDia().toString())).getId());
         dietaComida.setComida((Comida) jcbComida.getSelectedItem());
         dietaComida.setDia((DiasEnum) jcbDia.getSelectedItem());
         dietaComida.setHorario((HorariosEnum) jcbHorario.getSelectedItem());
-        dietaComida.setDieta(dd.buscarDieta(idDieta));
-        dcd.modificarDietaComida(dietaComida);
+        dietaComida.setDieta(DD.buscarDieta(idDieta));
+        DCD.modificarDietaComida(dietaComida);
         jbAgregar.setEnabled(true);
         jbModificar.setEnabled(false);
         jbEliminar.setEnabled(false);
@@ -383,76 +384,37 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton jtCerrar;
     private javax.swing.JTextField jtNombreDieta;
     // End of variables declaration//GEN-END:variables
-    private void iniComboComida() {
-        ComidaData cd = new ComidaData();
-        List<Comida> comidas = cd.listaComida();
-        Vector<Comida> comidasVector = new Vector<>();
-        for (Comida comida : comidas) {
-            comidasVector.add(comida);
-        }
-        modeloCombo = new DefaultComboBoxModel(comidasVector);
-        jcbComida.setModel(modeloCombo);
-    }
 
-    private void iniComboBoxDia() {
-        Vector<DiasEnum> enumD = new Vector<>();
-        enumD.add(DiasEnum.LUNES);
-        enumD.add(DiasEnum.MARTES);
-        enumD.add(DiasEnum.MIERCOLES);
-        enumD.add(DiasEnum.JUEVES);
-        enumD.add(DiasEnum.VIERNES);
-        enumD.add(DiasEnum.SABADO);
-        enumD.add(DiasEnum.DOMINGO);
-        modeloCombo = new DefaultComboBoxModel(enumD);
-        jcbDia.setModel(modeloCombo);
-    }
-
-    private void iniComboBoxHorario() {
-        Vector<HorariosEnum> enumH = new Vector<>();
-        enumH.add(HorariosEnum.DESAYUNO);
-        enumH.add(HorariosEnum.ALMUERZO);
-        enumH.add(HorariosEnum.MERIENDA);
-        enumH.add(HorariosEnum.CENA);
-        enumH.add(HorariosEnum.SNACK);
-        modeloCombo = new DefaultComboBoxModel(enumH);
-        jcbHorario.setModel(modeloCombo);
+    private void iniComboBoxes() {
+        List<Comida> listaComida = CD.listaComida().stream().sorted(Comparator.comparingInt(Comida::getCantCalorias)).collect(Collectors.toList());
+        jcbComida.setModel(new DefaultComboBoxModel(listaComida.toArray(new Comida[listaComida.size()])));
+        jcbDia.setModel(new DefaultComboBoxModel(DiasEnum.values()));
+        jcbHorario.setModel(new DefaultComboBoxModel(HorariosEnum.values()));
     }
 
     private void armarCabecera() {// Arma la cabecera de la tabla
-        modeloTabla.addColumn("Dia");
-        modeloTabla.addColumn("Desayuno");
-        modeloTabla.addColumn("Almuerzo");
-        modeloTabla.addColumn("Merienda");
-        modeloTabla.addColumn("Cena");
-        modeloTabla.addColumn("Snack");
+        int j = 0;
+        for(HorariosEnum horario : HorariosEnum.values()){
+            modeloTabla.addColumn(horario);
+            j++;
+        }
         jTablaDietaComida.setModel(modeloTabla);
-        jTablaDietaComida.getColumnModel().getColumn(0).setPreferredWidth(100);
-        jTablaDietaComida.getColumnModel().getColumn(1).setPreferredWidth(100);
-        jTablaDietaComida.getColumnModel().getColumn(2).setPreferredWidth(100);
-        jTablaDietaComida.getColumnModel().getColumn(3).setPreferredWidth(100);
-        jTablaDietaComida.getColumnModel().getColumn(4).setPreferredWidth(100);
-        jTablaDietaComida.getColumnModel().getColumn(2).setPreferredWidth(100);
-
+        for(int i = 0; i < j; i++) {
+            jTablaDietaComida.getColumnModel().getColumn(i).setPreferredWidth(100);
+        }
         JTableHeader header = jTablaDietaComida.getTableHeader();
         header.setDefaultRenderer(new HeaderRenderer(jTablaDietaComida));
     }
 
     private void llenarTabla() {
-        DietaComidaData dcd = new DietaComidaData();
-        List<DietaComida> lunes = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.LUNES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
-        List<DietaComida> martes = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.MARTES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
-        List<DietaComida> miercoles = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.MIERCOLES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
-        List<DietaComida> jueves = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.JUEVES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
-        List<DietaComida> viernes = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.VIERNES)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
-        List<DietaComida> sabado = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.SABADO)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
-        List<DietaComida> domingo = dcd.listarDietaComidaXDieta(DietaVista.idDieta).stream().filter(dietaCom -> dietaCom.getDia().equals(DiasEnum.DOMINGO)).sorted(Comparator.comparing(DietaComida::getHorario)).collect(Collectors.toList());
-        agregarFila(lunes, DiasEnum.LUNES);
-        agregarFila(martes, DiasEnum.MARTES);
-        agregarFila(miercoles, DiasEnum.MIERCOLES);
-        agregarFila(jueves, DiasEnum.JUEVES);
-        agregarFila(viernes, DiasEnum.VIERNES);
-        agregarFila(sabado, DiasEnum.SABADO);
-        agregarFila(domingo, DiasEnum.DOMINGO);
+        List<DietaComida> comidaPorDia;
+        for(DiasEnum dia: DiasEnum.values()) {
+            comidaPorDia = DCD.listarDietaComidaXDieta(DietaVista.idDieta).stream()
+                    .filter(dietaCom -> dietaCom.getDia().equals(dia))
+                    .sorted(Comparator.comparing(DietaComida::getHorario))
+                    .collect(Collectors.toList());
+            agregarFila(comidaPorDia, dia);
+        }
     }
 
     private void agregarFila(List<DietaComida> listaPorConsumo, DiasEnum enumD) {
@@ -476,7 +438,6 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
                     break;
             }
         }
-
         modeloTabla.addRow(celda);
     }
 
