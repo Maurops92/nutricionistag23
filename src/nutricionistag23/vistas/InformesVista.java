@@ -5,14 +5,12 @@
  */
 package nutricionistag23.vistas;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -25,7 +23,6 @@ import nutricionistag23.accesoADatos.Validaciones;
 import nutricionistag23.entidades.Dieta;
 import nutricionistag23.entidades.Historial;
 import nutricionistag23.entidades.Paciente;
-import static nutricionistag23.vistas.MainMenu.getMainMenu;
 
 /**
  *
@@ -38,17 +35,24 @@ public class InformesVista extends javax.swing.JInternalFrame {
     private final HistorialData HD = new HistorialData();
     private int pacienteId;
     private DietaComidaVista dietaComidaVista;
-    private DefaultTableModel modeloTabla = new DefaultTableModel() {
+    private DefaultTableModel modeloTablaDieta = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
     };
-    private int dni;
+    private DefaultTableModel modeloTablaHistorial = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    private String dni;
     private int idDieta;
+
     public InformesVista() {
         initComponents();
-        armarCabecera();
-        llenarTabla();
+        armarCabeceraDieta();
+        armarCabeceraHistorial();
+        llenarTablaDieta();
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         jtPaciente.setEditable(false);
         jtPaciente.setBorder(BorderFactory.createCompoundBorder(jtPaciente.getBorder(), BorderFactory.createEmptyBorder(2, 5, 0, 5)));
@@ -256,7 +260,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
 
     private void JTablaDietaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTablaDietaMouseReleased
         List<Historial> listaHistorial = HD.listaHistorial(pacienteId);
-        idDieta= (int)modeloTabla.getValueAt(JTablaDieta.getSelectedRow(), 0);
+        idDieta = (int) modeloTablaDieta.getValueAt(JTablaDieta.getSelectedRow(), 0);
 
     }//GEN-LAST:event_JTablaDietaMouseReleased
 
@@ -296,7 +300,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
         jrbDietaActiva.setSelected(false);
         jrbDietaNoActiva.setSelected(false);
         tableClean();
-        llenarTabla();
+        llenarTablaDieta();
     }//GEN-LAST:event_jbVaciarCamposActionPerformed
 
     private void jtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCerrarActionPerformed
@@ -304,12 +308,14 @@ public class InformesVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtCerrarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        tableClean();
         try {
             if (Validaciones.validacionDNI(dni = JOptionPane.showInputDialog(this, "Ingrese el DNI del paciente"))) {
                 Paciente paciente = PD.buscarPacienteXDni(Integer.parseInt(dni));
                 pacienteId = paciente.getIdPaciente();
                 jtPaciente.setText(paciente.getNombre());
-                llenarTabla();
+                llenarTablaDieta();
+                llenarTablaHistorial();
             }
 
         } catch (NullPointerException e) {
@@ -337,13 +343,13 @@ public class InformesVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtPaciente;
     // End of variables declaration//GEN-END:variables
 
-    private void armarCabecera() {// Arma la cabecera de la tabla
-        modeloTabla.addColumn("ID");
-        modeloTabla.addColumn("Paciente");
-        modeloTabla.addColumn("Fecha Inicial");
-        modeloTabla.addColumn("Fecha Final");
-        modeloTabla.addColumn("Cumplido");
-        JTablaDieta.setModel(modeloTabla);
+    private void armarCabeceraDieta() {// Arma la cabecera de la tabla
+        modeloTablaDieta.addColumn("ID");
+        modeloTablaDieta.addColumn("Paciente");
+        modeloTablaDieta.addColumn("Fecha Inicial");
+        modeloTablaDieta.addColumn("Fecha Final");
+        modeloTablaDieta.addColumn("Cumplido");
+        JTablaDieta.setModel(modeloTablaDieta);
         JTablaDieta.getColumnModel().getColumn(0).setPreferredWidth(15);
         JTablaDieta.getColumnModel().getColumn(1).setPreferredWidth(150);
         JTablaDieta.getColumnModel().getColumn(2).setPreferredWidth(80);
@@ -354,13 +360,29 @@ public class InformesVista extends javax.swing.JInternalFrame {
         header.setDefaultRenderer(new HeaderRenderer(JTablaDieta));
     }
 
-    private void llenarTabla() {
+    private void armarCabeceraHistorial() {// Arma la cabecera de la tabla
+        modeloTablaHistorial.addColumn("ID");
+        modeloTablaHistorial.addColumn("IDP");
+        modeloTablaHistorial.addColumn("Peso");
+        modeloTablaHistorial.addColumn("Fecha Registro");
+        jtHistorial.setModel(modeloTablaHistorial);
+        jtHistorial.getColumnModel().getColumn(0).setPreferredWidth(15);
+        jtHistorial.getColumnModel().getColumn(1).setPreferredWidth(15);
+        jtHistorial.getColumnModel().getColumn(2).setPreferredWidth(30);
+        jtHistorial.getColumnModel().getColumn(3).setPreferredWidth(100);
+        JTableHeader header = jtHistorial.getTableHeader();
+        header.setDefaultRenderer(new HeaderRenderer(jtHistorial));
+    }
+
+    private void llenarTablaDieta() {
         List<Dieta> listaDieta = DD.listaDietaXPaciente(pacienteId);
         List<String> listaSiNo = new ArrayList<>();
         for (Dieta dieta : listaDieta) {
 
-            modeloTabla.addRow(new Object[]{dieta.getIdDieta(), dieta.getPaciente(), dieta.getFechaInicial(), dieta.getFechaFinal(), null});
-            if (dieta.getPesoInicial() < dieta.getPesoFinal()) {
+            modeloTablaDieta.addRow(new Object[]{dieta.getIdDieta(), dieta.getPaciente(), dieta.getFechaInicial(), dieta.getFechaFinal(), null});
+            if(LocalDate.now().compareTo(dieta.getFechaFinal()) == -1) {
+                listaSiNo.add("EN CURSO");
+            } else if (dieta.getPesoInicial() < dieta.getPesoFinal()) {
                 listaSiNo.add("SUBE");
             } else if (dieta.getPesoInicial() > dieta.getPesoFinal()) {
                 listaSiNo.add("BAJA");
@@ -381,7 +403,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
             historial = HD.buscarHistorialXIdPYFecha(pacienteId, listaDieta.get(i).getFechaFinal());
             if (historial != null) {
                 double peso = historial.getPeso() - listaDieta.get(i).getPesoFinal();
-                modeloTabla.setValueAt(cumplido(listaSiNo.get(i), peso), i, 4);
+                modeloTablaDieta.setValueAt(cumplido(listaSiNo.get(i), peso), i, 4);
             }
         }
 
@@ -389,21 +411,22 @@ public class InformesVista extends javax.swing.JInternalFrame {
 
     private void llenarTablaHistorial() {
 
-        List<Historial> listaHistorial = HD.listaHistorial(PacienteVista.pacienteid);
+        List<Historial> listaHistorial = HD.listaHistorial(pacienteId);
+        Historial historial = null;
         Dieta dieta = null;
-        Iterator iterar = listaHistorial.iterator();
-        while (iterar.hasNext()) {
-            Object next = iterar.next();
-            
-        }
-        if(idDieta!=0){
+
+        if (idDieta != 0) {
+            Iterator iterar = listaHistorial.iterator();
             dieta = DD.buscarDieta(idDieta);
-            if(dieta.getFechaInicial().compareTo()){
-                
+            while (iterar.hasNext()) {
+                historial = (Historial) iterar.next();
+                if (historial.getFechaRegistro().compareTo(dieta.getFechaInicial()) < 0 || historial.getFechaRegistro().compareTo(dieta.getFechaFinal()) > 0) {
+                    iterar.remove();
+                }
             }
         }
-        for (Historial historial : listaHistorial) {
-            modeloTabla.addRow(new Object[]{historial.getIdHistorial(), historial.getPaciente().getIdPaciente(), historial.getPeso(), historial.getFechaRegistro()});
+        for (Historial hist : listaHistorial) {
+            modeloTablaHistorial.addRow(new Object[]{hist.getIdHistorial(), hist.getPaciente().getIdPaciente(), hist.getPeso(), hist.getFechaRegistro()});
         }
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();//Alinea los datos de las celdas numericas a la derecha 
         tcr.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -420,7 +443,14 @@ public class InformesVista extends javax.swing.JInternalFrame {
         if (JTablaDieta.getRowCount() != 0) {
             int largo = JTablaDieta.getRowCount() - 1;
             for (; largo >= 0; largo--) {
-                modeloTabla.removeRow(largo);
+                modeloTablaDieta.removeRow(largo);
+            }
+        }
+
+        if (jtHistorial.getRowCount() != 0) {
+            int largo = jtHistorial.getRowCount() - 1;
+            for (; largo >= 0; largo--) {
+                modeloTablaHistorial.removeRow(largo);
             }
         }
     }
@@ -428,6 +458,10 @@ public class InformesVista extends javax.swing.JInternalFrame {
     private void limpiar() {
         //Limpia los campos
         jtPaciente.setText("");
+        idDieta = 0;
+
+        llenarTablaDieta();
+        llenarTablaHistorial();
     }
 
     private String cumplido(String condicion, double peso) {
@@ -452,7 +486,8 @@ public class InformesVista extends javax.swing.JInternalFrame {
                 } else {
                     return "SI";
                 }
+            default:
+                return "EN CURSO";
         }
-        return "";
     }
 }
