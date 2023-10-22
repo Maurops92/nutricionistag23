@@ -8,16 +8,18 @@ package nutricionistag23.vistas;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableRowSorter;
 import nutricionistag23.accesoADatos.HistorialData;
 import nutricionistag23.accesoADatos.PacienteData;
+import nutricionistag23.accesoADatos.Validaciones;
 import nutricionistag23.entidades.Historial;
 
 /**
@@ -103,6 +105,12 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
 
         jlPA.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jlPA.setText("Peso");
+
+        jdcFechaRegistro.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcFechaRegistroPropertyChange(evt);
+            }
+        });
 
         jbModificar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbModificar.setText("Modificar");
@@ -328,6 +336,13 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbEliminarActionPerformed
 
+    private void jdcFechaRegistroPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcFechaRegistroPropertyChange
+        if(!Validaciones.validacionInmediataFecha(jdcFechaRegistro.getDate())) {
+            JOptionPane.showMessageDialog(this, "No se permiten fechas superiores al corriente dia.");
+            jdcFechaRegistro.setDate(Date.valueOf(LocalDate.now()));
+        }
+    }//GEN-LAST:event_jdcFechaRegistroPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedor;
@@ -367,7 +382,10 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
     private void llenarTabla() {
 
         HistorialData hData = new HistorialData();
-        List<Historial> listaHistorial = hData.listaHistorial(PacienteVista.pacienteid);
+        List<Historial> listaHistorial = hData.listaHistorial(PacienteVista.pacienteid)
+                .stream()
+                .sorted(Comparator.comparing(Historial::getFechaRegistro))
+                .collect(Collectors.toList());
         for (Historial historial : listaHistorial) {
             modeloTabla.addRow(new Object[]{historial.getIdHistorial(), historial.getPaciente().getIdPaciente(), historial.getPeso(), historial.getFechaRegistro()});
         }
@@ -382,7 +400,7 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
     }
 
     private void tableClean() {
-        //limpia la tabla de pacientes
+        //limpia la tabla de historiales
         if (jtHistorial.getRowCount() != 0) {
             int largo = jtHistorial.getRowCount() - 1;
             for (; largo >= 0; largo--) {

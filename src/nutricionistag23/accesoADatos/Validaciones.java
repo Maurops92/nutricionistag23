@@ -7,6 +7,7 @@ package nutricionistag23.accesoADatos;
 
 import java.util.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 
 /**
@@ -111,6 +112,12 @@ public class Validaciones {
         }
         return true;
         
+    }
+    
+    //VALIDACIONES DE LA VENTANA HISTORIAL
+    
+    public static boolean validacionInmediataFecha(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(LocalDate.now()) <= 0;
     }
     
    //Validaciones Ventana Comida

@@ -176,6 +176,9 @@
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdcFechaRegistro">
+          <Events>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jdcFechaRegistroPropertyChange"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbModificar">
           <Properties>
