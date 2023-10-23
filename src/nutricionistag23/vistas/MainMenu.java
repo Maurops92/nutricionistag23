@@ -12,6 +12,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 /**
  *
@@ -39,39 +43,48 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jdpEscritorio = new javax.swing.JDesktopPane();
+        jlFondo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jpPaciente = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLPaciente = new javax.swing.JLabel();
         jpComida = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLComida = new javax.swing.JLabel();
         jpDieta = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jLDieta = new javax.swing.JLabel();
         jpInformes = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        jLInformes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/nutricionistag23/vistas/icons/Manzana Nutricion.jpg")));
         setName("mainMenu"); // NOI18N
         setResizable(false);
 
         jdpEscritorio.setPreferredSize(new java.awt.Dimension(800, 523));
 
+        jlFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nutricionistag23/vistas/icons/Fondo 3.png"))); // NOI18N
+        jlFondo.setPreferredSize(new java.awt.Dimension(800, 600));
+
+        jdpEscritorio.setLayer(jlFondo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
         jdpEscritorio.setLayout(jdpEscritorioLayout);
         jdpEscritorioLayout.setHorizontalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpEscritorioLayout.createSequentialGroup()
+                .addComponent(jlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jdpEscritorioLayout.setVerticalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 633, Short.MAX_VALUE)
+            .addComponent(jlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(135, 250, 177));
+        jPanel1.setBackground(new java.awt.Color(132, 193, 116));
         jPanel1.setForeground(new java.awt.Color(51, 255, 51));
         jPanel1.setToolTipText("");
         jPanel1.setPreferredSize(new java.awt.Dimension(200, 600));
 
-        jpPaciente.setBackground(new java.awt.Color(8, 199, 154));
+        jpPaciente.setBackground(new java.awt.Color(195, 255, 184));
         jpPaciente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jpPaciente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -85,10 +98,10 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Paciente");
+        jLPaciente.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        jLPaciente.setForeground(new java.awt.Color(0, 54, 3));
+        jLPaciente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLPaciente.setText("Paciente");
 
         javax.swing.GroupLayout jpPacienteLayout = new javax.swing.GroupLayout(jpPaciente);
         jpPaciente.setLayout(jpPacienteLayout);
@@ -96,15 +109,15 @@ public class MainMenu extends javax.swing.JFrame {
             jpPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpPacienteLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpPacienteLayout.setVerticalGroup(
             jpPacienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
-        jpComida.setBackground(new java.awt.Color(8, 199, 154));
+        jpComida.setBackground(new java.awt.Color(195, 255, 184));
         jpComida.setPreferredSize(new java.awt.Dimension(193, 53));
         jpComida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -118,15 +131,15 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Comida");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.setMaximumSize(new java.awt.Dimension(76, 22));
-        jLabel2.setMinimumSize(new java.awt.Dimension(76, 22));
-        jLabel2.setName(""); // NOI18N
-        jLabel2.setPreferredSize(new java.awt.Dimension(76, 22));
+        jLComida.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        jLComida.setForeground(new java.awt.Color(0, 54, 3));
+        jLComida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLComida.setText("Comida");
+        jLComida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLComida.setMaximumSize(new java.awt.Dimension(76, 22));
+        jLComida.setMinimumSize(new java.awt.Dimension(76, 22));
+        jLComida.setName(""); // NOI18N
+        jLComida.setPreferredSize(new java.awt.Dimension(76, 22));
 
         javax.swing.GroupLayout jpComidaLayout = new javax.swing.GroupLayout(jpComida);
         jpComida.setLayout(jpComidaLayout);
@@ -134,15 +147,15 @@ public class MainMenu extends javax.swing.JFrame {
             jpComidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpComidaLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLComida, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
         jpComidaLayout.setVerticalGroup(
             jpComidaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jLComida, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
-        jpDieta.setBackground(new java.awt.Color(8, 199, 154));
+        jpDieta.setBackground(new java.awt.Color(195, 255, 184));
         jpDieta.setPreferredSize(new java.awt.Dimension(193, 53));
         jpDieta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -156,15 +169,15 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Dieta");
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.setMaximumSize(new java.awt.Dimension(76, 22));
-        jLabel3.setMinimumSize(new java.awt.Dimension(76, 22));
-        jLabel3.setName(""); // NOI18N
-        jLabel3.setPreferredSize(new java.awt.Dimension(76, 22));
+        jLDieta.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        jLDieta.setForeground(new java.awt.Color(0, 54, 3));
+        jLDieta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLDieta.setText("Dieta");
+        jLDieta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLDieta.setMaximumSize(new java.awt.Dimension(76, 22));
+        jLDieta.setMinimumSize(new java.awt.Dimension(76, 22));
+        jLDieta.setName(""); // NOI18N
+        jLDieta.setPreferredSize(new java.awt.Dimension(76, 22));
 
         javax.swing.GroupLayout jpDietaLayout = new javax.swing.GroupLayout(jpDieta);
         jpDieta.setLayout(jpDietaLayout);
@@ -172,14 +185,14 @@ public class MainMenu extends javax.swing.JFrame {
             jpDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpDietaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpDietaLayout.setVerticalGroup(
             jpDietaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jLDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jpInformes.setBackground(new java.awt.Color(8, 199, 154));
+        jpInformes.setBackground(new java.awt.Color(195, 255, 184));
         jpInformes.setPreferredSize(new java.awt.Dimension(193, 53));
         jpInformes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -193,15 +206,15 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Informes");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel4.setMaximumSize(new java.awt.Dimension(76, 22));
-        jLabel4.setMinimumSize(new java.awt.Dimension(76, 22));
-        jLabel4.setName(""); // NOI18N
-        jLabel4.setPreferredSize(new java.awt.Dimension(76, 22));
+        jLInformes.setFont(new java.awt.Font("Segoe Print", 1, 24)); // NOI18N
+        jLInformes.setForeground(new java.awt.Color(0, 54, 3));
+        jLInformes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLInformes.setText("Informes");
+        jLInformes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLInformes.setMaximumSize(new java.awt.Dimension(76, 22));
+        jLInformes.setMinimumSize(new java.awt.Dimension(76, 22));
+        jLInformes.setName(""); // NOI18N
+        jLInformes.setPreferredSize(new java.awt.Dimension(76, 22));
 
         javax.swing.GroupLayout jpInformesLayout = new javax.swing.GroupLayout(jpInformes);
         jpInformes.setLayout(jpInformesLayout);
@@ -209,14 +222,14 @@ public class MainMenu extends javax.swing.JFrame {
             jpInformesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpInformesLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpInformesLayout.setVerticalGroup(
             jpInformesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpInformesLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLInformes, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -262,11 +275,13 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jpComidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseExited
-        jpComida.setBackground(new Color(8, 199, 154));
+        jpComida.setBackground(new Color(195, 255, 184));
+        jLComida.setForeground(new Color(0, 54, 3));
     }//GEN-LAST:event_jpComidaMouseExited
 
     private void jpComidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseEntered
-        jpComida.setBackground(new Color(37, 122, 105));
+        jpComida.setBackground(new Color(140, 184, 132));
+        jLComida.setForeground(Color.WHITE);
     }//GEN-LAST:event_jpComidaMouseEntered
 
     private void jpComidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseClicked
@@ -277,20 +292,13 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jpComidaMouseClicked
 
     private void jpPacienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseExited
-        jpPaciente.setBackground(new Color(8, 199, 154));        // TODO add your handling code here:
+        jpPaciente.setBackground(new Color(195, 255, 184));
+        jLPaciente.setForeground(new Color(0, 54, 3));       // TODO add your handling code here:
     }//GEN-LAST:event_jpPacienteMouseExited
 
     private void jpPacienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseEntered
-        //        for (int i = 0; i < 50; i++) {
-            //            try {
-                //                jpPaciente.setBackground(new Color(255, 255, 102,i));
-                //                Thread.sleep(1l);
-                //            }
-            jpPaciente.setBackground(new Color(37, 122, 105));        // TODO add your handling code here:
-            //            catch (InterruptedException ex) {
-                //                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
-                //            }
-            //        }
+        jpPaciente.setBackground(new Color(140, 184, 132));
+        jLPaciente.setForeground(Color.WHITE);
     }//GEN-LAST:event_jpPacienteMouseEntered
 
     private void jpPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseClicked
@@ -302,11 +310,13 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jpPacienteMouseClicked
 
     private void jpDietaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDietaMouseExited
-          jpDieta.setBackground(new Color(8, 199, 154));
+        jpDieta.setBackground(new Color(195, 255, 184));
+        jLDieta.setForeground(new Color(0, 54, 3));
     }//GEN-LAST:event_jpDietaMouseExited
 
     private void jpDietaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDietaMouseEntered
-        jpDieta.setBackground(new Color(37, 122, 105));
+        jpDieta.setBackground(new Color(140, 184, 132));
+        jLDieta.setForeground(Color.WHITE);
     }//GEN-LAST:event_jpDietaMouseEntered
 
     private void jpDietaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDietaMouseClicked
@@ -324,11 +334,13 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jpInformesMouseClicked
 
     private void jpInformesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpInformesMouseEntered
-        jpInformes.setBackground(new Color(37, 122, 105));
+       jpInformes.setBackground(new Color(140, 184, 132));
+        jLInformes.setForeground(Color.WHITE);
     }//GEN-LAST:event_jpInformesMouseEntered
 
     private void jpInformesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpInformesMouseExited
-        jpInformes.setBackground(new Color(8, 199, 154));
+       jpInformes.setBackground(new Color(195,255,184));
+       jLInformes.setForeground(new Color (0,54,3));
     }//GEN-LAST:event_jpInformesMouseExited
     public static MainMenu getMainMenu() {
         if (main == null) {
@@ -342,6 +354,7 @@ public class MainMenu extends javax.swing.JFrame {
         centrarFrame(cmp);
         agregarFondoVentana(cmp);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -378,12 +391,13 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLComida;
+    private javax.swing.JLabel jLDieta;
+    private javax.swing.JLabel jLInformes;
+    private javax.swing.JLabel jLPaciente;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane jdpEscritorio;
+    private javax.swing.JLabel jlFondo;
     private javax.swing.JPanel jpComida;
     private javax.swing.JPanel jpDieta;
     private javax.swing.JPanel jpInformes;
@@ -393,8 +407,8 @@ public class MainMenu extends javax.swing.JFrame {
     private void agregarFondoVentana(JInternalFrame fv) {
         fv.setVisible(true);
         jdpEscritorio.add(fv);
-//        jdpEscritorio.add(jlFondo);
-//        jdpEscritorio.moveToFront(jlFondo);
+        jdpEscritorio.add(jlFondo);
+        jdpEscritorio.moveToFront(jlFondo);
         jdpEscritorio.moveToFront(fv);
     }
 

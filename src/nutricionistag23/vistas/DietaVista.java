@@ -435,7 +435,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
         Iterator iterador = dietaList.iterator();
         while (iterador.hasNext()) {
             Dieta dieta = (Dieta) iterador.next();
-            if (dieta.getFechaFinal().compareTo(LocalDate.now()) != 1) {// 0 si son iguales, -1 cuando el segundo es mayor que lo primero, 1 si lo segundo es menor a lo primero
+            if (dieta.getFechaFinal().compareTo(LocalDate.now()) > 0) {// 0 si son iguales, -1 cuando el segundo es mayor que lo primero, 1 si lo segundo es menor a lo primero
                 iterador.remove();
             }
 
@@ -457,7 +457,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
         List<Dieta> dietaList = dd.listaDieta();
         for (Dieta dieta : dietaList) {
 
-            if (dieta.getFechaFinal().compareTo(LocalDate.now()) != 1) {// 0 si son iguales, -1 cuando el segundo es mayor que lo primero, 1 si lo segundo es menor a lo primero
+            if (dieta.getFechaFinal().compareTo(LocalDate.now()) > 0) {// 0 si son iguales, -1 cuando el segundo es mayor que lo primero, 1 si lo segundo es menor a lo primero
                 modeloTabla.addRow(new Object[]{dieta.getIdDieta(), dieta.getNombre(), dieta.getPaciente(), dieta.getPesoInicial(), dieta.getPesoFinal(), dieta.getFechaInicial(), dieta.getFechaFinal()});
             }
         }
