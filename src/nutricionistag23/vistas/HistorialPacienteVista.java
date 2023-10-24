@@ -80,9 +80,10 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         setTitle("Registro Historico del Paciente");
         setPreferredSize(new java.awt.Dimension(410, 446));
 
-        contenedor.setBackground(new java.awt.Color(135, 250, 177));
+        contenedor.setBackground(new java.awt.Color(191, 255, 183));
         contenedor.setForeground(new java.awt.Color(135, 250, 177));
 
+        jtHistorial.setBackground(new java.awt.Color(230, 255, 227));
         jtHistorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -94,6 +95,8 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
 
             }
         ));
+        jtHistorial.setSelectionBackground(new java.awt.Color(68, 106, 61));
+        jtHistorial.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jtHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jtHistorialMouseReleased(evt);
@@ -101,9 +104,10 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jtHistorial);
 
+        jLabel2.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel2.setText("Seleccione un historial");
 
-        jlPA.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jlPA.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jlPA.setText("Peso");
 
         jdcFechaRegistro.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -128,10 +132,10 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel1.setText("Nombre");
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel4.setText("DNI");
 
         jlDNIPaciente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -142,7 +146,7 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         jlNombrePaciente1.setForeground(new java.awt.Color(0, 86, 20));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
         jLabel5.setText("Fecha Registro");
 
         jbCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -171,32 +175,33 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
             .addGroup(contenedorLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlNombrePaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jlNombrePaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(contenedorLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlDNIPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(contenedorLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jlPA)
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addComponent(jsPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jLabel5)
-                .addGap(6, 6, 6)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(jdcFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(contenedorLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel2))
-            .addGroup(contenedorLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contenedorLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(contenedorLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jbCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,13 +233,15 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
                     .addComponent(jlPA, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jsPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(contenedorLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel5))
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jdcFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addComponent(jLabel2)
-                .addGap(4, 4, 4)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(contenedorLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)

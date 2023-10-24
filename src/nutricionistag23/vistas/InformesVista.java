@@ -86,19 +86,20 @@ public class InformesVista extends javax.swing.JInternalFrame {
 
         setPreferredSize(new java.awt.Dimension(768, 633));
 
-        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(140, 184, 132));
         jPanel1.setMinimumSize(new java.awt.Dimension(752, 625));
 
-        jlPaciente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jlPaciente.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jlPaciente.setForeground(new java.awt.Color(255, 255, 255));
         jlPaciente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlPaciente.setText("Paciente");
 
         jtPaciente.setEditable(false);
+        jtPaciente.setBackground(new java.awt.Color(230, 255, 227));
         jtPaciente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtPaciente.setBorder(null);
 
-        jTablaDieta.setBackground(new java.awt.Color(153, 255, 204));
+        jTablaDieta.setBackground(new java.awt.Color(230, 255, 227));
         jTablaDieta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -110,6 +111,8 @@ public class InformesVista extends javax.swing.JInternalFrame {
 
             }
         ));
+        jTablaDieta.setSelectionBackground(new java.awt.Color(68, 106, 61));
+        jTablaDieta.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTablaDieta.getTableHeader().setResizingAllowed(false);
         jTablaDieta.getTableHeader().setReorderingAllowed(false);
         jTablaDieta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,6 +122,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTablaDieta);
 
+        jrbDietaNoActiva.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
         jrbDietaNoActiva.setForeground(new java.awt.Color(255, 255, 255));
         jrbDietaNoActiva.setText("Dietas Culminadas");
         jrbDietaNoActiva.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +131,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jrbDietaActiva.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
         jrbDietaActiva.setForeground(new java.awt.Color(255, 255, 255));
         jrbDietaActiva.setText("Dietas Vigentes");
         jrbDietaActiva.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +165,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jtHistorial.setBackground(new java.awt.Color(230, 255, 227));
         jtHistorial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -171,13 +177,15 @@ public class InformesVista extends javax.swing.JInternalFrame {
 
             }
         ));
+        jtHistorial.setSelectionBackground(new java.awt.Color(68, 106, 61));
+        jtHistorial.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(jtHistorial);
 
-        jlTablaDietas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jlTablaDietas.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jlTablaDietas.setForeground(new java.awt.Color(255, 255, 255));
         jlTablaDietas.setText("Dietas");
 
-        jlTablaHistoriales.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jlTablaHistoriales.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jlTablaHistoriales.setForeground(new java.awt.Color(255, 255, 255));
         jlTablaHistoriales.setText("Historial");
 
@@ -187,60 +195,68 @@ public class InformesVista extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jlTablaHistoriales)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jlTablaDietas, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jrbDietaActiva)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jrbDietaNoActiva))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jlPaciente)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))))
-                .addGap(78, 78, 78))
+                .addComponent(jlPaciente)
+                .addGap(4, 4, 4)
+                .addComponent(jtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(370, 370, 370)
+                        .addComponent(jrbDietaNoActiva))
+                    .addComponent(jlTablaDietas, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(533, 533, 533)
+                        .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(jrbDietaActiva))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlTablaHistoriales)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(605, 605, 605)
+                .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jrbDietaNoActiva)
-                                .addComponent(jrbDietaActiva))
-                            .addComponent(jlTablaDietas, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jlPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                        .addGap(3, 3, 3)
+                        .addComponent(jrbDietaNoActiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jlTablaDietas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jrbDietaActiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlTablaHistoriales, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jlTablaHistoriales)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

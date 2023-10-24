@@ -39,7 +39,7 @@
     <Container class="javax.swing.JPanel" name="contenedor">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="b1" green="fa" red="87" type="rgb"/>
+          <Color blue="b7" green="ff" red="bf" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="b1" green="fa" red="87" type="rgb"/>
@@ -52,16 +52,16 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jSeparator2" min="-2" pref="313" max="-2" attributes="0"/>
                       <Component id="jlNombrePaciente1" min="-2" pref="299" max="-2" attributes="0"/>
+                      <Component id="jSeparator2" min="-2" pref="313" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace min="42" pref="42" max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
+                  <Component id="jLabel4" min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jSeparator1" min="-2" pref="313" max="-2" attributes="0"/>
                       <Component id="jlDNIPaciente" min="-2" pref="313" max="-2" attributes="0"/>
@@ -70,20 +70,22 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                   <Component id="jlPA" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
                   <Component id="jsPeso" min="-2" pref="68" max="-2" attributes="0"/>
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                  <Component id="jLabel5" min="-2" pref="90" max="-2" attributes="0"/>
+                  <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                   <Component id="jdcFechaRegistro" min="-2" pref="132" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
-                  <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
                   <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="362" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                          <Component id="jLabel2" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jScrollPane1" min="-2" pref="362" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
@@ -122,15 +124,19 @@
                       <Component id="jlPA" min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="jsPeso" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jdcFechaRegistro" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="178" max="-2" attributes="0"/>
+                  <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="178" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jbCrear" min="-2" pref="30" max="-2" attributes="0"/>
@@ -152,8 +158,17 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="jtHistorial">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="e3" green="ff" red="e6" type="rgb"/>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="0" rowCount="4"/>
+                </Property>
+                <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="3d" green="6a" red="44" type="rgb"/>
+                </Property>
+                <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
@@ -164,13 +179,16 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Gabriola" size="18" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Seleccione un historial"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlPA">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="1"/>
+              <Font name="Gabriola" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Peso"/>
           </Properties>
@@ -210,7 +228,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="1"/>
+              <Font name="Gabriola" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nombre"/>
           </Properties>
@@ -218,7 +236,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="1"/>
+              <Font name="Gabriola" size="18" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="DNI"/>
           </Properties>
@@ -252,7 +270,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="1"/>
+              <Font name="Gabriola" size="16" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Fecha Registro"/>
           </Properties>
