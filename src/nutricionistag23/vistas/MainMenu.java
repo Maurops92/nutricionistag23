@@ -352,7 +352,9 @@ public class MainMenu extends javax.swing.JFrame {
 
     public void agregarVista(JInternalFrame cmp) {
         centrarFrame(cmp);
-        agregarFondoVentana(cmp);
+        cmp.setVisible(true);
+        jdpEscritorio.add(cmp);
+        jdpEscritorio.moveToFront(cmp);
     }
 
     /**
