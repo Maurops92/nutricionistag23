@@ -77,6 +77,21 @@ public class Validaciones {
     
     
     //VALIDACIONES DE LA VENTANA PACIENTE
+    public static boolean validacionTelefonoGuion(String tel){
+        try{
+        if(tel.charAt(3)== '-' || tel.charAt(4)=='-'){
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "El Número de telefono ingresado es invalido");
+            return false;
+        }
+        }catch(IndexOutOfBoundsException iob){
+            JOptionPane.showMessageDialog(null, "El Número de telefono ingresado es invalido");
+            return false;
+        }
+    }
+    
+    
     public static boolean validacionDNI(String dni) {
         if (dni.length() > 6 && dni.length() < 10) {
             return true;

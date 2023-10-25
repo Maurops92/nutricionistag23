@@ -97,6 +97,7 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         ));
         jtHistorial.setSelectionBackground(new java.awt.Color(68, 106, 61));
         jtHistorial.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jtHistorial.getTableHeader().setReorderingAllowed(false);
         jtHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jtHistorialMouseReleased(evt);

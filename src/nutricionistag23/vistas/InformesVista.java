@@ -179,6 +179,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
         ));
         jtHistorial.setSelectionBackground(new java.awt.Color(68, 106, 61));
         jtHistorial.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jtHistorial.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jtHistorial);
 
         jlTablaDietas.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
@@ -419,7 +420,6 @@ public class InformesVista extends javax.swing.JInternalFrame {
         for (int i = 0; i < listaDieta.size(); i++) {
             historial = HD.buscarHistorialXIdPYFecha(pacienteId, listaDieta.get(i).getFechaFinal());
             if (historial != null) {
-                System.out.println(listaSiNo.get(i));
                 double peso = historial.getPeso() - listaDieta.get(i).getPesoFinal();
                 modeloTablaDieta.setValueAt(condicionDieta(listaSiNo.get(i), peso), i, 4);
             } else if (LocalDate.now().compareTo(listaDieta.get(i).getFechaFinal()) < 0) {

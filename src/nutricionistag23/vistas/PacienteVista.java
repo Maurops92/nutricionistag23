@@ -40,7 +40,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     public static int pacienteid;
     private HistorialPacienteVista historialPacienteVista;
     private String dni;
-    
+
     private DefaultTableModel modeloTabla = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -101,16 +101,20 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jtIMC = new javax.swing.JTextField();
         jbBuscar = new javax.swing.JButton();
+        jPaneInfo = new javax.swing.JPanel();
+        jLInfo = new javax.swing.JLabel();
 
         setTitle("Gestion de Pacientes");
         setPreferredSize(new java.awt.Dimension(768, 633));
 
         jPanel1.setBackground(new java.awt.Color(140, 184, 132));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Apellido y Nombre");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 23, -1, 32));
 
         jtNombre.setBackground(new java.awt.Color(230, 255, 227));
         jtNombre.setBorder(null);
@@ -119,21 +123,25 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 jtNombreKeyReleased(evt);
             }
         });
+        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 26, 440, 27));
 
         jLabel2.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("DNI");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 100, -1, 27));
 
         jLabel3.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Domicilio");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 54, -1, 40));
 
         jLabel4.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Teléfono");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 133, -1, 28));
 
         jtTelefono.setBackground(new java.awt.Color(230, 255, 227));
         jtTelefono.setToolTipText("xxx-xxxxxxx");
@@ -143,25 +151,31 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 jtTelefonoMouseClicked(evt);
             }
         });
+        jPanel1.add(jtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 134, 175, 27));
 
         jtDni.setBackground(new java.awt.Color(230, 255, 227));
         jtDni.setBorder(null);
+        jPanel1.add(jtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 100, 175, 27));
 
         jtDomicilio.setBackground(new java.awt.Color(230, 255, 227));
         jtDomicilio.setBorder(null);
+        jPanel1.add(jtDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 64, 440, 27));
 
         jLabel5.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Estatura (m)");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(577, 98, -1, 30));
 
         jLabel6.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("PI-Peso Inicial (kg)");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, -1, 27));
 
         jLabel7.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("PD-Peso Deseado (kg)");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, 27));
 
         jtPacientes.setBackground(new java.awt.Color(230, 255, 227));
         jtPacientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -186,12 +200,15 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jtPacientes);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 245, 610, 314));
+
         jbAgregar.setText("Agregar");
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 245, 80, -1));
 
         jbModificar.setText("Modificar");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +216,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 jbModificarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 289, 80, -1));
 
         jrbDietaNoActiva.setBackground(new java.awt.Color(230, 255, 227));
         jrbDietaNoActiva.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
@@ -209,6 +227,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 jrbDietaNoActivaActionPerformed(evt);
             }
         });
+        jPanel1.add(jrbDietaNoActiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 211, -1, 30));
 
         jrbDietaActiva.setBackground(new java.awt.Color(230, 255, 227));
         jrbDietaActiva.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
@@ -219,6 +238,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 jrbDietaActivaActionPerformed(evt);
             }
         });
+        jPanel1.add(jrbDietaActiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(412, 211, -1, 30));
 
         jbVaciarCampos.setText("Limpiar");
         jbVaciarCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +246,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 jbVaciarCamposActionPerformed(evt);
             }
         });
+        jPanel1.add(jbVaciarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 167, -1, -1));
 
         jbHistorial.setText("Historial");
         jbHistorial.addActionListener(new java.awt.event.ActionListener() {
@@ -233,17 +254,22 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 jbHistorialActionPerformed(evt);
             }
         });
+        jPanel1.add(jbHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 61, -1, -1));
 
         jsPesoActual.setBorder(null);
+        jPanel1.add(jsPesoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(491, 100, 79, 27));
 
         jsPesoDeseado.setBorder(null);
+        jPanel1.add(jsPesoDeseado, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 130, 79, 27));
 
         jsEstatura.setBorder(null);
+        jPanel1.add(jsEstatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, 75, 27));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Seleccione un paciente");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(116, 226, 183, 20));
 
         jtCerrar.setText("Cerrar");
         jtCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -251,17 +277,20 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 jtCerrarActionPerformed(evt);
             }
         });
+        jPanel1.add(jtCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(655, 577, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("IMC");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 132, -1, 30));
 
         jtIMC.setEditable(false);
         jtIMC.setBackground(new java.awt.Color(230, 255, 227));
         jtIMC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jtIMC.setForeground(new java.awt.Color(255, 255, 255));
+        jtIMC.setForeground(new java.awt.Color(0, 0, 0));
         jtIMC.setBorder(null);
         jtIMC.setPreferredSize(new java.awt.Dimension(23, 16));
+        jPanel1.add(jtIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 134, 58, 27));
 
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -269,142 +298,40 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 jbBuscarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(587, 24, 77, 30));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jLabel3)))
-                .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbHistorial)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(jLabel2)
-                .addGap(13, 13, 13)
-                .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66)
-                .addComponent(jLabel6)
-                .addGap(6, 6, 6)
-                .addComponent(jsPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jLabel5)
-                .addGap(6, 6, 6)
-                .addComponent(jsEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(jLabel4)
-                .addGap(11, 11, 11)
-                .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jLabel7)
-                .addGap(10, 10, 10)
-                .addComponent(jsPesoDeseado, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(jLabel9)
-                .addGap(14, 14, 14)
-                .addComponent(jtIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jbVaciarCampos))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(411, 411, 411)
-                        .addComponent(jrbDietaNoActiva))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(300, 300, 300)
-                        .addComponent(jrbDietaActiva))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(655, 655, 655)
-                .addComponent(jtCerrar))
+        jPaneInfo.setBackground(new java.awt.Color(140, 184, 132));
+        jPaneInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jPaneInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPaneInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseReleased(evt);
+            }
+        });
+
+        jLInfo.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
+        jLInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jLInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLInfo.setText("?");
+
+        javax.swing.GroupLayout jPaneInfoLayout = new javax.swing.GroupLayout(jPaneInfo);
+        jPaneInfo.setLayout(jPaneInfoLayout);
+        jPaneInfoLayout.setHorizontalGroup(
+            jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(jtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)
-                        .addComponent(jbHistorial)))
-                .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtDni, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jsPesoActual, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jsEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(2, 2, 2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jsPesoDeseado, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jtIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(5, 5, 5)
-                .addComponent(jbVaciarCampos)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jbAgregar)
-                        .addGap(12, 12, 12)
-                        .addComponent(jbModificar))
-                    .addComponent(jrbDietaNoActiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jrbDietaActiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jtCerrar))
+        jPaneInfoLayout.setVerticalGroup(
+            jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
+
+        jPanel1.add(jPaneInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -460,7 +387,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 paciente = pd.buscarPacienteXDni(dieta.getPaciente().getDni());
                 modeloTabla.addRow(new Object[]{paciente.getIdPaciente(), paciente.getDni(), paciente.getNombre(), paciente.getDomicilio(), paciente.getTelefono(), paciente.getPesoActual(),
                     paciente.getPesoDeseado(), paciente.getEstatura()});
-        }
+            }
 
         }
 
@@ -493,7 +420,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
 
         try {
             if (Validaciones.validacionNombrePaciente(jtNombre.getText()) && Validaciones.validacionDomicilio(jtDomicilio.getText()) && Validaciones.validacionDNI(jtDni.getText()) && Validaciones.validacionTelefono(jtTelefono.getText())
-                && Validaciones.validacionPeso((double)jsPesoActual.getValue()) && Validaciones.validacionPeso((double) jsPesoDeseado.getValue()) && Validaciones.validacionPeso((double) jsEstatura.getValue())) {
+                    && Validaciones.validacionPeso((double) jsPesoActual.getValue()) && Validaciones.validacionPeso((double) jsPesoDeseado.getValue()) && Validaciones.validacionPeso((double) jsEstatura.getValue()) && Validaciones.validacionTelefonoGuion(jtTelefono.getText())) {
                 PacienteData pd = new PacienteData();
                 Paciente paciente = new Paciente();
                 paciente.setNombre(jtNombre.getText());
@@ -520,7 +447,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     private void jbAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAgregarActionPerformed
         try {
             if (Validaciones.validacionNombrePaciente(jtNombre.getText()) && Validaciones.validacionDomicilio(jtDomicilio.getText()) && Validaciones.validacionDNI(jtDni.getText()) && Validaciones.validacionTelefono(jtTelefono.getText())
-                && Validaciones.validacionPeso((double)jsPesoActual.getValue()) && Validaciones.validacionPeso((double) jsPesoDeseado.getValue())&& Validaciones.validacionPeso((double) jsEstatura.getValue())) {
+                    && Validaciones.validacionPeso((double) jsPesoActual.getValue()) && Validaciones.validacionPeso((double) jsPesoDeseado.getValue()) && Validaciones.validacionPeso((double) jsEstatura.getValue()) && Validaciones.validacionTelefonoGuion(jtTelefono.getText())) {
                 PacienteData pd = new PacienteData();
                 Paciente paciente = new Paciente();
                 paciente.setNombre(jtNombre.getText());
@@ -553,9 +480,11 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jbHistorial.setEnabled(true);
         pacienteid = (int) modeloTabla.getValueAt(jtPacientes.getSelectedRow(), 0);
         jtTelefono.setForeground(Color.BLACK);
-        double imc =(double)jsPesoActual.getValue()/ Math.pow((double)jsEstatura.getValue(), 2);
-        imc *=100;imc = (int) imc;imc /=100;
-        jtIMC.setText(imc+"");
+        double imc = (double) jsPesoActual.getValue() / Math.pow((double) jsEstatura.getValue(), 2);
+        imc *= 100;
+        imc = (int) imc;
+        imc /= 100;
+        jtIMC.setText(imc + "");
     }//GEN-LAST:event_jtPacientesMouseReleased
 
     private void jtTelefonoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTelefonoMouseClicked
@@ -575,37 +504,57 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         try {
             PacienteData PD = new PacienteData();
-        limpiar();
-        if (Validaciones.validacionDNI(dni = JOptionPane.showInputDialog(this, "Ingrese el DNI del paciente"))) {
-            Paciente paciente = PD.buscarPacienteXDni(Integer.parseInt(dni));
-            if (paciente != null) {
-                pacienteid= paciente.getIdPaciente();
-                jtNombre.setText(paciente.getNombre());
-                jtDomicilio.setText(paciente.getDomicilio());
-                jtDni.setText(paciente.getDni()+"");
-                jtTelefono.setText(paciente.getTelefono());
-                jtTelefono.setForeground(Color.BLACK);
-                jsPesoActual.setValue((double)paciente.getPesoActual());
-                jsPesoDeseado.setValue((double)paciente.getPesoDeseado());
-                jsEstatura.setValue((double)paciente.getEstatura());
-                double imc =(double)jsPesoActual.getValue()/ Math.pow((double)jsEstatura.getValue(), 2);
-                imc *=100;imc = (int) imc;imc /=100;
-                jtIMC.setText(imc+"");
-                jbVaciarCampos.setEnabled(true);
-                jbAgregar.setEnabled(false);
-                jbModificar.setEnabled(true);
-                jbHistorial.setEnabled(true);
-                
-               
+            limpiar();
+            if (Validaciones.validacionDNI(dni = JOptionPane.showInputDialog(this, "Ingrese el DNI del paciente"))) {
+                Paciente paciente = PD.buscarPacienteXDni(Integer.parseInt(dni));
+                if (paciente != null) {
+                    pacienteid = paciente.getIdPaciente();
+                    jtNombre.setText(paciente.getNombre());
+                    jtDomicilio.setText(paciente.getDomicilio());
+                    jtDni.setText(paciente.getDni() + "");
+                    jtTelefono.setText(paciente.getTelefono());
+                    jtTelefono.setForeground(Color.BLACK);
+                    jsPesoActual.setValue((double) paciente.getPesoActual());
+                    jsPesoDeseado.setValue((double) paciente.getPesoDeseado());
+                    jsEstatura.setValue((double) paciente.getEstatura());
+                    double imc = (double) jsPesoActual.getValue() / Math.pow((double) jsEstatura.getValue(), 2);
+                    imc *= 100;
+                    imc = (int) imc;
+                    imc /= 100;
+                    jtIMC.setText(imc + "");
+                    jbVaciarCampos.setEnabled(true);
+                    jbAgregar.setEnabled(false);
+                    jbModificar.setEnabled(true);
+                    jbHistorial.setEnabled(true);
+
+                }
             }
-        }
         } catch (NullPointerException e) {
         }
 
     }//GEN-LAST:event_jbBuscarActionPerformed
 
+    private void jPaneInfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseEntered
+        jPaneInfo.setBackground(new Color(195, 255, 184));
+        jLInfo.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jPaneInfoMouseEntered
+
+    private void jPaneInfoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseExited
+        jPaneInfo.setBackground(new Color(140, 184, 132));
+        jLInfo.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jPaneInfoMouseExited
+
+    private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
+                JOptionPane.showMessageDialog(this, "-Para agregar un paciente, complete los datos personales que se solicitan en el tope de la ventana \ny al finalizar presione el boton [Agregar].\n"
+                + "\n"
+                + "-Para modificar un paciente seleccionelo en la tabla, modifique el dato que desea actualizar \ny presione el boton [Modificar],\n"
+                + "\n"
+                + "-Para consultar o crear un Historial del paciente, seleccione en la tabla al paciente \ny presione el boton [Historial].");
+    }//GEN-LAST:event_jPaneInfoMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -615,6 +564,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPaneInfo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbAgregar;
@@ -699,9 +649,9 @@ public class PacienteVista extends javax.swing.JInternalFrame {
         jtDni.setText("");       // TODO add your handling code here:
         jtTelefono.setText("");       // TODO add your handling code here:
         jtDomicilio.setText("");       // TODO add your handling code here:
-        jsEstatura.setValue((double)0);
-        jsPesoActual.setValue((double)0);
-        jsPesoDeseado.setValue((double)0);
+        jsEstatura.setValue((double) 0);
+        jsPesoActual.setValue((double) 0);
+        jsPesoDeseado.setValue((double) 0);
         jtTelefono.setText("XXX-XXXXXXX");
         jtIMC.setText("");
         jtTelefono.setForeground(Color.GRAY);

@@ -117,6 +117,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         ));
         jtComida.setSelectionBackground(new java.awt.Color(68, 106, 61));
         jtComida.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jtComida.getTableHeader().setReorderingAllowed(false);
         jtComida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jtComidaMouseReleased(evt);

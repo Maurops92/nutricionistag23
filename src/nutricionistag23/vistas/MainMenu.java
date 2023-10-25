@@ -16,6 +16,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -54,6 +55,8 @@ public class MainMenu extends javax.swing.JFrame {
         jpInformes = new javax.swing.JPanel();
         jLInformes = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPaneSobre = new javax.swing.JPanel();
+        jLSobre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Dietas Nutricionista");
@@ -236,6 +239,51 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nutricionistag23/vistas/icons/logo.png"))); // NOI18N
 
+        jPaneSobre.setBackground(new java.awt.Color(195, 255, 184));
+        jPaneSobre.setPreferredSize(new java.awt.Dimension(193, 53));
+        jPaneSobre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPaneSobreMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPaneSobreMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPaneSobreMouseExited(evt);
+            }
+        });
+
+        jLSobre.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
+        jLSobre.setForeground(new java.awt.Color(0, 54, 3));
+        jLSobre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLSobre.setText("Sobre...");
+        jLSobre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLSobre.setMaximumSize(new java.awt.Dimension(76, 22));
+        jLSobre.setMinimumSize(new java.awt.Dimension(76, 22));
+        jLSobre.setName(""); // NOI18N
+        jLSobre.setPreferredSize(new java.awt.Dimension(76, 22));
+
+        javax.swing.GroupLayout jPaneSobreLayout = new javax.swing.GroupLayout(jPaneSobre);
+        jPaneSobre.setLayout(jPaneSobreLayout);
+        jPaneSobreLayout.setHorizontalGroup(
+            jPaneSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 193, Short.MAX_VALUE)
+            .addGroup(jPaneSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPaneSobreLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLSobre, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPaneSobreLayout.setVerticalGroup(
+            jPaneSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPaneSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPaneSobreLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLSobre, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -245,24 +293,29 @@ public class MainMenu extends javax.swing.JFrame {
             .addComponent(jpDieta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpInformes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPaneSobre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(20, 20, 20)
                 .addComponent(jpPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addComponent(jpComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addComponent(jpDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addComponent(jpInformes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
+                .addGap(7, 7, 7)
+                .addComponent(jPaneSobre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(jLabel1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -352,6 +405,20 @@ public class MainMenu extends javax.swing.JFrame {
        jpInformes.setBackground(new Color(195,255,184));
        jLInformes.setForeground(new Color (0,54,3));
     }//GEN-LAST:event_jpInformesMouseExited
+
+    private void jPaneSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneSobreMouseClicked
+        JOptionPane.showMessageDialog(null, "Proyecto Final para la Universidad de la Punta\n\nGrupo 23:\nCabral Lucas\nCarabetta Jonathan\nJuárez Angel\nPerez Mauro\n\n© 2023 Universidad de la Punta");
+    }//GEN-LAST:event_jPaneSobreMouseClicked
+
+    private void jPaneSobreMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneSobreMouseEntered
+        jPaneSobre.setBackground(new Color(140, 184, 132));
+        jLSobre.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jPaneSobreMouseEntered
+
+    private void jPaneSobreMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneSobreMouseExited
+        jPaneSobre.setBackground(new Color(195, 255, 184));
+        jLSobre.setForeground(new Color(0, 54, 3)); 
+    }//GEN-LAST:event_jPaneSobreMouseExited
     public static MainMenu getMainMenu() {
         if (main == null) {
             main = new MainMenu();
@@ -406,14 +473,22 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLComida;
     private javax.swing.JLabel jLDieta;
     private javax.swing.JLabel jLInformes;
+    private javax.swing.JLabel jLInformes1;
+    private javax.swing.JLabel jLInformes2;
+    private javax.swing.JLabel jLInformes3;
     private javax.swing.JLabel jLPaciente;
+    private javax.swing.JLabel jLSobre;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPaneSobre;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane jdpEscritorio;
     private javax.swing.JLabel jlFondo;
     private javax.swing.JPanel jpComida;
     private javax.swing.JPanel jpDieta;
     private javax.swing.JPanel jpInformes;
+    private javax.swing.JPanel jpInformes1;
+    private javax.swing.JPanel jpInformes2;
+    private javax.swing.JPanel jpInformes3;
     private javax.swing.JPanel jpPaciente;
     // End of variables declaration//GEN-END:variables
 
