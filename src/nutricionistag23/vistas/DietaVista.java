@@ -5,6 +5,7 @@
  */
 package nutricionistag23.vistas;
 
+import java.awt.Color;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -94,6 +95,8 @@ public class DietaVista extends javax.swing.JInternalFrame {
         jbModificar = new javax.swing.JButton();
         jbBuscar = new javax.swing.JButton();
         jbConfigDieta = new javax.swing.JButton();
+        jPaneInfo = new javax.swing.JPanel();
+        jLInfo = new javax.swing.JLabel();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -101,11 +104,13 @@ public class DietaVista extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(140, 184, 132));
         jPanel1.setMinimumSize(new java.awt.Dimension(752, 625));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Nombre Dieta");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 26, -1, 27));
 
         jtNombreDieta.setBackground(new java.awt.Color(230, 255, 227));
         jtNombreDieta.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -115,23 +120,28 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jtNombreDietaKeyReleased(evt);
             }
         });
+        jPanel1.add(jtNombreDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 28, 451, 27));
 
         jLabel3.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("Paciente");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 58, -1, 27));
 
         jtPaciente.setBackground(new java.awt.Color(230, 255, 227));
         jtPaciente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtPaciente.setBorder(null);
+        jPanel1.add(jtPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 451, 27));
 
         jLabel6.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fecha Final");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 142, 80, 27));
 
         jLabel7.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("PF-Peso Final (kg)");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 137, -1, 27));
 
         jtDieta.setBackground(new java.awt.Color(230, 255, 227));
         jtDieta.setModel(new javax.swing.table.DefaultTableModel(
@@ -156,6 +166,8 @@ public class DietaVista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jtDieta);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 229, 606, 314));
+
         jbAgregar.setText("Agregar");
         jbAgregar.setMaximumSize(new java.awt.Dimension(83, 32));
         jbAgregar.setMinimumSize(new java.awt.Dimension(83, 32));
@@ -165,6 +177,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jbAgregarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 231, 80, 30));
 
         jrbDietaNoActiva.setBackground(new java.awt.Color(230, 255, 227));
         jrbDietaNoActiva.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
@@ -175,6 +188,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jrbDietaNoActivaActionPerformed(evt);
             }
         });
+        jPanel1.add(jrbDietaNoActiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 192, -1, 30));
 
         jrbDietaActiva.setBackground(new java.awt.Color(230, 255, 227));
         jrbDietaActiva.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
@@ -185,6 +199,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jrbDietaActivaActionPerformed(evt);
             }
         });
+        jPanel1.add(jrbDietaActiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 192, -1, 30));
 
         jbVaciarCampos.setText("Limpiar");
         jbVaciarCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -192,15 +207,19 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jbVaciarCamposActionPerformed(evt);
             }
         });
+        jPanel1.add(jbVaciarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(588, 26, 80, 30));
 
         jsPesoFinal.setBorder(null);
+        jPanel1.add(jsPesoFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 137, 79, 27));
 
         jsPesoInicial.setBorder(null);
+        jPanel1.add(jsPesoInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(492, 100, 79, 27));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Seleccione una dieta");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 183, 20));
 
         jtCerrar.setText("Cerrar");
         jtCerrar.setMaximumSize(new java.awt.Dimension(83, 32));
@@ -211,18 +230,23 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jtCerrarActionPerformed(evt);
             }
         });
+        jPanel1.add(jtCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(634, 555, -1, -1));
 
         jdFechaInit.setBackground(new java.awt.Color(230, 255, 227));
+        jPanel1.add(jdFechaInit, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 102, 130, -1));
 
         jLabel9.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("PI-Peso Inicial (kg)");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(365, 100, -1, 27));
 
         jLabel10.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Fecha Inicial");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 102, 90, 30));
 
         jdFechaFin.setBackground(new java.awt.Color(230, 255, 227));
+        jPanel1.add(jdFechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 142, 130, -1));
 
         jbEliminar.setText("Eliminar");
         jbEliminar.setMaximumSize(new java.awt.Dimension(83, 32));
@@ -233,6 +257,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jbEliminarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 331, 80, 30));
 
         jbModificar.setText("Modificar");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -240,6 +265,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jbModificarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 281, 80, 30));
 
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -247,6 +273,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jbBuscarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 58, 80, 30));
 
         jbConfigDieta.setText("Configurar Dieta");
         jbConfigDieta.addActionListener(new java.awt.event.ActionListener() {
@@ -254,138 +281,50 @@ public class DietaVista extends javax.swing.JInternalFrame {
                 jbConfigDietaActionPerformed(evt);
             }
         });
+        jPanel1.add(jbConfigDieta, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 190, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1)
-                        .addGap(6, 6, 6)
-                        .addComponent(jtNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(485, 485, 485)
-                                .addComponent(jbConfigDieta))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(190, 190, 190)
-                                .addComponent(jrbDietaActiva))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(310, 310, 310)
-                                .addComponent(jrbDietaNoActiva))
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(634, 634, 634)
-                        .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jdFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(jdFechaInit, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addGap(7, 7, 7)
-                                        .addComponent(jsPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(7, 7, 7)
-                                        .addComponent(jLabel7)
-                                        .addGap(5, 5, 5)
-                                        .addComponent(jsPesoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(jLabel3)
-                                .addGap(10, 10, 10)
-                                .addComponent(jtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(49, 49, 49))
+        jPaneInfo.setBackground(new java.awt.Color(140, 184, 132));
+        jPaneInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jPaneInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPaneInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseReleased(evt);
+            }
+        });
+
+        jLInfo.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
+        jLInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jLInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLInfo.setText("?");
+
+        javax.swing.GroupLayout jPaneInfoLayout = new javax.swing.GroupLayout(jPaneInfo);
+        jPaneInfo.setLayout(jPaneInfoLayout);
+        jPaneInfoLayout.setHorizontalGroup(
+            jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPaneInfoLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jtNombreDieta, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jdFechaInit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jdFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jsPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jsPesoFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jbAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbConfigDieta)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jrbDietaActiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jrbDietaNoActiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPaneInfoLayout.setVerticalGroup(
+            jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+            .addGroup(jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPaneInfoLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jLInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        jPanel1.add(jPaneInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -576,8 +515,32 @@ public class DietaVista extends javax.swing.JInternalFrame {
         getMainMenu().agregarVista(dietaComidaVista);
     }//GEN-LAST:event_jbConfigDietaActionPerformed
 
+    private void jPaneInfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseEntered
+        jPaneInfo.setBackground(new Color(195, 255, 184));
+        jLInfo.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jPaneInfoMouseEntered
+
+    private void jPaneInfoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseExited
+        jPaneInfo.setBackground(new Color(140, 184, 132));
+        jLInfo.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jPaneInfoMouseExited
+
+    private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
+        JOptionPane.showMessageDialog(this, "-Para agregar una dieta, escriba el nombre de la dieta, presione el boton [Buscar] e ingrese el dni de su paciente, "
+                + "\nseleccione una fecha inicial y una fecha final, ingrese el peso inicial y el peso final del paciente y presione el boton [Agregar].\n" +
+"\n" +
+"-Para limpiar todos los campos presione el boton [Limpiar].\n" +
+"\n" +
+"-Para ver el detalle de la dieta seleccione una dieta de la tabla y presione el boton [Configurar Dieta].\n" +
+"\n" +
+"-Para modificar una dieta seleccione la dieta de la tabla, modifique los datos que desea actualizar y presione el boton [Modificar].\n" +
+"\n" +
+"-Para eliminar una dieta, debe seleccionarla en la tabla (asegurece que la dieta no tiene consumisiones) y presionar el boton [Eliminar].");
+    }//GEN-LAST:event_jPaneInfoMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
@@ -585,6 +548,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPaneInfo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -170,5 +170,15 @@ public class DietaComidaData {
         }
         return listaDietaComida;
     }
-    
+    public void eliminarDietaComidaTotal(int idDieta) {
+        String sql = "DELETE FROM dietacomida WHERE idDieta=? ";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idDieta);
+            if(ps.executeUpdate()==1){
+                JOptionPane.showMessageDialog(null, "Cronograma eliminado exitosamente");
+            }           
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos.");
+        }
+    }
 }

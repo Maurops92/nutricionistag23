@@ -1,0 +1,5 @@
+-Para agregar una comida, complete los campos nombre, detalle, calorias y presione el boton [Agregar].
+
+-Para modificar una comida seleccionada en la tabla, modifique los datos que desea actualizar y presione el boton [Modificar].
+
+-Para eliminar una comida, debe seleccionarla en la tabla y presionar el boton [Eliminar].

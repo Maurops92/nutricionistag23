@@ -155,6 +155,11 @@ public class PacienteVista extends javax.swing.JInternalFrame {
 
         jtDni.setBackground(new java.awt.Color(230, 255, 227));
         jtDni.setBorder(null);
+        jtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtDniKeyReleased(evt);
+            }
+        });
         jPanel1.add(jtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(129, 100, 175, 27));
 
         jtDomicilio.setBackground(new java.awt.Color(230, 255, 227));
@@ -530,6 +535,8 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 }
             }
         } catch (NullPointerException e) {
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "El DNI ingresado es invalido");
         }
 
     }//GEN-LAST:event_jbBuscarActionPerformed
@@ -551,6 +558,13 @@ public class PacienteVista extends javax.swing.JInternalFrame {
                 + "\n"
                 + "-Para consultar o crear un Historial del paciente, seleccione en la tabla al paciente \ny presione el boton [Historial].");
     }//GEN-LAST:event_jPaneInfoMouseReleased
+
+    private void jtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyReleased
+        if (!jtDni.getText().equals("") && Validaciones.validacionInmediataCaracteres(jtDni.getText(), 1) == false) {
+            JOptionPane.showMessageDialog(this, "Caracter invalido, solo se permiten numeros");
+            jtDni.setText("");
+        }
+    }//GEN-LAST:event_jtDniKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

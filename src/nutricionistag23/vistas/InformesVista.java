@@ -5,6 +5,7 @@
  */
 package nutricionistag23.vistas;
 
+import java.awt.Color;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -83,21 +84,26 @@ public class InformesVista extends javax.swing.JInternalFrame {
         jtHistorial = new javax.swing.JTable();
         jlTablaDietas = new javax.swing.JLabel();
         jlTablaHistoriales = new javax.swing.JLabel();
+        jPaneInfo = new javax.swing.JPanel();
+        jLInfo = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(768, 633));
 
         jPanel1.setBackground(new java.awt.Color(140, 184, 132));
         jPanel1.setMinimumSize(new java.awt.Dimension(752, 625));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jlPaciente.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jlPaciente.setForeground(new java.awt.Color(255, 255, 255));
         jlPaciente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlPaciente.setText("Paciente");
+        jPanel1.add(jlPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 32, -1, 27));
 
         jtPaciente.setEditable(false);
         jtPaciente.setBackground(new java.awt.Color(230, 255, 227));
         jtPaciente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jtPaciente.setBorder(null);
+        jPanel1.add(jtPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 32, 450, 27));
 
         jTablaDieta.setBackground(new java.awt.Color(230, 255, 227));
         jTablaDieta.setModel(new javax.swing.table.DefaultTableModel(
@@ -122,6 +128,8 @@ public class InformesVista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTablaDieta);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 99, 613, 213));
+
         jrbDietaNoActiva.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
         jrbDietaNoActiva.setForeground(new java.awt.Color(255, 255, 255));
         jrbDietaNoActiva.setText("Dietas Culminadas");
@@ -130,6 +138,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
                 jrbDietaNoActivaActionPerformed(evt);
             }
         });
+        jPanel1.add(jrbDietaNoActiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 65, -1, 30));
 
         jrbDietaActiva.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
         jrbDietaActiva.setForeground(new java.awt.Color(255, 255, 255));
@@ -139,6 +148,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
                 jrbDietaActivaActionPerformed(evt);
             }
         });
+        jPanel1.add(jrbDietaActiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(306, 65, -1, 30));
 
         jbVaciarCampos.setText("Limpiar");
         jbVaciarCampos.setEnabled(false);
@@ -147,6 +157,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
                 jbVaciarCamposActionPerformed(evt);
             }
         });
+        jPanel1.add(jbVaciarCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 62, 80, 30));
 
         jtCerrar.setText("Cerrar");
         jtCerrar.setMaximumSize(new java.awt.Dimension(83, 32));
@@ -157,6 +168,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
                 jtCerrarActionPerformed(evt);
             }
         });
+        jPanel1.add(jtCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(605, 568, -1, -1));
 
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,6 +176,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
                 jbBuscarActionPerformed(evt);
             }
         });
+        jPanel1.add(jbBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 26, 80, 30));
 
         jtHistorial.setBackground(new java.awt.Color(230, 255, 227));
         jtHistorial.setModel(new javax.swing.table.DefaultTableModel(
@@ -182,83 +195,50 @@ public class InformesVista extends javax.swing.JInternalFrame {
         jtHistorial.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jtHistorial);
 
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 351, 613, 199));
+
         jlTablaDietas.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jlTablaDietas.setForeground(new java.awt.Color(255, 255, 255));
         jlTablaDietas.setText("Dietas");
+        jPanel1.add(jlTablaDietas, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 69, 108, 40));
 
         jlTablaHistoriales.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jlTablaHistoriales.setForeground(new java.awt.Color(255, 255, 255));
         jlTablaHistoriales.setText("Historial");
+        jPanel1.add(jlTablaHistoriales, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 321, -1, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jlPaciente)
-                .addGap(4, 4, 4)
-                .addComponent(jtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(370, 370, 370)
-                        .addComponent(jrbDietaNoActiva))
-                    .addComponent(jlTablaDietas, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(533, 533, 533)
-                        .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
-                        .addComponent(jrbDietaActiva))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlTablaHistoriales)))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(605, 605, 605)
-                .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPaneInfo.setBackground(new java.awt.Color(140, 184, 132));
+        jPaneInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jPaneInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPaneInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseReleased(evt);
+            }
+        });
+
+        jLInfo.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
+        jLInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jLInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLInfo.setText("?");
+
+        javax.swing.GroupLayout jPaneInfoLayout = new javax.swing.GroupLayout(jPaneInfo);
+        jPaneInfo.setLayout(jPaneInfoLayout);
+        jPaneInfoLayout.setHorizontalGroup(
+            jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLInfo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jrbDietaNoActiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jlTablaDietas, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbVaciarCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jrbDietaActiva, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jlTablaHistoriales, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jtCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPaneInfoLayout.setVerticalGroup(
+            jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
         );
+
+        jPanel1.add(jPaneInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 30, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -311,26 +291,58 @@ public class InformesVista extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         try {
+            primerLimpiado = true;
             limpiar();
-        if (Validaciones.validacionDNI(dni = JOptionPane.showInputDialog(this, "Ingrese el DNI del paciente"))) {
-            Paciente paciente = PD.buscarPacienteXDni(Integer.parseInt(dni));
-            if (paciente != null) {
-                pacienteId = paciente.getIdPaciente();
-                jtPaciente.setText(paciente.getNombre());
-                llenarTablaDieta();
-                llenarTablaHistorial();
-                jbVaciarCampos.setEnabled(true);
-                primerLimpiado = true;
+
+            if (Validaciones.validacionDNI(dni = JOptionPane.showInputDialog(this, "Ingrese el DNI del paciente"))) {
+                Paciente paciente = PD.buscarPacienteXDni(Integer.parseInt(dni));
+                if (paciente != null) {
+                    tableCleanDieta();
+                    tableCleanHistorial();
+                    jrbDietaActiva.setSelected(false);
+                    jrbDietaNoActiva.setSelected(false);
+                    pacienteId = paciente.getIdPaciente();
+                    jtPaciente.setText(paciente.getNombre());
+                    llenarTablaDieta();
+                    llenarTablaHistorial();
+                    jbVaciarCampos.setEnabled(true);
+                    primerLimpiado = true;
+                }
             }
+        } catch (NullPointerException e ) {
+
+        }catch (NumberFormatException e ) {
+            JOptionPane.showMessageDialog(null, "El DNI ingresado es invalido");
         }
-        } catch (NullPointerException e) {
-            
-        }
-        
+
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jPaneInfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseEntered
+        jPaneInfo.setBackground(new Color(195, 255, 184));
+        jLInfo.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jPaneInfoMouseEntered
+
+    private void jPaneInfoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseExited
+        jPaneInfo.setBackground(new Color(140, 184, 132));
+        jLInfo.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jPaneInfoMouseExited
+
+    private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
+        JOptionPane.showMessageDialog(this, "-Si desea ver el informe de un paciente, debe buscarlo presionando el botón [Buscar] e ingresando el DNI.\n"
+                + "\n"
+                + "-Para ver el historial de una dieta, debe seleccionarla en la tabla \"Dietas\" y podrá observarlo en la tabla \"Historial\"\n"
+                + "\n"
+                + "-Los botones \"Dieta Vigentes\" y \"Dietas Culminadas\" filtraran entre las dietas activas/corrientes y las inactivas/finalizadas.\n"
+                + "\n"
+                + "-Para limpiar todos los campos presione el boton [Limpiar]."
+                + "\n"
+                + "\n-Leyenda Cumplido \nSIN HIST: No existe un registro de peso a la fecha final de la dieta.\nSI: El paciente cumplio con el peso objetivo.\nNO: El paciente no cumplio con el peso deseado.\nACTIVO: Dieta actual del paciente.");
+    }//GEN-LAST:event_jPaneInfoMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLInfo;
+    private javax.swing.JPanel jPaneInfo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -469,15 +481,12 @@ public class InformesVista extends javax.swing.JInternalFrame {
 
     //METODOS TABLA HISTORIAL ---------------------------------------------------------------------------------------------------||
     private void armarCabeceraHistorial() {// Arma la cabecera de la tabla
-        modeloTablaHistorial.addColumn("ID");
-        modeloTablaHistorial.addColumn("IDP");
+
         modeloTablaHistorial.addColumn("Peso");
         modeloTablaHistorial.addColumn("Fecha Registro");
         jtHistorial.setModel(modeloTablaHistorial);
-        jtHistorial.getColumnModel().getColumn(0).setPreferredWidth(15);
-        jtHistorial.getColumnModel().getColumn(1).setPreferredWidth(15);
-        jtHistorial.getColumnModel().getColumn(2).setPreferredWidth(30);
-        jtHistorial.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jtHistorial.getColumnModel().getColumn(0).setPreferredWidth(30);
+        jtHistorial.getColumnModel().getColumn(1).setPreferredWidth(100);
         JTableHeader header = jtHistorial.getTableHeader();
         header.setDefaultRenderer(new HeaderRenderer(jtHistorial));
     }
@@ -505,15 +514,13 @@ public class InformesVista extends javax.swing.JInternalFrame {
             }
         }
         for (Historial hist : listaHistorial) {
-            modeloTablaHistorial.addRow(new Object[]{hist.getIdHistorial(), hist.getPaciente().getIdPaciente(), hist.getPeso(), hist.getFechaRegistro()});
+            modeloTablaHistorial.addRow(new Object[]{hist.getPeso(), hist.getFechaRegistro()});
         }
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();//Alinea los datos de las celdas numericas a la derecha 
         tcr.setHorizontalAlignment(SwingConstants.RIGHT);
         jtHistorial.getColumnModel().getColumn(0).setCellRenderer(tcr);
-        jtHistorial.getColumnModel().getColumn(1).setCellRenderer(tcr);
-        jtHistorial.getColumnModel().getColumn(2).setCellRenderer(tcr);
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        jtHistorial.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        jtHistorial.getColumnModel().getColumn(1).setCellRenderer(tcr);
     }
 
     private void tableCleanHistorial() {
@@ -529,7 +536,8 @@ public class InformesVista extends javax.swing.JInternalFrame {
     //OTROS METODOS -----------------------------------------------------------------------------------------------------------------||
     private void limpiar() {
         //Limpia los campos
-
+        jrbDietaActiva.setSelected(false);
+        jrbDietaNoActiva.setSelected(false);
         tableCleanDieta();
         tableCleanHistorial();
         if (!primerLimpiado) {
@@ -537,6 +545,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
             llenarTablaDieta();
             llenarTablaHistorial();
             primerLimpiado = true;
+
         } else {
             jtPaciente.setText("");
             pacienteId = 0;

@@ -5,6 +5,7 @@
  */
 package nutricionistag23.vistas;
 
+import java.awt.Color;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -75,6 +76,8 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         jbEliminar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jPaneInfo = new javax.swing.JPanel();
+        jLInfo = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle("Registro Historico del Paciente");
@@ -82,6 +85,7 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
 
         contenedor.setBackground(new java.awt.Color(191, 255, 183));
         contenedor.setForeground(new java.awt.Color(135, 250, 177));
+        contenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jtHistorial.setBackground(new java.awt.Color(230, 255, 227));
         jtHistorial.setModel(new javax.swing.table.DefaultTableModel(
@@ -105,17 +109,22 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jtHistorial);
 
+        contenedor.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 161, 362, 178));
+
         jLabel2.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel2.setText("Seleccione un historial");
+        contenedor.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 140, 150, -1));
 
         jlPA.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jlPA.setText("Peso");
+        contenedor.add(jlPA, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 26));
 
         jdcFechaRegistro.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jdcFechaRegistroPropertyChange(evt);
             }
         });
+        contenedor.add(jdcFechaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 90, 132, -1));
 
         jbModificar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbModificar.setText("Modificar");
@@ -124,6 +133,7 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
                 jbModificarActionPerformed(evt);
             }
         });
+        contenedor.add(jbModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(108, 358, -1, 30));
 
         jbCrear.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbCrear.setText("Crear");
@@ -132,23 +142,30 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
                 jbCrearActionPerformed(evt);
             }
         });
+        contenedor.add(jbCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 358, 80, 30));
+        contenedor.add(jsPeso, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 90, 68, -1));
 
         jLabel1.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel1.setText("Nombre");
+        contenedor.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 20, -1, 24));
 
         jLabel4.setFont(new java.awt.Font("Gabriola", 1, 18)); // NOI18N
         jLabel4.setText("DNI");
+        contenedor.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 50, 30, 18));
 
         jlDNIPaciente.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jlDNIPaciente.setForeground(new java.awt.Color(0, 86, 20));
+        contenedor.add(jlDNIPaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 50, 300, 20));
 
         jlNombrePaciente1.setBackground(new java.awt.Color(255, 255, 255));
         jlNombrePaciente1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jlNombrePaciente1.setForeground(new java.awt.Color(0, 86, 20));
+        contenedor.add(jlNombrePaciente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 20, 260, 20));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Gabriola", 1, 16)); // NOI18N
         jLabel5.setText("Fecha Registro");
+        contenedor.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 91, 90, 30));
 
         jbCancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbCancelar.setText("Cancelar");
@@ -157,6 +174,7 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
                 jbCancelarActionPerformed(evt);
             }
         });
+        contenedor.add(jbCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(203, 358, -1, 30));
 
         jbEliminar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jbEliminar.setText("Eliminar");
@@ -168,88 +186,46 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
                 jbEliminarActionPerformed(evt);
             }
         });
+        contenedor.add(jbEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 358, -1, 30));
+        contenedor.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 68, 300, 10));
+        contenedor.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 40, 260, 10));
 
-        javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
-        contenedor.setLayout(contenedorLayout);
-        contenedorLayout.setHorizontalGroup(
-            contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedorLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addGap(12, 12, 12)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlNombrePaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(contenedorLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlDNIPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(contenedorLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jlPA)
-                .addGap(19, 19, 19)
-                .addComponent(jsPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jdcFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(contenedorLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contenedorLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGroup(contenedorLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jbCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jbModificar)
-                .addGap(12, 12, 12)
-                .addComponent(jbCancelar)
-                .addGap(12, 12, 12)
-                .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPaneInfo.setBackground(new java.awt.Color(140, 184, 132));
+        jPaneInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jPaneInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPaneInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jPaneInfoMouseReleased(evt);
+            }
+        });
+
+        jLInfo.setFont(new java.awt.Font("Gabriola", 1, 24)); // NOI18N
+        jLInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jLInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLInfo.setText("?");
+
+        javax.swing.GroupLayout jPaneInfoLayout = new javax.swing.GroupLayout(jPaneInfo);
+        jPaneInfo.setLayout(jPaneInfoLayout);
+        jPaneInfoLayout.setHorizontalGroup(
+            jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneInfoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        contenedorLayout.setVerticalGroup(
-            contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedorLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(contenedorLayout.createSequentialGroup()
-                        .addComponent(jlNombrePaciente1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(contenedorLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jlDNIPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlPA, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jsPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(contenedorLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jdcFechaRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(contenedorLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(19, 19, 19)
-                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        jPaneInfoLayout.setVerticalGroup(
+            jPaneInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneInfoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        contenedor.add(jPaneInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,13 +327,38 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jdcFechaRegistroPropertyChange
 
+    private void jPaneInfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseEntered
+        jPaneInfo.setBackground(new Color(195, 255, 184));
+        jLInfo.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jPaneInfoMouseEntered
+
+    private void jPaneInfoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseExited
+        jPaneInfo.setBackground(new Color(140, 184, 132));
+        jLInfo.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jPaneInfoMouseExited
+
+    private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
+        JOptionPane.showMessageDialog(this, "-Para agregar una dieta, escriba el nombre de la dieta, presione el boton [Buscar] e ingrese el dni de su paciente, "
+            + "\nseleccione una fecha inicial y una fecha final, ingrese el peso inicial y el peso final del paciente y presione el boton [Agregar].\n" +
+            "\n" +
+            "-Para limpiar todos los campos presione el boton [Limpiar].\n" +
+            "\n" +
+            "-Para ver el detalle de la dieta seleccione una dieta de la tabla y presione el boton [Configurar Dieta].\n" +
+            "\n" +
+            "-Para modificar una dieta seleccione la dieta de la tabla, modifique los datos que desea actualizar y presione el boton [Modificar].\n" +
+            "\n" +
+            "-Para eliminar una dieta, debe seleccionarla en la tabla (asegurece que la dieta no tiene consumisiones) y presionar el boton [Eliminar].");
+    }//GEN-LAST:event_jPaneInfoMouseReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contenedor;
+    private javax.swing.JLabel jLInfo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPaneInfo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
