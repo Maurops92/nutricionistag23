@@ -303,7 +303,7 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(50, 50, 50)
                 .addComponent(jpPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(jpComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,9 +313,8 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jpInformes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(jPaneSobre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(jLabel1)
-                .addContainerGap())
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -473,9 +472,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLComida;
     private javax.swing.JLabel jLDieta;
     private javax.swing.JLabel jLInformes;
-    private javax.swing.JLabel jLInformes1;
-    private javax.swing.JLabel jLInformes2;
-    private javax.swing.JLabel jLInformes3;
     private javax.swing.JLabel jLPaciente;
     private javax.swing.JLabel jLSobre;
     private javax.swing.JLabel jLabel1;
@@ -486,9 +482,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jpComida;
     private javax.swing.JPanel jpDieta;
     private javax.swing.JPanel jpInformes;
-    private javax.swing.JPanel jpInformes1;
-    private javax.swing.JPanel jpInformes2;
-    private javax.swing.JPanel jpInformes3;
     private javax.swing.JPanel jpPaciente;
     // End of variables declaration//GEN-END:variables
 
