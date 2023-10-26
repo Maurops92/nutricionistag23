@@ -327,7 +327,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
         if (jtDetalle.getText().length() > 100) {
             String texto = jtDetalle.getText().substring(0, 99);
             jtDetalle.setText(texto);
-            JOptionPane.showMessageDialog(this, "Supero el limite de 100 caracteres");
+            JOptionPane.showMessageDialog(this, "Superó el límite de 100 caracteres");
         }
     }//GEN-LAST:event_jtDetalleKeyTyped
 
@@ -342,11 +342,11 @@ public class ComidaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPaneInfoMouseExited
 
     private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
-        JOptionPane.showMessageDialog(this, "-Para agregar una comida, complete los campos nombre, detalle, calorias y presione el boton [Agregar].\n"
+        JOptionPane.showMessageDialog(this, "-Para agregar una comida, complete los campos Nombre, Detalle, Calorias y presione el botón [Agregar].\n"
                 + "\n"
-                + "-Para modificar una comida seleccionada en la tabla, modifique los datos que desea actualizar y presione el boton [Modificar].\n"
+                + "-Para modificar una comida, seleccionela en la tabla, modifique los datos que desea actualizar y presione el botón [Modificar].\n"
                 + "\n"
-                + "-Para eliminar una comida, debe seleccionarla en la tabla y presionar el boton [Eliminar].");
+                + "-Para eliminar una comida, seleccionela en la tabla y presione el botón [Eliminar].");
     }//GEN-LAST:event_jPaneInfoMouseReleased
 
     private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased

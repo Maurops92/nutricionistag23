@@ -501,7 +501,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
 
     private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased
         if (!jtNombre.getText().equals("") && Validaciones.validacionInmediataCaracteres(jtNombre.getText(), 2) == false) {
-            JOptionPane.showMessageDialog(this, "Caracter invalido");
+            JOptionPane.showMessageDialog(this, "Caracter inválido");
             jtNombre.setText("");
         }
     }//GEN-LAST:event_jtNombreKeyReleased
@@ -536,7 +536,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
             }
         } catch (NullPointerException e) {
         } catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "El DNI ingresado es invalido");
+            JOptionPane.showMessageDialog(null, "El DNI ingresado es inválido");
         }
 
     }//GEN-LAST:event_jbBuscarActionPerformed
@@ -552,16 +552,16 @@ public class PacienteVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPaneInfoMouseExited
 
     private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
-                JOptionPane.showMessageDialog(this, "-Para agregar un paciente, complete los datos personales que se solicitan en el tope de la ventana \ny al finalizar presione el boton [Agregar].\n"
+                JOptionPane.showMessageDialog(this, "-Para agregar un paciente, complete los datos personales, al finalizar presione el botón [Agregar].\n"
                 + "\n"
-                + "-Para modificar un paciente seleccionelo en la tabla, modifique el dato que desea actualizar \ny presione el boton [Modificar],\n"
+                + "-Para modificar un paciente, seleccionelo en la tabla, modifique el dato que desea actualizar \ny presione el botón [Modificar],\n"
                 + "\n"
-                + "-Para consultar o crear un Historial del paciente, seleccione en la tabla al paciente \ny presione el boton [Historial].");
+                + "-Para consultar o crear un Historial del paciente, seleccione en la tabla al paciente \ny presione el botón [Historial].");
     }//GEN-LAST:event_jPaneInfoMouseReleased
 
     private void jtDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDniKeyReleased
         if (!jtDni.getText().equals("") && Validaciones.validacionInmediataCaracteres(jtDni.getText(), 1) == false) {
-            JOptionPane.showMessageDialog(this, "Caracter invalido, solo se permiten numeros");
+            JOptionPane.showMessageDialog(this, "Caracter inválido, solo se permiten números");
             jtDni.setText("");
         }
     }//GEN-LAST:event_jtDniKeyReleased

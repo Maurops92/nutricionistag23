@@ -251,10 +251,10 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
                 tableClean();
                 llenarTabla();
             } else {
-                JOptionPane.showMessageDialog(this, "No puede pesar cero o menos kilogramos");
+                JOptionPane.showMessageDialog(this, "El valor ingresado debe ser mayor a 0 (cero)");
             }
         } catch (NullPointerException np) {
-            JOptionPane.showMessageDialog(this, "Ingrese una fecha valida");
+            JOptionPane.showMessageDialog(this, "Ingrese una fecha válida");
         }
         jbCancelar.setEnabled(false);
         jbEliminar.setEnabled(false);
@@ -284,11 +284,11 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
                 tableClean();
                 llenarTabla();
             } else {
-                JOptionPane.showMessageDialog(this, "No puede pesar cero o menos kilogramos");
+                JOptionPane.showMessageDialog(this, "El valor ingresado debe ser mayor a 0 (cero)");
             }
             jsPeso.setValue((double) 0);
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(this, "Ingrese una fecha valida");
+            JOptionPane.showMessageDialog(this, "Ingrese una fecha válida");
         }
 
 
@@ -321,8 +321,8 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jdcFechaRegistroPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcFechaRegistroPropertyChange
-        if(!Validaciones.validacionInmediataFecha(jdcFechaRegistro.getDate())) {
-            JOptionPane.showMessageDialog(this, "No se permiten fechas superiores al corriente dia.");
+        if (!Validaciones.validacionInmediataFecha(jdcFechaRegistro.getDate())) {
+            JOptionPane.showMessageDialog(this, "La fecha ingresada no puede ser posterior a la actual.");
             jdcFechaRegistro.setDate(Date.valueOf(LocalDate.now()));
         }
     }//GEN-LAST:event_jdcFechaRegistroPropertyChange
@@ -338,16 +338,10 @@ public class HistorialPacienteVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPaneInfoMouseExited
 
     private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
-        JOptionPane.showMessageDialog(this, "-Para agregar una dieta, escriba el nombre de la dieta, presione el boton [Buscar] e ingrese el dni de su paciente, "
-            + "\nseleccione una fecha inicial y una fecha final, ingrese el peso inicial y el peso final del paciente y presione el boton [Agregar].\n" +
-            "\n" +
-            "-Para limpiar todos los campos presione el boton [Limpiar].\n" +
-            "\n" +
-            "-Para ver el detalle de la dieta seleccione una dieta de la tabla y presione el boton [Configurar Dieta].\n" +
-            "\n" +
-            "-Para modificar una dieta seleccione la dieta de la tabla, modifique los datos que desea actualizar y presione el boton [Modificar].\n" +
-            "\n" +
-            "-Para eliminar una dieta, debe seleccionarla en la tabla (asegurece que la dieta no tiene consumisiones) y presionar el boton [Eliminar].");
+        JOptionPane.showMessageDialog(this, "-Presione el botón [Crear] para registrar un nuevo historial cargando el Peso y la fecha de Registro.\n"
+                +"\n"
+                + "-Para [Modificar] Peso y/o Fecha de Registro o [Eliminar] una fila, seleccionela y presione el botón correspondiente.\n"
+                + " Caso contrario presione el botón [Cancelar].");
     }//GEN-LAST:event_jPaneInfoMouseReleased
 
 

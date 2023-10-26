@@ -312,7 +312,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
         } catch (NullPointerException e ) {
 
         }catch (NumberFormatException e ) {
-            JOptionPane.showMessageDialog(null, "El DNI ingresado es invalido");
+            JOptionPane.showMessageDialog(null, "El DNI ingresado es inválido");
         }
 
     }//GEN-LAST:event_jbBuscarActionPerformed
@@ -328,15 +328,15 @@ public class InformesVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPaneInfoMouseExited
 
     private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
-        JOptionPane.showMessageDialog(this, "-Si desea ver el informe de un paciente, debe buscarlo presionando el botón [Buscar] e ingresando el DNI.\n"
+        JOptionPane.showMessageDialog(this, "-Para ver el informe de un paciente, presione el botón [Buscar] e ingrese el DNI.\n"
                 + "\n"
-                + "-Para ver el historial de una dieta, debe seleccionarla en la tabla \"Dietas\" y podrá observarlo en la tabla \"Historial\"\n"
+                + "-Para ver el historial de una dieta, seleccionela en la tabla \"Dietas\" y podrá observar el \"Historial\"\n"
                 + "\n"
-                + "-Los botones \"Dieta Vigentes\" y \"Dietas Culminadas\" filtraran entre las dietas activas/corrientes y las inactivas/finalizadas.\n"
+                + "-Los botones \"Dieta Vigentes\" y \"Dietas Culminadas\" filtran las dietas activas/corrientes y las inactivas/finalizadas.\n"
                 + "\n"
-                + "-Para limpiar todos los campos presione el boton [Limpiar]."
+                + "-Para limpiar todos los campos presione el botón [Limpiar]."
                 + "\n"
-                + "\n-Leyenda Cumplido \nSIN HIST: No existe un registro de peso a la fecha final de la dieta.\nSI: El paciente cumplio con el peso objetivo.\nNO: El paciente no cumplio con el peso deseado.\nACTIVO: Dieta actual del paciente.");
+                + "\n-Ref. columna \"Cumplido\" \nSIN HIST: No existe un registro de peso a la fecha final de la dieta.\nSI: El paciente cumplió con el Peso Deseado.\nNO: El paciente no cumplió con el Peso Deseado.\nACTIVO: Dieta actual del paciente.");
     }//GEN-LAST:event_jPaneInfoMouseReleased
 
 

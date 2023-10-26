@@ -342,7 +342,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
 
     private void jtNombreDietaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreDietaKeyReleased
         if (!jtNombreDieta.getText().equals("") && Validaciones.validacionInmediataCaracteres(jtNombreDieta.getText(), 2) == false) {
-            JOptionPane.showMessageDialog(this, "Caracter invalido");
+            JOptionPane.showMessageDialog(this, "Caracter inválido");
             jtNombreDieta.setText("");
         }
     }//GEN-LAST:event_jtNombreDietaKeyReleased
@@ -491,7 +491,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
-        if (JOptionPane.showConfirmDialog(this, "¿Esta seguro que desea Eliminar?") == 0) {
+        if (JOptionPane.showConfirmDialog(this, "¿Está seguro que desea Eliminar?") == 0) {
             DietaData dd = new DietaData();
             jbAgregar.setEnabled(true);
             jbModificar.setEnabled(false);
@@ -526,16 +526,16 @@ public class DietaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPaneInfoMouseExited
 
     private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
-        JOptionPane.showMessageDialog(this, "-Para agregar una dieta, escriba el nombre de la dieta, presione el boton [Buscar] e ingrese el dni de su paciente, "
-                + "\nseleccione una fecha inicial y una fecha final, ingrese el peso inicial y el peso final del paciente y presione el boton [Agregar].\n" +
+        JOptionPane.showMessageDialog(this, "-Para agregar una dieta, escriba el nombre, presione el botón [Buscar] e ingrese el DNI del paciente, "
+                + "\ncargue la fecha inicial y la fecha final del plan nutricional, ingrese el peso inicial y final del paciente y presione el botón [Agregar].\n" +
 "\n" +
-"-Para limpiar todos los campos presione el boton [Limpiar].\n" +
+"-Para limpiar todos los campos presione el botón [Limpiar].\n" +
 "\n" +
-"-Para ver el detalle de la dieta seleccione una dieta de la tabla y presione el boton [Configurar Dieta].\n" +
+"-Para ver el detalle de la dieta, seleccionela en la tabla y presione el botón [Configurar Dieta].\n" +
 "\n" +
-"-Para modificar una dieta seleccione la dieta de la tabla, modifique los datos que desea actualizar y presione el boton [Modificar].\n" +
+"-Para modificar una dieta, seleccionela en la tabla, modifique los datos que desea actualizar y presione el botón [Modificar].\n" +
 "\n" +
-"-Para eliminar una dieta, debe seleccionarla en la tabla (asegurece que la dieta no tiene consumisiones) y presionar el boton [Eliminar].");
+"-Para eliminar una dieta, seleccionela en la tabla (asegurese que la dieta no tiene consumisiones) y presione el botón [Eliminar].");
     }//GEN-LAST:event_jPaneInfoMouseReleased
 
 

@@ -487,17 +487,17 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPaneInfoMouseExited
 
     private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
-        JOptionPane.showMessageDialog(this, "-Para agregar una comida  a la celda de la dieta, seleccione la comida, horario y dia y presione el boton [Agregar].\n" +
+        JOptionPane.showMessageDialog(this, "-Para agregar una comida  a la celda de la dieta, seleccione Comida, Horario y Día y presione el botón [Agregar].\n" +
 "\n" +
-"-Para agregar una comida a la celda de la dieta, seleccione una celda, seleccione la comida, horario y dia y presione el boton [Agregar].\n" +
+"-Para agregar una comida a la celda de la dieta, seleccione una celda, seleccione Comida, Horario y Día y presione el botón [Agregar].\n" +
 "\n" +
-"-Para ver el detalle de la comida seleccione una comida y presione el boton [Detalle].\n" +
+"-Para ver el detalle de la comida, seleccione una comida y presione el botón [Detalle].\n" +
 "\n" +
-"-Para modificar una comida seleccione la celda, modifique los datos que desea actualizar y presione el boton [Modificar].\n" +
+"-Para modificar una comida seleccione la celda, modifique los datos que desea actualizar y presione el botón [Modificar].\n" +
 "\n" +
-"-Para eliminar una comida, debe seleccionarla en la tabla y presionar el boton [Eliminar].\n" +
+"-Para eliminar una comida, seleccionela en la tabla y presione el botón [Eliminar].\n" +
 "\n" +
-"-Para limpiar todos los campos presione el boton [Limpiar].");
+"-Para limpiar todos los campos presione el botón [Limpiar].");
     }//GEN-LAST:event_jPaneInfoMouseReleased
 
     private void jbEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminar1ActionPerformed
@@ -628,7 +628,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         if (dietaComida == null) {
             return true;
         }
-        int opt = JOptionPane.showConfirmDialog(this, "Ya fue establecido un consumo para este día y horario.\n¿Desea reemplazar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        int opt = JOptionPane.showConfirmDialog(this, "Ya existe un consumo para este día y horario.\n¿Desea reemplazarlo?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (opt == JOptionPane.YES_OPTION) {
             DCD.eliminarDietaComida(dietaComida);
             return true;
