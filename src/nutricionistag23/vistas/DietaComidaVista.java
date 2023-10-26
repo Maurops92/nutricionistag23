@@ -487,21 +487,21 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPaneInfoMouseExited
 
     private void jPaneInfoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneInfoMouseReleased
-        JOptionPane.showMessageDialog(this, "-Para agregar una comida  a la celda de la dieta, seleccione Comida, Horario y Día y presione el botón [Agregar].\n" +
-"\n" +
-"-Para agregar una comida a la celda de la dieta, seleccione una celda, seleccione Comida, Horario y Día y presione el botón [Agregar].\n" +
-"\n" +
-"-Para ver el detalle de la comida, seleccione una comida y presione el botón [Detalle].\n" +
-"\n" +
-"-Para modificar una comida seleccione la celda, modifique los datos que desea actualizar y presione el botón [Modificar].\n" +
-"\n" +
-"-Para eliminar una comida, seleccionela en la tabla y presione el botón [Eliminar].\n" +
-"\n" +
-"-Para limpiar todos los campos presione el botón [Limpiar].");
+        JOptionPane.showMessageDialog(this, "-Para agregar una comida  a la celda de la dieta, seleccione Comida, Horario y Día y presione el botón [Agregar].\n"
+                + "\n"
+                + "-Para agregar una comida a la celda de la dieta, seleccione una celda, seleccione Comida, Horario y Día y presione el botón [Agregar].\n"
+                + "\n"
+                + "-Para ver el detalle de la comida, seleccione una comida y presione el botón [Detalle].\n"
+                + "\n"
+                + "-Para modificar una comida seleccione la celda, modifique los datos que desea actualizar y presione el botón [Modificar].\n"
+                + "\n"
+                + "-Para eliminar una comida, seleccionela en la tabla y presione el botón [Eliminar].\n"
+                + "\n"
+                + "-Para limpiar todos los campos presione el botón [Limpiar].");
     }//GEN-LAST:event_jPaneInfoMouseReleased
 
     private void jbEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminar1ActionPerformed
-         int opt = JOptionPane.showConfirmDialog(this, "¿Desea Eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        int opt = JOptionPane.showConfirmDialog(this, "¿Desea Eliminar?", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (opt == JOptionPane.YES_OPTION) {
             DietaComida dietaComida = (DietaComida) modeloTabla.getValueAt(jTablaDietaComida.getSelectedRow(), jTablaDietaComida.getSelectedColumn());
             DCD.eliminarDietaComida(dietaComida);
@@ -623,17 +623,19 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
     }
 
     private boolean manejoEscrituraCelda(HorariosEnum horario, DiasEnum dia) {
-        DietaComida dietaComida = DCD.buscarDietaComida(DietaVista.idDieta, horario.toString(), dia.toString());
+        if (horario != null && dia != null) {
+            DietaComida dietaComida = DCD.buscarDietaComida(DietaVista.idDieta, horario.toString(), dia.toString());
 
-        if (dietaComida == null) {
-            return true;
-        }
-        int opt = JOptionPane.showConfirmDialog(this, "Ya existe un consumo para este día y horario.\n¿Desea reemplazarlo?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (opt == JOptionPane.YES_OPTION) {
-            DCD.eliminarDietaComida(dietaComida);
-            return true;
+            if (dietaComida == null) {
+                return true;
+            }
+            int opt = JOptionPane.showConfirmDialog(this, "Ya existe un consumo para este día y horario.\n¿Desea reemplazarlo?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (opt == JOptionPane.YES_OPTION) {
+                DCD.eliminarDietaComida(dietaComida);
+                return true;
+            }
+            return false;
         }
         return false;
     }
-
 }
