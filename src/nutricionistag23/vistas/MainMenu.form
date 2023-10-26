@@ -97,9 +97,9 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jpPaciente" alignment="0" max="32767" attributes="0"/>
-              <Component id="jpComida" alignment="1" max="32767" attributes="0"/>
-              <Component id="jpDieta" alignment="0" max="32767" attributes="0"/>
-              <Component id="jpInformes" alignment="0" max="32767" attributes="0"/>
+              <Component id="jpComida" alignment="1" pref="205" max="32767" attributes="0"/>
+              <Component id="jpDieta" alignment="0" pref="205" max="32767" attributes="0"/>
+              <Component id="jpInformes" alignment="0" pref="205" max="32767" attributes="0"/>
               <Group type="102" attributes="0">
                   <Component id="jPaneSobre" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>

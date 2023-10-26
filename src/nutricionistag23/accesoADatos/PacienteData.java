@@ -17,7 +17,6 @@ public class PacienteData {
 
     public PacienteData() {
         con = Conexion.conectarServidor();
-
     }
 
     public void guardarPaciente(Paciente paciente) {

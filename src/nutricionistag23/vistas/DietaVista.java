@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -21,11 +20,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import nutricionistag23.accesoADatos.DietaData;
-import nutricionistag23.accesoADatos.HistorialData;
 import nutricionistag23.accesoADatos.PacienteData;
 import nutricionistag23.accesoADatos.Validaciones;
 import nutricionistag23.entidades.Dieta;
-import nutricionistag23.entidades.Historial;
 import nutricionistag23.entidades.Paciente;
 import static nutricionistag23.vistas.MainMenu.getMainMenu;
 
@@ -444,6 +441,7 @@ public class DietaVista extends javax.swing.JInternalFrame {
 
     private void jtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCerrarActionPerformed
         this.dispose();
+        MainMenu.getMainMenu().reinicializarBotonesDesdeVistas();
     }//GEN-LAST:event_jtCerrarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed

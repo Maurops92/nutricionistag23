@@ -287,6 +287,7 @@ public class InformesVista extends javax.swing.JInternalFrame {
 
     private void jtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCerrarActionPerformed
         this.dispose();
+        MainMenu.getMainMenu().reinicializarBotonesDesdeVistas();
     }//GEN-LAST:event_jtCerrarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed

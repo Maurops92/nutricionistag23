@@ -5,12 +5,9 @@
  */
 package nutricionistag23.vistas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BorderFactory;
@@ -354,6 +351,7 @@ public class PacienteVista extends javax.swing.JInternalFrame {
 
     private void jtCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCerrarActionPerformed
         this.dispose();
+        MainMenu.getMainMenu().reinicializarBotonesDesdeVistas();
     }//GEN-LAST:event_jtCerrarActionPerformed
 
     private void jbHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbHistorialActionPerformed

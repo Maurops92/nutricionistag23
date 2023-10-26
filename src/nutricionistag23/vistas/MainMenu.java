@@ -8,13 +8,7 @@ package nutricionistag23.vistas;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
-import javax.swing.plaf.basic.BasicInternalFrameUI;
-import java.awt.Graphics;
-import javax.swing.ImageIcon;
-import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
@@ -24,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class MainMenu extends javax.swing.JFrame {
 
+    private boolean clickVistaPacientes, clickVistaComida, clickVistaDieta, clickVistaInformes;
     private static MainMenu main;
 
     /**
@@ -337,8 +332,10 @@ public class MainMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jpComidaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseExited
-        jpComida.setBackground(new Color(195, 255, 184));
-        jLComida.setForeground(new Color(0, 54, 3));
+        if (!clickVistaComida) {
+            jpComida.setBackground(new Color(195, 255, 184));
+            jLComida.setForeground(new Color(0, 54, 3));
+        }
     }//GEN-LAST:event_jpComidaMouseExited
 
     private void jpComidaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseEntered
@@ -349,13 +346,17 @@ public class MainMenu extends javax.swing.JFrame {
     private void jpComidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpComidaMouseClicked
         jdpEscritorio.removeAll();
         jdpEscritorio.repaint();
+        reinicializarBotones("comida");
+        clickVistaComida = true;
         ComidaVista pv = new ComidaVista();
         agregarFondoVentana(pv);
     }//GEN-LAST:event_jpComidaMouseClicked
 
     private void jpPacienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseExited
-        jpPaciente.setBackground(new Color(195, 255, 184));
-        jLPaciente.setForeground(new Color(0, 54, 3));       // TODO add your handling code here:
+        if (!clickVistaPacientes) {
+            jpPaciente.setBackground(new Color(195, 255, 184));
+            jLPaciente.setForeground(new Color(0, 54, 3));
+        }
     }//GEN-LAST:event_jpPacienteMouseExited
 
     private void jpPacienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseEntered
@@ -366,14 +367,17 @@ public class MainMenu extends javax.swing.JFrame {
     private void jpPacienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpPacienteMouseClicked
         jdpEscritorio.removeAll();
         jdpEscritorio.repaint();
+        reinicializarBotones("paciente");
+        clickVistaPacientes = true;
         PacienteVista pv = new PacienteVista();
         agregarFondoVentana(pv);
-        // pv.setSize(800,523);
     }//GEN-LAST:event_jpPacienteMouseClicked
 
     private void jpDietaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDietaMouseExited
-        jpDieta.setBackground(new Color(195, 255, 184));
-        jLDieta.setForeground(new Color(0, 54, 3));
+        if (!clickVistaDieta) {
+            jpDieta.setBackground(new Color(195, 255, 184));
+            jLDieta.setForeground(new Color(0, 54, 3));
+        }
     }//GEN-LAST:event_jpDietaMouseExited
 
     private void jpDietaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDietaMouseEntered
@@ -384,6 +388,8 @@ public class MainMenu extends javax.swing.JFrame {
     private void jpDietaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpDietaMouseClicked
         jdpEscritorio.removeAll();
         jdpEscritorio.repaint();
+        reinicializarBotones("dieta");
+        clickVistaDieta = true;
         DietaVista dv = new DietaVista();
         agregarFondoVentana(dv);
     }//GEN-LAST:event_jpDietaMouseClicked
@@ -391,18 +397,22 @@ public class MainMenu extends javax.swing.JFrame {
     private void jpInformesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpInformesMouseClicked
         jdpEscritorio.removeAll();
         jdpEscritorio.repaint();
+        reinicializarBotones("informes");
+        clickVistaInformes = true;
         InformesVista iv = new InformesVista();
         agregarFondoVentana(iv);
     }//GEN-LAST:event_jpInformesMouseClicked
 
     private void jpInformesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpInformesMouseEntered
-       jpInformes.setBackground(new Color(140, 184, 132));
+        jpInformes.setBackground(new Color(140, 184, 132));
         jLInformes.setForeground(Color.WHITE);
     }//GEN-LAST:event_jpInformesMouseEntered
 
     private void jpInformesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpInformesMouseExited
-       jpInformes.setBackground(new Color(195,255,184));
-       jLInformes.setForeground(new Color (0,54,3));
+        if (!clickVistaInformes) {
+            jpInformes.setBackground(new Color(195, 255, 184));
+            jLInformes.setForeground(new Color(0, 54, 3));
+        }
     }//GEN-LAST:event_jpInformesMouseExited
 
     private void jPaneSobreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneSobreMouseClicked
@@ -416,12 +426,11 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jPaneSobreMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPaneSobreMouseExited
         jPaneSobre.setBackground(new Color(195, 255, 184));
-        jLSobre.setForeground(new Color(0, 54, 3)); 
+        jLSobre.setForeground(new Color(0, 54, 3));
     }//GEN-LAST:event_jPaneSobreMouseExited
     public static MainMenu getMainMenu() {
         if (main == null) {
             main = new MainMenu();
-
         }
         return main;
     }
@@ -505,4 +514,61 @@ public class MainMenu extends javax.swing.JFrame {
         jdpEscritorio.remove(fv);
     }
 
+    public void reinicializarBotones(String opc) {
+        switch (opc) {
+            case "paciente":
+                jpComida.setBackground(new Color(195, 255, 184));
+                jLComida.setForeground(new Color(0, 54, 3));
+                jpDieta.setBackground(new Color(195, 255, 184));
+                jLDieta.setForeground(new Color(0, 54, 3));
+                jpInformes.setBackground(new Color(195, 255, 184));
+                jLInformes.setForeground(new Color(0, 54, 3));
+                break;
+            case "comida":
+                jpPaciente.setBackground(new Color(195, 255, 184));
+                jLPaciente.setForeground(new Color(0, 54, 3));
+                jpDieta.setBackground(new Color(195, 255, 184));
+                jLDieta.setForeground(new Color(0, 54, 3));
+                jpInformes.setBackground(new Color(195, 255, 184));
+                jLInformes.setForeground(new Color(0, 54, 3));
+                break;
+            case "dieta":
+                jpPaciente.setBackground(new Color(195, 255, 184));
+                jLPaciente.setForeground(new Color(0, 54, 3));
+                jpComida.setBackground(new Color(195, 255, 184));
+                jLComida.setForeground(new Color(0, 54, 3));
+                jpInformes.setBackground(new Color(195, 255, 184));
+                jLInformes.setForeground(new Color(0, 54, 3));
+                break;
+            case "informes":
+                jpPaciente.setBackground(new Color(195, 255, 184));
+                jLPaciente.setForeground(new Color(0, 54, 3));
+                jpComida.setBackground(new Color(195, 255, 184));
+                jLComida.setForeground(new Color(0, 54, 3));
+                jpDieta.setBackground(new Color(195, 255, 184));
+                jLDieta.setForeground(new Color(0, 54, 3));
+                break;
+        }
+        clickVistaPacientes = false;
+        clickVistaComida = false;
+        clickVistaDieta = false;
+        clickVistaInformes = false;
+    }
+
+    public void reinicializarBotonesDesdeVistas() {
+
+        clickVistaPacientes = false;
+        clickVistaComida = false;
+        clickVistaDieta = false;
+        clickVistaInformes = false;
+
+        jpPaciente.setBackground(new Color(195, 255, 184));
+        jLPaciente.setForeground(new Color(0, 54, 3));
+        jpComida.setBackground(new Color(195, 255, 184));
+        jLComida.setForeground(new Color(0, 54, 3));
+        jpDieta.setBackground(new Color(195, 255, 184));
+        jLDieta.setForeground(new Color(0, 54, 3));
+        jpInformes.setBackground(new Color(195, 255, 184));
+        jLInformes.setForeground(new Color(0, 54, 3));
+    }
 }

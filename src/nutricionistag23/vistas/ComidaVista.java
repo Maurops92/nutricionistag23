@@ -6,9 +6,6 @@
 package nutricionistag23.vistas;
 
 import java.awt.Color;
-import java.awt.RenderingHints;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -18,10 +15,8 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import nutricionistag23.accesoADatos.ComidaData;
-import nutricionistag23.accesoADatos.PacienteData;
 import nutricionistag23.accesoADatos.Validaciones;
 import nutricionistag23.entidades.Comida;
-import nutricionistag23.entidades.Paciente;
 
 /**
  *
@@ -291,7 +286,7 @@ public class ComidaVista extends javax.swing.JInternalFrame {
 
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
         this.dispose();
-
+        MainMenu.getMainMenu().reinicializarBotonesDesdeVistas();
     }//GEN-LAST:event_jbCerrarActionPerformed
 
     private void jtComidaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtComidaMouseReleased
