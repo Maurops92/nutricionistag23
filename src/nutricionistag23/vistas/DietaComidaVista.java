@@ -6,14 +6,16 @@
 package nutricionistag23.vistas;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Vector;
 import java.util.stream.Collectors;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import nutricionistag23.accesoADatos.ComidaData;
@@ -428,7 +430,7 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         dietaComida.setDia((DiasEnum) jcbDia.getSelectedItem());
         dietaComida.setHorario((HorariosEnum) jcbHorario.getSelectedItem());
         dietaComida.setDieta(DD.buscarDieta(idDieta));
-        if (manejoEscrituraCelda(dietaComida.getHorario(), dietaComida.getDia())) {
+        if (manejoEscrituraCelda(dietaComida.getHorario(), dietaComida.getDia()) && dietaComida.getComida() != null) {
             DCD.guardarDietaComida(dietaComida);
         }
         tableClean();
@@ -559,6 +561,11 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
         }
         JTableHeader header = jTablaDietaComida.getTableHeader();
         header.setDefaultRenderer(new HeaderRenderer(jTablaDietaComida));
+        backgroundTabla backgroundTabla = new backgroundTabla(0, new Color(196, 212, 195));
+        jTablaDietaComida.setDefaultRenderer(Object.class, backgroundTabla);
+        jTablaDietaComida.setGridColor(new Color(140, 184, 132));
+        jTablaDietaComida.setShowHorizontalLines(true);
+        jTablaDietaComida.setShowVerticalLines(true);
     }
 
     private void llenarTabla() {
@@ -637,5 +644,31 @@ public class DietaComidaVista extends javax.swing.JInternalFrame {
             return false;
         }
         return false;
+    }
+
+    private class backgroundTabla extends DefaultTableCellRenderer {
+
+        private int targetColumnIndex; // The index of the column you want to change the background color for
+        private Color backgroundColor;  // The desired background color for the cells in the target column
+
+        public backgroundTabla(int targetColumnIndex, Color backgroundColor) {
+            this.targetColumnIndex = targetColumnIndex;
+            this.backgroundColor = backgroundColor;
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component rendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Check if the current column is the target column
+            if (column == targetColumnIndex) {
+                rendererComponent.setBackground(backgroundColor);
+            } else {
+                rendererComponent.setBackground(table.getBackground());
+            }
+
+            rendererComponent.setForeground(table.getForeground());
+            return rendererComponent;
+        }
     }
 }
